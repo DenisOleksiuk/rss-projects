@@ -1,0 +1,41 @@
+.about {
+    padding: 80px 0 100px 0;
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+    }
+    &__img {
+        margin-right: 120px;
+    }
+    &__content {
+        width: 430px;
+        height: 380px;
+        margin-top: 13px;
+    }
+    &__heading {
+        width: 370px;
+        height: 90px;
+        font-family: Georgia;
+        font-weight: normal;
+        font-size: 35px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: #545454;
+    }
+    &__subheading {
+        margin-top: 25px;
+        font-family: Arial;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 160%;
+        color: #4C4C4C;
+    }
+    &__text {
+        margin-top: 25px;
+        font-family: Arial;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 160%;
+        color: #4C4C4C;
+    }
+}

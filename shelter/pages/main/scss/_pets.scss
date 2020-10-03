@@ -1,0 +1,112 @@
+.pets {
+    padding: 75px 0 100px 0;
+    background: #F6F6F6;
+    &__heading {
+        width: 400px;
+        height: 90px;
+        margin: 0 auto;
+        text-align: center;
+        font-family: Georgia;
+        font-weight: normal;
+        font-size: 35px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: #545454;
+    }
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 60px;
+    }
+    &__arrow-left {
+        width: 52px;
+        height: 52px;
+        margin-top: 190px;
+        border: 2px solid #F1CDB3;
+        background: transparent;
+        box-sizing: border-box;
+        border-radius: 100px;
+        &:hover {
+            cursor: url(../../../assets/pets/hover.svg), auto;
+            background: #FDDCC4;
+        }
+    }
+    &__inner {
+        width: 1097px;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 53px;
+        padding-right: 53px;
+    }
+    &__card {
+        width: 270px;
+        height: 435px;
+        background: #FAFAFA;
+        border-radius: 9px;
+        text-align: center;
+        &:hover {
+            cursor: url(../../../assets/pets/hover.svg), auto;
+            background: #FFFFFF;
+            box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+        }
+    }
+    &__card-title {
+        margin-top: 25px;
+        font-family: Georgia;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 23px;
+        letter-spacing: 0.06em;
+        color: #545454;
+    }
+    &__btn {
+        width: 187px;
+        height: 52px;
+        margin-top: 30px;
+        border: 2px solid #F1CDB3;
+        box-sizing: border-box;
+        border-radius: 100px;
+        font-family: Georgia;
+        font-weight: normal;
+        font-size: 17px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        background-color: transparent;
+        color: #292929;
+        cursor: url(../../../assets/pets/hover.svg), auto;
+    }
+    &__arrow-right {
+        width: 52px;
+        height: 52px;
+        margin-top: 190px;
+        border: 2px solid #F1CDB3;
+        box-sizing: border-box;
+        border-radius: 100px;
+        background-color: transparent;
+        cursor: pointer;
+        &:hover {
+            cursor: url(../../../assets/pets/hover.svg), auto;
+            background: #FDDCC4;
+        }
+    }
+    &__btn-main {
+        width: 261px;
+        height: 52px;
+        display: block;
+        margin: auto;
+        margin-top: 60px;
+        background: #F1CDB3;
+        border-radius: 100px;
+        border: none;
+        font-family: Georgia;
+        font-weight: normal;
+        font-size: 17px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: #292929;
+        &:hover {
+            background: #FDDCC4;
+            cursor: url(../../../assets/pets/hover.svg), auto;
+        }
+    }
+}

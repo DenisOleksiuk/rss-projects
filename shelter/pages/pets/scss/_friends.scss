@@ -1,0 +1,90 @@
+.friends {
+    padding: 197px 0 102px 0;
+    background: #F6F6F6;
+    &__title {
+        font-family: Georgia;;
+        font-weight: normal;
+        font-size: 35px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: #545454;
+        text-align: center;
+    }
+    &__cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 63px;
+        border-radius: 9px; 
+    }
+    &__card {
+        width: 270px;
+        height: 435px;
+        background: #FAFAFA;
+        margin-bottom: 30px;
+        &:hover {
+            background: #FFFFFF;
+            box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+            
+        }
+    }
+    &__card-title {
+        margin-top: 25px;
+        text-align: center;
+        font-family: Georgia;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 23px;
+        letter-spacing: 0.06em;
+        color: #545454;
+    }
+    &__btn {
+        display: block;
+        margin: auto;
+        margin-top: 30px;
+        width: 187px;
+        height: 52px;
+        border: 2px solid #F1CDB3;
+        background-color: inherit;
+        border-radius: 100px;
+        cursor: url(../../../assets/pets/hover.svg), pointer;
+        font-family: Georgia;
+        font-weight: normal;
+        font-size: 17px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: #292929;
+    }
+    &__navigation {
+        width: 340px;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        margin-top: 27px;
+    }
+    &__btn-paginator {
+        width: 52px;
+        height: 52px;
+        border: 2px solid #F1CDB3;
+        box-sizing: border-box;
+        border-radius: 100px;
+        font-family: Georgia;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 115%;
+        letter-spacing: 0.06em;
+        color: #292929;
+        &:nth-child(3) {
+            background: #F1CDB3;
+        }
+        &:not(:disabled):hover {
+            cursor: url(../../../assets/pets/hover.svg), pointer;
+            background: #FDDCC4;
+        }
+    }
+    &__btn-paginator[rotate]:disabled{
+        color: #CDCDCD;
+        transform: rotate(180deg);
+        border: 2px solid #CDCDCD;
+    }
+}

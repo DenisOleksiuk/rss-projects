@@ -1,0 +1,130 @@
+.footer {
+    padding-top: 34px;
+    background: radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+    &__address {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__contact {
+        margin-top: 22px;
+    }
+    &__title {
+        font-family: Georgia;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 35px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: #FFFFFF;
+    }
+    &__mail {
+        margin-top: 42px;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 27px;
+        a {
+            transition: 0.4s all;
+            cursor: url(../../../assets/pets/hover.svg), auto;
+            color: #F1CDB3;
+            text-decoration: none;
+            img {
+                cursor: url(../../../assets/pets/hover.svg), auto;
+            }
+            &:hover {
+                color: #FFFFFF;
+            }
+        }
+    }
+    &__text {
+        padding-top: 4px;
+        font-family: Georgia;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 20px;
+        line-height: 115%;
+        letter-spacing: 0.06em;
+    }
+    &__phone {
+        margin-top: 43px;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 40px;
+        a {
+            transition: 0.4s all;
+            cursor: url(../../../assets/pets/hover.svg), auto;
+            color: #F1CDB3;
+            text-decoration: none;
+            img {
+                cursor: url(../../../assets/pets/hover.svg), auto;
+            }
+            &:hover {
+                color: #FFFFFF;
+            }
+        }
+    }
+    &__location {
+        margin-top: 22px;
+        width: 302px;
+        height: 234px;
+    }
+    &__second-title {
+        font-family: Georgia;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 35px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: #FFFFFF;
+    }
+    &__boston {
+        margin-top: 33px;
+        display: flex;
+        img {
+            cursor: url(../../../assets/pets/hover.svg), auto;
+        }
+    }
+    &__boston-pin {
+        font-family: Georgia;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 115%;
+        letter-spacing: 0.06em;
+        margin-left: 20px;
+        a {
+            transition: 0.4s all;
+            cursor: url(../../../assets/pets/hover.svg), auto;
+            color: #F1CDB3;
+            text-decoration: none;
+            &:hover {
+                color: #FFFFFF;
+            }
+        }
+    }
+    &__london {
+        margin-top: 33px;
+        display: flex;
+        img {
+            cursor: url(../../../assets/pets/hover.svg), auto;
+        }
+    }
+    &__london-pin {
+        padding-top: 4px;
+        font-family: Georgia;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 115%;
+        letter-spacing: 0.06em;
+        margin-left: 20px;
+        a {
+            transition: 0.4s all;
+            cursor: url(../../../assets/pets/hover.svg), auto;
+            color: #F1CDB3;
+            text-decoration: none;
+            &:hover {
+                color: #FFFFFF;
+            }
+        }
+    }
+}

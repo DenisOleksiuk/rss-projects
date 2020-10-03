@@ -1,0 +1,65 @@
+.header {
+    padding-top: 60px;
+    &__menu {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__title {
+        font-family: 'Georgia';
+        font-weight: normal;
+        font-size: 32px;
+        line-height: 110%;
+        letter-spacing: 0.06em;
+        color: #F1CDB3;
+        text-decoration: none;
+        cursor: url(../../../assets/pets/hover.svg), auto;
+    }
+    &__subtitle {
+        margin-left: 5px;
+        font-family: Arial;
+        font-weight: normal;
+        margin-top: 10px;
+        line-height: 15px;
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        color: #FFFFFF;
+    }
+    &__menu-list {
+        display: flex;
+        margin-top: 15px;
+    }
+    &__item-list {
+        position: relative;
+        margin-right: 36px;
+        list-style: none;
+        &:nth-child(1) {
+            a {
+                color: #FFFFFF;
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                top: 55%;
+                background: #F1CDB3;
+                width: 100%;
+                height: 3px;
+            }
+        }
+        &:nth-child(4) {
+            margin-right: 0;
+        }
+    }
+    &__item-link {
+        font-family: Arial;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 160%;
+        align-items: center;
+        color: #CDCDCD;
+        text-decoration: none;
+        &:hover {
+            cursor: url(../../../assets/pets/hover.svg), auto;
+            color: #FFFFFF;
+        }
+    }
+}

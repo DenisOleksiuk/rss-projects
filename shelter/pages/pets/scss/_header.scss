@@ -1,0 +1,61 @@
+.header {
+    height: 120px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    position: relative;
+    background: #FFFFFF;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    &__menu {
+        display: flex;
+        justify-content: space-between;   
+    }
+    &__title {
+        font-family: Georgia;
+        font-weight: normal;
+        font-size: 32px;
+        line-height: 110%;
+        color: #545454;
+        letter-spacing: 0.06em;
+        cursor: url(../../../assets/pets/hover.svg), pointer;
+    }
+    &__subtitle {
+        margin-left: 4px;
+        margin-top: 10px;
+        font-family: Arial;;
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 15px;
+        letter-spacing: 0.1em;
+        color: #292929;
+    }
+    &__menu-list {
+        width: 443px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__item-list {
+        font-family: Arial;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 160%;
+        list-style: none;
+        &:nth-child(2) {
+            a {
+                padding-bottom: 3px;
+                color: #292929;
+                border-bottom: 3px #F1CDB3 solid;
+            }
+        }
+    }
+    &__item-link {
+        color: #545454;
+        text-decoration: none;
+        cursor: url(../../../assets/pets/hover.svg), pointer;
+        &:hover {
+            color: #292929;
+        }
+    }
+}

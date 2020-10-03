@@ -1,0 +1,39 @@
+.help {
+    padding: 80px 0 100px 0;
+    &__heading {
+        font-family: Georgia;
+        font-weight: normal;
+        text-align: center;
+        font-size: 35px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: #545454;
+    }
+    &__list {
+        width: 1026px;
+        margin: auto;
+        margin-top: 60px;
+    }
+    &__items-1 {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__items-2 {
+        margin-top: 55px;
+        display: flex;
+        justify-content: space-around;
+    }
+    &__item {
+        list-style: none;
+        text-align: center;
+    }
+    &__descr {
+        margin-top: 30px;
+        font-family: Georgia;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 115%;
+        letter-spacing: 0.06em;
+        color: #545454;
+    }
+}
