@@ -1,0 +1,24 @@
+@import 'fonts';
+@import 'header';
+@import 'main';
+@import 'about';
+@import 'pets';
+@import 'help';
+@import 'donation';
+@import 'footer';
+
+* {
+    outline: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    cursor: url(../../../assets/pets/icon.svg), auto;
+}
+
+
+
+.container {
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+}
