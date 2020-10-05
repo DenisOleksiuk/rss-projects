@@ -138,7 +138,7 @@ parent.addEventListener('click', (e) => {
 });
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === '.' && current.textContent.includes('.')) {
+    if (e.key === '.' && current.textContent.includes('.') || e.key === ' ' && current.textContent.includes('-')) {
         return;
     }
     if (Number(e.key) || e.key === "0" || e.key === ".") {
@@ -196,7 +196,7 @@ document.addEventListener('keydown', (e) => {
             break;
         case "Enter":
             if (prev.textContent.includes('.') && current.textContent.includes('.')) {
-                current.textContent = fraction(parseFloat(current.textContent), parseFloat(prev.textContent), operator)
+                current.textContent = fraction(parseFloat(prev.textContent), parseFloat(current.textContent), operator)
             } else  {
                 current.textContent = equil(parseFloat(prev.textContent), parseFloat(current.textContent));
             }
