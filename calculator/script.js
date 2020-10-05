@@ -124,7 +124,7 @@ parent.addEventListener('click', (e) => {
             break;
         case "=":
             if (prev.textContent.includes('.') && current.textContent.includes('.')) {
-                current.textContent = fraction(parseFloat(current.textContent), parseFloat(prev.textContent), operator);
+                current.textContent = fraction(parseFloat(prev.textContent), parseFloat(current.textContent), operator);
             } else  {
                 current.textContent = equil(parseFloat(prev.textContent), parseFloat(current.textContent));
             }
