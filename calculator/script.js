@@ -23,22 +23,21 @@ const equil = (x, y) => {
     }
 };
 
-const sum = (a, b) => {
-    b = b.slice(0,-1);
-    let [intA, decA] = a.split('.');
-    let [intB, decB] = b.split('.');
-    const x = Math.pow(10, decA.length);
-    const y = Math.pow(10, decB.length);
-    return Number(intA) + Number(intB) + (Number(decA) * y + Number(decB) * x) / x / y;      
-}
+const fraction = (a, b, o) => {
+    a = isNaN(a) || !isFinite(a) || a == '0' ? '0.0' : a.toString();
+    b = isNaN(b) || !isFinite(b) || b == '0' ? '0.0' : b.toString();
 
-const difference = (a, b) => { 
-    a = a.slice(0, -1);
-    let [intA, decA] = a.split('.');
-    let [intB, decB] = b.split('.');        
-    const x = Math.pow(10, decA.length);
-    const y = Math.pow(10, decB.length);
-    return Number(intA) - Number(intB) + (Number(decA) * y - Number(decB) * x) / x / y;      
+    let decA = a.split('.')[1] || '';
+    let decB = b.split('.')[1] || '';        
+    
+    switch (o) {
+        case '+':
+            return Number(Number((Number(a) + Number(b)).toFixed(decA.length + decB.length)).toString());                  
+        case '-':
+            return Number(Number((Number(a) - Number(b)).toFixed(decA.length + decB.length)).toString());
+        case '*':
+            return Number(Number((Number(a) * Number(b)).toFixed(decA.length + decB.length)).toString());
+    }
 }
 
 parent.addEventListener('click', (e) => {
@@ -46,7 +45,7 @@ parent.addEventListener('click', (e) => {
         return;
     }
 
-    if (e.target.textContent == '.' && current.textContent.includes('.') || e.target.textContent === '+' && prev.textContent.includes('+') || e.target.textContent === '±' && current.textContent.includes('-')) {
+    if (e.target.textContent == '.' && current.textContent.includes('.') || e.target.textContent === '+' && prev.textContent.includes('+') || e.target.textContent === '+/-' && current.textContent.includes('-')) {
         return;
     }
 
@@ -58,7 +57,7 @@ parent.addEventListener('click', (e) => {
         current.textContent += e.target.textContent;
     }
     
-    if (e.target.textContent == '±') {
+    if (e.target.textContent == '+/-') {
         current.textContent = `-${current.textContent}`
     }
         
@@ -71,11 +70,15 @@ parent.addEventListener('click', (e) => {
             current.textContent = current.textContent.slice(0, -1);
             break;
         case "√":
-            current.textContent = Math.sqrt(current.textContent);
+            if (isNaN(Math.sqrt(current.textContent)))  current.textContent = "Астанавись";
+            else 
+                current.textContent = Math.sqrt(current.textContent);
+
+            console.log(Math.sqrt(current.textContent));
             isAnswer = true;
             break;
         case "^":
-            operator = "^"
+            operator = "^";
             if (prev.textContent !== '') {
                 prev.textContent = equil(parseFloat(prev.textContent) || 0,  parseFloat(current.textContent))  + "^";
             } else {
@@ -84,7 +87,7 @@ parent.addEventListener('click', (e) => {
             current.textContent = '';
             break;
         case "+":
-            operator = "+"
+            operator = "+";
             prev.textContent = equil(parseFloat(prev.textContent) || 0,  parseFloat(current.textContent)) + "+";
             if (prev.textContent.includes('NaN')) {
                 prev.textContent = ''
@@ -101,7 +104,7 @@ parent.addEventListener('click', (e) => {
             break;
         case "*":
             operator = "*";
-            prev.textContent = equil(parseFloat(prev.textContent) || 1,  parseFloat(current.textContent)) + "*";
+            prev.textContent = equil(parseFloat(current.textContent), parseFloat(prev.textContent)|| 1) + "*";
             if (prev.textContent.includes('NaN')) {
                 prev.textContent = ''
             }
@@ -115,21 +118,18 @@ parent.addEventListener('click', (e) => {
                 prev.textContent = current.textContent + "÷";
             }
             if (prev.textContent.includes('NaN')) {
-                prev.textContent = ''
+                prev.textContent = '';
             }
             current.textContent = '';
             break;
         case "=":
-            if (prev.textContent.includes('.') && current.textContent.includes('.')) {                
-                if (operator === '+')
-                    current.textContent = sum(current.textContent, prev.textContent);
-                if (operator === '-')
-                    current.textContent = difference(prev.textContent, current.textContent);                
+            if (prev.textContent.includes('.') && current.textContent.includes('.')) {
+                current.textContent = fraction(parseFloat(current.textContent), parseFloat(prev.textContent), operator);
             } else  {
                 current.textContent = equil(parseFloat(prev.textContent), parseFloat(current.textContent));
             }
             if (current.textContent === 'NaN') {
-                current.textContent = ''
+                current.textContent = '';
             }
             prev.textContent = '';
             isAnswer = true;
@@ -138,7 +138,6 @@ parent.addEventListener('click', (e) => {
 });
 
 document.addEventListener('keydown', (e) => {
-    console.log(Number(e.key));
     if (e.key === '.' && current.textContent.includes('.')) {
         return;
     }
@@ -148,6 +147,10 @@ document.addEventListener('keydown', (e) => {
             isAnswer = false
         }
         current.textContent += e.key;
+    }
+
+    if (e.key === ' ') {
+        current.textContent = `-${current.textContent}`
     }
     
     switch (e.key) {
@@ -161,6 +164,14 @@ document.addEventListener('keydown', (e) => {
         case "Shift" && "+":
             operator = "+"
             prev.textContent = equil(parseFloat(prev.textContent) || 0,  parseFloat(current.textContent)) + "+";
+            if (prev.textContent.includes('NaN')) {
+                prev.textContent = ''
+            }
+            current.textContent = '';
+            break;
+        case "Shift" && "*":
+            operator = "*";
+            prev.textContent = equil(parseFloat(current.textContent), parseFloat(prev.textContent)|| 1) + "*";
             if (prev.textContent.includes('NaN')) {
                 prev.textContent = ''
             }
@@ -184,15 +195,12 @@ document.addEventListener('keydown', (e) => {
             current.textContent = '';
             break;
         case "Enter":
-            if (prev.textContent.includes('.') && current.textContent.includes('.')) {                
-                if (operator === '+')
-                    current.textContent = sum(current.textContent, prev.textContent);
-                if (operator === '-')
-                    current.textContent = difference(prev.textContent, current.textContent);                
+            if (prev.textContent.includes('.') && current.textContent.includes('.')) {
+                current.textContent = fraction(parseFloat(current.textContent), parseFloat(prev.textContent), operator)
             } else  {
                 current.textContent = equil(parseFloat(prev.textContent), parseFloat(current.textContent));
             }
-            if (current.textContent === 'NaN' || current.textContent === '') {
+            if (current.textContent === 'NaN') {
                 current.textContent = ''
             }
             prev.textContent = '';
