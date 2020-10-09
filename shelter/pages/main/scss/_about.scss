@@ -8,12 +8,11 @@
         margin-right: 120px;
     }
     &__content {
-        width: 430px;
-        height: 380px;
+        max-width: 430px;
         margin-top: 13px;
     }
     &__heading {
-        width: 370px;
+        max-width: 370px;
         height: 90px;
         font-family: Georgia;
         font-weight: normal;

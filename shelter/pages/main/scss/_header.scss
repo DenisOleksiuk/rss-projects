@@ -1,5 +1,8 @@
 .header {
     padding-top: 60px;
+    .humburger {
+        display: none;
+    }
     &__menu {
         display: flex;
         justify-content: space-between;
