@@ -10,22 +10,25 @@
         color: #545454;
     }
     &__list {
-        width: 1026px;
+        max-width: 1026px;
         margin: auto;
-        margin-top: 60px;
     }
-    &__items-1 {
+    &__items {
+        flex-wrap: wrap;
         display: flex;
-        justify-content: space-between;
-    }
-    &__items-2 {
-        margin-top: 55px;
-        display: flex;
-        justify-content: space-around;
+        margin-top: 3px;
     }
     &__item {
+        margin-top: 55px;
+        margin-right: 119px;
         list-style: none;
         text-align: center;
+        &:nth-child(5), &:nth-child(9) {
+            margin-right: 0;
+        }
+        &:nth-child(6) {
+            margin-left: 85px;
+        }
     }
     &__descr {
         margin-top: 30px;

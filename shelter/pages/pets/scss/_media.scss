@@ -1,5 +1,118 @@
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
     .container {
-        width: 708px;
+        max-width: 708px;
     }
+    .friends {
+        padding: 197px 0 76px 0;
+        &__cards {
+            justify-content: center;
+        }
+        &__card {
+            margin-right: 40px;
+            &:nth-child(even) {
+                margin-right: 0;
+            }
+        }
+    }
+    .footer {
+        padding-top: 30px;
+        &__address {
+            flex-direction: column;
+            max-width: 708px;
+        }
+        &__info {
+            display: flex;
+            justify-content: space-around;
+        }
+        &__img {
+            margin-top: 65px;
+            text-align: center;
+        }
+        &__contact, &__location {
+            margin-top: 0;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .container {
+        max-width: 300px;
+    }
+    .humburger {
+        display: block;
+        width: 30px;
+        height: 22px;
+        margin-top: 19px;
+        span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #000000;
+            margin-top: 10px;
+            &:nth-child(1) {
+                margin-top: 0;
+            }
+        }
+    }
+    .header {
+        &__menu {
+            width: 260px;
+        }
+        &__menu-list {
+            display: none;
+        }
+    }
+    .friends {
+        &__cards {
+            margin-top: 42px;
+        }
+        &__card {
+            &:nth-child(odd) {
+                margin-right: 0;
+            }
+        }
+        
+    }
+    .footer {
+        padding-top: 30px;
+        &__info {
+            flex-direction: column;
+        }
+        &__contact {
+            margin-top: 0;
+        }
+        &__title {
+            font-size: 25px;
+            text-align: center;
+            letter-spacing: 0.06em;
+        }
+        &__mail, &__phone {
+            max-width: 251px;
+            margin: 40px auto;
+            padding-right: 0;
+        }
+        &__location {
+            margin-top: 40px;
+        }
+        &__second-title {
+            font-size: 25px;
+            text-align: center;
+            letter-spacing: 0.06em;
+        }
+        &__boston {
+            margin-top: 40px;
+            justify-content: space-around;
+        }
+        &__london {
+            margin-top: 40px;
+        }
+        &__img {
+            margin-top: 40px;
+            img {
+                width: 260px;
+                height: 269px;
+            }
+        }
+    }
+
 }

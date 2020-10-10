@@ -5,6 +5,9 @@
         display: flex;
         justify-content: space-between;
     }
+    &__info {
+        display: contents;
+    }
     &__contact {
         margin-top: 22px;
     }

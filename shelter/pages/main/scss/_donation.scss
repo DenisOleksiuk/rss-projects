@@ -1,5 +1,6 @@
 .donation {
-    padding: 81px 0 95px 0;
+    padding: 81px 0 97px 0;
+    background: #F6F6F6;
     &__wrapper {
         display: flex;
         justify-content: center;
@@ -63,7 +64,6 @@
     }
     &__description {
         width: 380px;
-        height: 72px;
         margin-top: 20px;
         font-family: Arial;
         font-style: italic;
