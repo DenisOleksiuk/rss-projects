@@ -36,7 +36,7 @@
 
 @media (max-width: 767px) {
     .container {
-        max-width: 300px;
+        width: 300px;
     }
     .humburger {
         display: block;
@@ -63,6 +63,9 @@
         }
     }
     .friends {
+        &__title {
+            font-size: 25px;
+        }
         &__cards {
             margin-top: 42px;
         }
