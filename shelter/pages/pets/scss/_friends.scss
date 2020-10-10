@@ -56,7 +56,7 @@
         color: #292929;
     }
     &__navigation {
-        width: 340px;
+        max-width: 340px;
         display: flex;
         justify-content: space-between;
         margin: auto;
