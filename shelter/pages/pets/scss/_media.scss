@@ -5,6 +5,8 @@
     .friends {
         padding: 197px 0 76px 0;
         &__cards {
+            height: 1365px;
+            overflow: hidden;
             justify-content: center;
         }
         &__card {
