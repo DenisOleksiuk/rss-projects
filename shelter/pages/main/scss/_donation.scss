@@ -32,7 +32,7 @@
         margin-top: 20px;
         background: #F1CDB3;
         border-radius: 9px;
-        cursor: url(../../../assets/pets/hover.svg), auto;
+        cursor: url(../../../assets//images/cursor-hover.svg), auto;
         &:hover {
             background: #FDDCC4;
         }
@@ -46,9 +46,9 @@
         justify-content: space-around;
         padding-top: 5px;
         padding-right: 5px;
-        cursor: url(../../../assets/pets/hover.svg), auto;
+        cursor: url(../../../assets//images/cursor-hover.svg), auto;
         img {
-            cursor: url(../../../assets/pets/hover.svg), auto;
+            cursor: url(../../../assets//images/cursor-hover.svg), auto;
             padding-left: 6px;
         }
     }
@@ -59,7 +59,7 @@
         line-height: 115%;
         letter-spacing: 0.06em;
         a {
-            cursor: url(../../../assets/pets/hover.svg), auto;
+            cursor: url(../../../assets//images/cursor-hover.svg), auto;
         }
     }
     &__description {

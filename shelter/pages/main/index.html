@@ -1,39 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main</title>
     <link rel="stylesheet" href="css/style.min.css">
 </head>
+
 <body>
 
     <main class="main">
         <div class="container">
             <header class="header">
-                    <nav class="header__menu">
-                        <div class="header__logo">
+                <nav class="header__menu">
+                    <div class="header__logo">
+                        <h1><a class="header__title" href="#">Cozy House</a></h1>
+                        <h2 class="header__subtitle">Shelter for pets in Boston</h2>
+                    </div>
+                    <div class="humburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="header__menu-list">
+                        <div class="burger__logo">
                             <h1><a class="header__title" href="#">Cozy House</a></h1>
                             <h2 class="header__subtitle">Shelter for pets in Boston</h2>
                         </div>
-                        <ul class="header__menu-list header__menu-list__active">
-                            <li class="header__item-list"><a class="header__item-link" href="#">About the shelter</a></li>
-                            <li class="header__item-list"><a class="header__item-link" href="#">Our pets</a></li>
-                            <li class="header__item-list"><a class="header__item-link" href="#">Help the shelter</a></li>
-                            <li class="header__item-list"><a class="header__item-link" href="#">Contacts</a></li>
-                        </ul>
-                        <div class="humburger humburger__active">
+
+                        <div class="burger">
                             <span></span>
                             <span></span>
                             <span></span>
                         </div>
-                    </nav>
+                        <li class="header__item-list"><a class="header__item-link"
+                                href="https://rolling-scopes-school.github.io/denisoleksiuk-JS2020Q3/shelter/pages/main/">About
+                                the shelter</a></li>
+                        <li class="header__item-list"><a class="header__item-link"
+                                href="https://rolling-scopes-school.github.io/denisoleksiuk-JS2020Q3/shelter/pages/pets/">Our
+                                pets</a></li>
+                        <li class="header__item-list"><a id="disabled" class="header__item-link" href="#">Help
+                                the
+                                shelter</a></li>
+                        <li class="header__item-list"><a id="disabled" class="header__item-link" href="#">Contacts</a>
+                        </li>
+                    </ul>
+                </nav>
             </header>
             <div class="main__wrapper">
                 <div class="main__content">
                     <h2 class="main__heading">Not only people <br> need a house</h2>
-                    <p class="main__subheading">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!</p>
-                    <button class="main__btn">Make a friend</button>
+                    <p class="main__subheading">We offer to give a chance to a little and nice puppy with an extremely
+                        wide and open heart. He or she will love you more than anybody else in the world, you will see!
+                    </p>
+                    <button class="main__btn"><a
+                            href="https://rolling-scopes-school.github.io/denisoleksiuk-JS2020Q3/shelter/pages/pets/">Make
+                            a friend</a></button>
                 </div>
                 <div class="main__img">
                     <img src="../../assets/main/images/start-screen-puppy.png" alt="dog">
@@ -50,8 +73,14 @@
                 </div>
                 <div class="about__content">
                     <h3 class="about__heading">About the shelter <br> “Cozy House”</h3>
-                    <p class="about__subheading">Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.</p>
-                    <p class="about__text">We feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.</p>
+                    <p class="about__subheading">Currently we have 121 dogs and 342 cats on our hands and statistics
+                        show that only 20% of them will find a family. The others will continue to live with us and will
+                        be waiting for a lucky chance to become dearly loved.</p>
+                    <p class="about__text">We feed our wards with the best food and make sure that they do not get sick,
+                        feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28
+                        employees of various skill levels. About 12% of the animals are taken by the shelter staff.
+                        Taking care of the animals, they become attached to the pets and would hardly ever leave them
+                        alone.</p>
                 </div>
             </div>
         </div>
@@ -61,28 +90,33 @@
         <div class="container">
             <h3 class="pets__heading">Our friends who <br> are looking for a house</h3>
             <div class="pets__wrapper">
-                <button class="pets__arrow-left"><img src="../../assets/main/icons/ArrowL.svg" alt="Arrow-Left"></button>
+                <button class="pets__arrow-left"><img src="../../assets/main/icons/ArrowL.svg"
+                        alt="Arrow-Left"></button>
                 <div class="pets__inner">
-                    <div class="pets__card">
+                    <!-- <div class="pets__card" data-i="4">
                         <img src="../../assets/main/images/pets-katrine.png" alt="cat-katrine">
                         <div class="pets__card-title">Katrine</div>
                         <button class="pets__btn">Learn more</button>
                     </div>
-                    <div class="pets__card">
+                    <div class="pets__card" data-i="0">
                         <img src="../../assets/main/images/pets-jennifer.png" alt="dog-jennifer">
                         <div class="pets__card-title">Jennifer</div>
                         <button class="pets__btn">Learn more</button>
                     </div>
-                    <div class="pets__card">
+                    <div class="pets__card" data-i="2">
                         <img src="../../assets/main/images/pets-woody.png" alt="dog-woody">
                         <div class="pets__card-title">Woody</div>
                         <button class="pets__btn">Learn more</button>
-                    </div>
+                    </div> -->
                 </div>
-                <button class="pets__arrow-right"><img src="../../assets/main/icons/ArrowR.svg" alt="Arrow-Right"></button>
+                <button class="pets__arrow-right"><img src="../../assets/main/icons/ArrowR.svg"
+                        alt="Arrow-Right"></button>
             </div>
-            <button class="pets__btn-main">Get to know the rest</button>
+            <button class="pets__btn-main"><a
+                    href="https://rolling-scopes-school.github.io/denisoleksiuk-JS2020Q3/shelter/pages/pets/">Get to
+                    know the rest</a></button>
         </div>
+
     </section>
 
     <section class="help">
@@ -146,7 +180,9 @@
                             <h4 class="donation__phone"><a href="#">8380 2880 8028 8791 7435</a></h4>
                         </div>
                     </div>
-                    <div class="donation__description">Legal information and lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices maximus tortor et vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus.</div>
+                    <div class="donation__description">Legal information and lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices
+                        maximus tortor et vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus.</div>
                 </div>
             </div>
         </div>
@@ -159,23 +195,31 @@
                     <div class="footer__contact">
                         <h3 class="footer__title">For questions <br> and suggestions</h3>
                         <div class="footer__mail">
-                            <a href="mailto: email@shelter.com"><img src="../../assets/main/icons/footer/mail.svg" alt="main"></a>
+                            <a href="mailto: email@shelter.com"><img src="../../assets/main/icons/footer/mail.svg"
+                                    alt="main"></a>
                             <h4 class="footer__text"><a href="mailto: email@shelter.com">email@shelter.com</a></h4>
                         </div>
                         <div class="footer__phone">
-                            <a href="tel: +136745677554"><img src="../../assets/main/icons/footer/phone.svg" alt="phone"></a>
+                            <a href="tel: +136745677554"><img src="../../assets/main/icons/footer/phone.svg"
+                                    alt="phone"></a>
                             <h4 class="footer__text"><a href="tel: +136745677554">+13 674 567 75 54</a></h4>
                         </div>
                     </div>
                     <div class="footer__location">
                         <h3 class="footer__second-title">We are waiting <br> for your visit</h3>
                         <div class="footer__boston">
-                            <a href="https://www.google.com/maps/place/50%C2%B025'40.7%22N+30%C2%B036'06.5%22E/@50.427924,30.6009829,17z/data=!4m5!3m4!1s0x0:0x0!8m2!3d50.427965!4d30.601809" target="_blank"><img src="../../assets/main/icons/footer/pin.svg" alt="pin"></a>
-                            <h4 class="footer__boston-pin"><a href="https://www.google.com/maps/place/50%C2%B025'40.7%22N+30%C2%B036'06.5%22E/@50.427924,30.6009829,17z/data=!4m5!3m4!1s0x0:0x0!8m2!3d50.427965!4d30.601809" target="_blank">1 Central Street, Boston <br> (entrance from the store)</a></h4>
+                            <a href="https://www.google.com/maps/place/50%C2%B025'40.7%22N+30%C2%B036'06.5%22E/@50.427924,30.6009829,17z/data=!4m5!3m4!1s0x0:0x0!8m2!3d50.427965!4d30.601809"
+                                target="_blank"><img src="../../assets/main/icons/footer/pin.svg" alt="pin"></a>
+                            <h4 class="footer__boston-pin"><a
+                                    href="https://www.google.com/maps/place/50%C2%B025'40.7%22N+30%C2%B036'06.5%22E/@50.427924,30.6009829,17z/data=!4m5!3m4!1s0x0:0x0!8m2!3d50.427965!4d30.601809"
+                                    target="_blank">1 Central Street, Boston <br> (entrance from the store)</a></h4>
                         </div>
                         <div class="footer__london">
-                            <a href="https://www.google.com/maps/place/50%C2%B025'40.7%22N+30%C2%B036'06.5%22E/@50.427924,30.6009829,17z/data=!4m5!3m4!1s0x0:0x0!8m2!3d50.427965!4d30.601809" target="_blank"><img src="../../assets/main/icons/footer/pin.svg" alt="pin"></a>
-                            <h4 class="footer__london-pin"><a href="https://www.google.com/maps/place/50%C2%B025'40.7%22N+30%C2%B036'06.5%22E/@50.427924,30.6009829,17z/data=!4m5!3m4!1s0x0:0x0!8m2!3d50.427965!4d30.601809" target="_blank">18 South Park, London </a></h4>
+                            <a href="https://www.google.com/maps/place/50%C2%B025'40.7%22N+30%C2%B036'06.5%22E/@50.427924,30.6009829,17z/data=!4m5!3m4!1s0x0:0x0!8m2!3d50.427965!4d30.601809"
+                                target="_blank"><img src="../../assets/main/icons/footer/pin.svg" alt="pin"></a>
+                            <h4 class="footer__london-pin"><a
+                                    href="https://www.google.com/maps/place/50%C2%B025'40.7%22N+30%C2%B036'06.5%22E/@50.427924,30.6009829,17z/data=!4m5!3m4!1s0x0:0x0!8m2!3d50.427965!4d30.601809"
+                                    target="_blank">18 South Park, London </a></h4>
                         </div>
                     </div>
                 </div>
@@ -185,6 +229,29 @@
             </address>
         </div>
     </footer>
-    
+
+    <div id="modal" class="modal" hidden>
+        <div class="modal__window">
+            <img class="modal__img" src="../../assets/main/images/pets-jennifer.png" alt="Jennifer">
+            <div class="modal__content">
+                <h3 class="modal__title">Jennifer</h3>
+                <h4 class="modal__subtitle">Dog - Labrador</h4>
+                <div class="modal__text">Jennifer is a sweet 2 months old Labrador that is patiently waiting to
+                    find a new forever home. This girl really enjoys being able to go outside to run and play,
+                    but won't hesitate to play up a storm in the house if she has all of her favorite toys.
+                </div>
+                <ul class="modal__list">
+                    <li class="modal__item"><strong>Age:</strong> 2 months</li>
+                    <li class="modal__item"><strong>Inoculations:</strong> none</li>
+                    <li class="modal__item"><strong>Diseases:</strong> none</li>
+                    <li class="modal__item"><strong>Parasites:</strong> none</li>
+                </ul>
+            </div>
+            <div class="modal__close-btn"><img src="../../assets/main/Close.svg" alt="close"></div>
+        </div>
+    </div>
+
+    <script src="script.js" type="module"></script>
 </body>
+
 </html>

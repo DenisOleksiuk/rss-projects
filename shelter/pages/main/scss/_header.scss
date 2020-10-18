@@ -1,12 +1,15 @@
 .header {
     padding-top: 60px;
+
     .humburger {
         display: none;
     }
+
     &__menu {
         display: flex;
         justify-content: space-between;
     }
+
     &__title {
         font-family: 'Georgia';
         font-weight: normal;
@@ -15,8 +18,9 @@
         letter-spacing: 0.06em;
         color: #F1CDB3;
         text-decoration: none;
-        cursor: url(../../../assets/pets/hover.svg), auto;
+        cursor: url(../../../assets//images/cursor-hover.svg), auto;
     }
+
     &__subtitle {
         margin-left: 5px;
         font-family: Arial;
@@ -27,18 +31,22 @@
         letter-spacing: 0.1em;
         color: #FFFFFF;
     }
+
     &__menu-list {
         display: flex;
         margin-top: 15px;
     }
+
     &__item-list {
         position: relative;
         margin-right: 36px;
         list-style: none;
-        &:nth-child(1) {
+
+        &:nth-child(3) {
             a {
                 color: #FFFFFF;
             }
+
             &::before {
                 content: '';
                 position: absolute;
@@ -48,10 +56,12 @@
                 height: 3px;
             }
         }
-        &:nth-child(4) {
+
+        &:nth-child(6) {
             margin-right: 0;
         }
     }
+
     &__item-link {
         font-family: Arial;
         font-weight: normal;
@@ -60,9 +70,17 @@
         align-items: center;
         color: #CDCDCD;
         text-decoration: none;
+
         &:hover {
-            cursor: url(../../../assets/pets/hover.svg), auto;
+            cursor: url(../../../assets//images/cursor-hover.svg), auto;
             color: #FFFFFF;
         }
+    }
+}
+
+#disabled {
+    &:hover {
+        color: #CDCDCD;
+        cursor: url(../../../assets/images/cursor-inactive.svg), auto;
     }
 }

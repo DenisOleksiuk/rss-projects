@@ -6,21 +6,28 @@
 @import 'help';
 @import 'donation';
 @import 'footer';
+@import 'modal';
 
 * {
     outline: none;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    cursor: url(../../../assets/pets/icon.svg), auto;
+    cursor: url(../../../assets//images/cursor-normal.svg), auto;
 }
 
-
+[hidden] {
+    display: none !important;
+}
 
 .container {
     width: 1200px;
     height: 100%;
     margin: 0 auto;
+}
+
+.burger__logo {
+    display: none;
 }
 
 @import 'media';
