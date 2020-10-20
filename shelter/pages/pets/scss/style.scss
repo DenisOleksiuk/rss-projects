@@ -1,6 +1,7 @@
 @import 'header';
 @import 'friends';
 @import 'footer';
+@import 'modal';
 
 
 * {
@@ -8,11 +9,15 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    cursor: url(../../../assets/pets/icon.svg), auto;
+    cursor: url(../../../assets/images/cursor-normal.svg), auto;
 }
 .container {
     width: 1200px;
     margin: auto;
+}
+
+[hidden] {
+    display: none !important;
 }
 
 @import 'media';

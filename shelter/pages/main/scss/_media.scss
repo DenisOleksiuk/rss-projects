@@ -60,20 +60,21 @@
 
     .pets {
         &__inner {
-            max-width: 580px;
+            width: 604px;
             overflow: hidden;
             padding-left: 12px;
             padding-right: 12px;
         }
 
         &__card {
+            margin-right: 20px;
+            margin-left: 20px;
             &:nth-child(1) {
-                margin-right: 20px;
+                margin-left: 0;
             }
-
-            &:nth-child(2) {
-                margin-left: 20px;
-            }
+        }
+        &__ribbon {
+            padding: 0 12px;
         }
     }
 
@@ -222,6 +223,10 @@
 
             .humburger__active {
                 transform: rotate(90deg);
+            }
+
+            &__logo {
+                transition: .3s all;
             }
 
             &__menu {

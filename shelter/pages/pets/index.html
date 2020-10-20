@@ -15,17 +15,27 @@
                     <h1><a class="header__title" href="#">Cozy House</a></h1>
                     <h2 class="header__subtitle">Shelter for pets in Boston</h2>
                 </div>
-                <ul class="header__menu-list header__menu-list__active">
-                    <li class="header__item-list"><a class="header__item-link" href="#">About the shelter</a></li>
-                    <li class="header__item-list"><a class="header__item-link" href="#">Our pets</a></li>
-                    <li class="header__item-list"><a class="header__item-link" href="#">Help the shelter</a></li>
-                    <li class="header__item-list"><a class="header__item-link" href="#">Contacts</a></li>
+                        <div class="humburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                <ul class="header__menu-list">
+                    <div class="burger__logo">
+                        <h1><a class="burger__title" href="#">Cozy House</a></h1>
+                        <h2 class="burger__subtitle">Shelter for pets in Boston</h2>
+                    </div>
+
+                    <div class="burger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <li class="header__item-list"><a class="header__item-link" href="https://rolling-scopes-school.github.io/denisoleksiuk-JS2020Q3/shelter/pages/main/">About the shelter</a></li>
+                    <li class="header__item-list"><a class="header__item-link" href="https://rolling-scopes-school.github.io/denisoleksiuk-JS2020Q3/shelter/pages/pets/">Our pets</a></li>
+                    <li class="header__item-list"><a id="disabled" class="header__item-link" href="#">Help the shelter</a></li>
+                    <li class="header__item-list"><a id="disabled" class="header__item-link" href="#">Contacts</a></li>
                 </ul>
-                <div class="humburger humburger__active">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
             </nav>
         </div>
         </header>
@@ -35,7 +45,7 @@
             <h1 class="friends__title">Our friends who <br> are looking for a house</h1>
 
             <div class="friends__cards">
-                <div class="friends__card">
+                <!-- <div class="friends__card">
                     <img src="../../assets/pets/pets-katrine-2.png" alt="cat-katrine">
                     <div class="friends__card-title">Katrine</div>
                     <button class="friends__btn">Learn more</button>
@@ -81,7 +91,7 @@
                     <img src="../../assets/pets/pets-katrine.png" alt="cat-katrine">
                     <div class="friends__card-title">Freddie</div>
                     <button class="friends__btn">Learn more</button>
-                </div>
+                </div> -->
             </div>
 
             <div class="friends__navigation">
@@ -128,6 +138,27 @@
         </div>
     </footer>
 
-    
+    <div id="modal" class="modal" hidden>
+        <div class="modal__window">
+            <img class="modal__img" src="../../assets/main/images/pets-jennifer.png" alt="Jennifer">
+            <div class="modal__content">
+                <h3 class="modal__title">Jennifer</h3>
+                <h4 class="modal__subtitle">Dog - Labrador</h4>
+                <div class="modal__text">Jennifer is a sweet 2 months old Labrador that is patiently waiting to
+                    find a new forever home. This girl really enjoys being able to go outside to run and play,
+                    but won't hesitate to play up a storm in the house if she has all of her favorite toys.
+                </div>
+                <ul class="modal__list">
+                    <li class="modal__item"><strong>Age:</strong> 2 months</li>
+                    <li class="modal__item"><strong>Inoculations:</strong> none</li>
+                    <li class="modal__item"><strong>Diseases:</strong> none</li>
+                    <li class="modal__item"><strong>Parasites:</strong> none</li>
+                </ul>
+            </div>
+            <div class="modal__close-btn"><img src="../../assets/main/Close.svg" alt="close"></div>
+        </div>
+    </div>
+
+    <script src="scrpit.js"></script>
 </body>
 </html>
