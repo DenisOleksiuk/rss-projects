@@ -1,8 +1,10 @@
 .friends {
     padding: 197px 0 102px 0;
     background: #F6F6F6;
+
     &__title {
-        font-family: Georgia;;
+        font-family: Georgia;
+        ;
         font-weight: normal;
         font-size: 35px;
         line-height: 130%;
@@ -10,24 +12,32 @@
         color: #545454;
         text-align: center;
     }
+
     &__cards {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         margin-top: 63px;
-        border-radius: 9px; 
+        border-radius: 9px;
     }
+
     &__card {
         width: 270px;
         height: 435px;
         background: #FAFAFA;
         margin-bottom: 30px;
+
         &:hover {
             background: #FFFFFF;
             box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
-            
+            cursor: url(../../../assets/images/cursor-hover.svg), pointer;
+        }
+
+        img {
+            cursor: url(../../../assets/images/cursor-hover.svg), pointer;
         }
     }
+
     &__card-title {
         margin-top: 25px;
         text-align: center;
@@ -37,7 +47,9 @@
         line-height: 23px;
         letter-spacing: 0.06em;
         color: #545454;
+        cursor: url(../../../assets/images/cursor-hover.svg), pointer;
     }
+
     &__btn {
         display: block;
         margin: auto;
@@ -47,7 +59,7 @@
         border: 2px solid #F1CDB3;
         background-color: inherit;
         border-radius: 100px;
-        cursor: url(../../../assets/pets/hover.svg), pointer;
+        cursor: url(../../../assets/images/cursor-hover.svg), pointer;
         font-family: Georgia;
         font-weight: normal;
         font-size: 17px;
@@ -55,6 +67,7 @@
         letter-spacing: 0.06em;
         color: #292929;
     }
+
     &__navigation {
         max-width: 340px;
         display: flex;
@@ -62,6 +75,7 @@
         margin: auto;
         margin-top: 27px;
     }
+
     &__btn-paginator {
         width: 52px;
         height: 52px;
@@ -74,15 +88,18 @@
         line-height: 115%;
         letter-spacing: 0.06em;
         color: #292929;
+
         &:nth-child(3) {
             background: #F1CDB3;
         }
+
         &:not(:disabled):hover {
-            cursor: url(../../../assets/pets/hover.svg), pointer;
+            cursor: url(../../../assets/images/cursor-hover.svg), pointer;
             background: #FDDCC4;
         }
     }
-    &__btn-paginator[rotate]:disabled{
+
+    &__btn-paginator[rotate]:disabled {
         color: #CDCDCD;
         transform: rotate(180deg);
         border: 2px solid #CDCDCD;

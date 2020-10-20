@@ -7,10 +7,12 @@
     position: fixed;
     width: 100%;
     z-index: 1;
+
     &__menu {
         display: flex;
-        justify-content: space-between;   
+        justify-content: space-between;
     }
+
     &__title {
         font-family: Georgia;
         font-weight: normal;
@@ -19,31 +21,35 @@
         text-decoration: none;
         color: #545454;
         letter-spacing: 0.06em;
-        cursor: url(../../../assets/pets/hover.svg), pointer;
+        cursor: url(../../../assets/images/cursor-hover.svg), pointer;
     }
+
     &__subtitle {
         margin-left: 4px;
         margin-top: 10px;
-        font-family: Arial;;
+        font-family: Arial;
         font-weight: normal;
         font-size: 13px;
         line-height: 15px;
         letter-spacing: 0.1em;
         color: #292929;
     }
+
     &__menu-list {
         width: 443px;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
+
     &__item-list {
         font-family: Arial;
         font-weight: normal;
         font-size: 15px;
         line-height: 160%;
         list-style: none;
-        &:nth-child(2) {
+
+        &:nth-child(4) {
             a {
                 padding-bottom: 3px;
                 color: #292929;
@@ -51,15 +57,29 @@
             }
         }
     }
+
     &__item-link {
         color: #545454;
         text-decoration: none;
-        cursor: url(../../../assets/pets/hover.svg), pointer;
+        cursor: url(../../../assets/images/cursor-hover.svg), pointer;
+
         &:hover {
             color: #292929;
         }
     }
+
+    #disabled {
+        &:hover {
+            color: #545454;
+            cursor: url(../../../assets/images/cursor-inactive.svg), auto;
+        }
+    }
 }
+
 .humburger {
+    display: none;
+}
+
+.burger__logo {
     display: none;
 }

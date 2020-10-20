@@ -40,11 +40,14 @@
     }
 
     &__inner {
-        width: 1097px;
+        width: 1095px;
+        height: 435px;
         display: flex;
         justify-content: space-between;
         padding-left: 53px;
         padding-right: 53px;
+        overflow: hidden;
+        position: relative;
     }
 
     &__card {
@@ -53,6 +56,11 @@
         background: #FAFAFA;
         border-radius: 9px;
         text-align: center;
+        margin-right: 90px;
+
+        &:nth-last-child(1) {
+            margin-right: 0;
+        }
 
         &:hover {
             cursor: url(../../../assets/images/cursor-hover.svg), auto;
@@ -63,7 +71,6 @@
         img {
             &:hover {
                 cursor: url(../../../assets/images/cursor-hover.svg), auto;
-                background: #FDDCC4;
             }
         }
     }
@@ -76,6 +83,7 @@
         line-height: 23px;
         letter-spacing: 0.06em;
         color: #545454;
+        cursor: url(../../../assets/images/cursor-hover.svg), pointer;
     }
 
     &__btn {
@@ -139,6 +147,21 @@
         &:hover {
             background: #FDDCC4;
             cursor: url(../../../assets//images/cursor-hover.svg), auto;
+        }
+    }
+
+    &__ribbon {
+        display: flex;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 0 53px;
+        transition: .5s all;
+        &-left {
+         transform: translateX(-100%);   
+        }
+        &-right {
+            transform: translateX(100%);   
         }
     }
 }
