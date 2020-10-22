@@ -4,7 +4,6 @@
 
     &__title {
         font-family: Georgia;
-        ;
         font-weight: normal;
         font-size: 35px;
         line-height: 130%;
@@ -14,6 +13,8 @@
     }
 
     &__cards {
+        max-height: 930px;
+        overflow: hidden;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -24,8 +25,10 @@
     &__card {
         width: 270px;
         height: 435px;
+        position: relative;
         background: #FAFAFA;
         margin-bottom: 30px;
+        // transition: 0.5s all;
 
         &:hover {
             background: #FFFFFF;
@@ -36,6 +39,11 @@
         img {
             cursor: url(../../../assets/images/cursor-hover.svg), pointer;
         }
+    }
+
+    &__card-active {
+        opacity: 0;
+        transition: 0.5s all;
     }
 
     &__card-title {
@@ -93,15 +101,29 @@
             background: #F1CDB3;
         }
 
+        &:not(:disabled) {
+            cursor: url(../../../assets/images/cursor-hover.svg), pointer;
+        }
         &:not(:disabled):hover {
             cursor: url(../../../assets/images/cursor-hover.svg), pointer;
             background: #FDDCC4;
         }
+
+        &:disabled {
+            cursor: url(../../../assets/images/cursor-normal.svg), pointer;
+            color: #CDCDCD;
+            border: 2px solid #CDCDCD;
+        }
     }
 
-    &__btn-paginator[rotate]:disabled {
-        color: #CDCDCD;
+    &__btn-paginator[rotate] {
         transform: rotate(180deg);
-        border: 2px solid #CDCDCD;
+    }
+
+    #thisPage {
+        cursor: url(../../../assets/images/cursor-normal.svg), pointer;
+        &:hover {
+            background: #F1CDB3;
+        }
     }
 }
