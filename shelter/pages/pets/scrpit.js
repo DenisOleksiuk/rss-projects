@@ -12,11 +12,6 @@ const cardContainer = document.querySelector('.friends__cards'),
 fetch('../../pets.json')
   .then(response => response.json())
   .then(pets => {
-    let res = [];
-    for (let i = 0; i < 6; i++) {
-      res.push(pets)
-    }
-    console.log(res);
     cardContainer.addEventListener('click', (event) => {
       if (event.target === cardContainer) return;
 
@@ -25,22 +20,141 @@ fetch('../../pets.json')
     });
 
     let arr = [];
-    
+
     for (const pet in pets) {
       if (pets.hasOwnProperty(pet)) {
         arr.push(pet);
       }
     }
-    
+
     for (let i = 0; i < arr.length; i++) {
       if (i == 0 || i == 1 || i == 2) {
         arr.splice(i, 1)
       }
     }
 
-    let arr2 = [4, 0, 2].map(i => buildPetCard(pets[i], i));
-    arr2.push(...arr.map(i => buildPetCard(pets[i], i)));
-    cardContainer.innerHTML = arr2.join('')
+    //pagination
+    const buttons = document.querySelector('.friends__navigation'),
+      first = document.querySelector("#first"),
+      prev = document.querySelector("#prev"),
+      next = document.querySelector("#next"),
+      last = document.querySelector("#last"),
+      thisPage = document.querySelector("#thisPage");
+
+    const mainPage = [4, 0, 2, 1, 5, 7, 3, 6];
+    let pageCount = 0;
+    let limitPages = 0;
+    let petsList = [...mainPage];
+
+    if (window.innerWidth >= 1280) {
+      limitPages = 5;
+    } else if (window.innerWidth < 768) {
+      limitPages = 15;
+    } else {
+      limitPages = 7;
+    }
+    if (pageCount >= 0) {
+      first.disabled = true;
+      prev.disabled = true;
+    }
+
+    for (let i = 0; i < 5; i++) {
+      petsList.push(...shuffle(pets));
+    }
+
+    cardContainer.innerHTML = petsList.map(i => buildPetCard(pets[i], i)).join('');
+
+    const cardsContainer = document.querySelectorAll(".friends__card");
+
+    const getPrevPage = (page) => {
+      cardsContainer.forEach(card => {
+        card.classList.add('friends__card-active')
+        setTimeout(() => {
+          const top = parseInt(getComputedStyle(card).top);
+          card.style.top = `calc(${top + page}px)`
+          card.classList.remove('friends__card-active')
+        }, 300)
+      });
+
+      pageCount--
+      thisPage.innerText = pageCount + 1;
+      if (pageCount <= 0) {
+        prev.disabled = true;
+        first.disabled = true
+
+      } else {
+        next.disabled = false;
+        last.disabled = false;
+      }
+    }
+
+    const getNextPage = (page) => {
+      cardsContainer.forEach(card => {
+        card.classList.add('friends__card-active')
+        setTimeout(() => {
+          card.style.top = `calc(-${930 * page}px)`
+          card.classList.remove('friends__card-active')
+        }, 300)
+      });
+
+      pageCount = page;
+      thisPage.innerText = pageCount + 1;
+      if (pageCount > 0) {
+        first.disabled = false;
+        prev.disabled = false;
+      }
+      if (pageCount === limitPages) {
+        next.disabled = true;
+        last.disabled = true;
+      }
+    }
+
+    function shuffle(elem) {
+      let result = [];
+      do {
+        const randomIdx = Math.floor(Math.random() * pets.length)
+        if (result.indexOf(randomIdx) === -1) {
+          result.push(randomIdx);
+        } else {
+          continue;
+        }
+      } while (result.length < 8);
+
+      return result;
+    }
+console.log(cardContainer.clientHeight);
+    buttons.addEventListener('click', (e) => {
+      if (e.target.id === 'next' && pageCount < limitPages) {
+        getNextPage(pageCount + 1);
+      }
+
+      if (e.target.id === 'prev' && pageCount > 0) {
+        getPrevPage(cardContainer.clientHeight);
+      }
+
+      if (e.target.id === 'last') {
+        getNextPage(limitPages)
+      }
+
+      if (e.target.id === 'first') {
+        cardsContainer.forEach(card => {
+          card.classList.add('friends__card-active')
+          setTimeout(() => {
+            const top = parseInt(getComputedStyle(card).top);
+            card.style.top = `calc(${top - top}px)`
+            card.classList.remove('friends__card-active')
+          }, 300)
+        });
+  
+        pageCount = 0
+        thisPage.innerText = pageCount + 1;
+          prev.disabled = true;
+          first.disabled = true
+          next.disabled = false;
+          last.disabled = false;
+      }
+    });
+
   });
 
 
@@ -114,5 +228,3 @@ function closeBurgerOutSide(e) {
 
 humburger.addEventListener('click', openMenu);
 burger.addEventListener('click', closeMenu);
-
-//slider

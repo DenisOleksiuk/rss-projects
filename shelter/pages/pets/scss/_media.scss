@@ -103,8 +103,8 @@
         .burger {
             display: block;
             position: absolute;
-            top: 27px;
-            right: 65px;
+            top: 40px;
+            right: 50px;
             width: 30px;
             height: 22px;
             transition: .3s;
@@ -201,6 +201,7 @@
 
         &__item-list {
             font-size: 35px;
+            margin-top: 15px;
 
             &:nth-child(4) {
                 a {
@@ -221,6 +222,7 @@
 
         &__cards {
             margin-top: 42px;
+            max-height: 1649px;
         }
 
         &__card {
