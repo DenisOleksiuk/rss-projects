@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('name', e.target.innerText);
       name.blur();
       if (localStorage.getItem('name') !== '') {
-        name.className = ''
+        name.className = 'name'
       } else {
         name.className = 'name-noname'
       }
