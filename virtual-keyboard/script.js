@@ -171,7 +171,7 @@ const Keyboard = {
         this.elements.main.classList.add("keyboard--hidden");
     }
 };
-
+//commit for test
 window.addEventListener("DOMContentLoaded", function () {
     Keyboard.init();
 });
