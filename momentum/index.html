@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/owfont-regular.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Momentum</title>
+</head>
+
+<body spellcheck="false">
+
+  <div class="weather">
+    <i class="weather-icon owf"></i>
+    <div class="weather-info">
+      <div class="weather-city" id="city" contenteditable="true">Киев</div>
+      <div class="temperature"></div>
+      <div class="weather-humidity"></div>
+      <div class="weather-wind"></div>
+      <div class="weather-description"></div>
+      <div class="weather-error">Город не найден</div>
+    </div>
+  </div>
+
+  <time class="date"></time>
+  <time class="time"></time>
+  <h1>
+    <span class="greeting"></span>
+    <span class="name" id="name" contenteditable="true"></span>
+  </h1>
+  <figure class="quote">
+    <blockquote class="">
+      "Дай человеку рыбу, и он будет сыт весь день. Научи человека ловить рыбу, и он будет сыт всю жизнь. "
+    </blockquote>
+    <figcaption> 
+      Лао Цзы
+    </figcaption>
+    <button class="btn-quote"></button>
+  </figure>
+  <h2 class="title">Какие ваши планы на сегодня?</h2>
+  <h2 class="focus" id="focus" contenteditable="true"></h2>
+
+  <button class="btn"></button>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
