@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const img = document.createElement('img');
     img.src = src;
     body.style.backgroundImage = `url(${src})`;
-    // img.onload = () => body.style.backgroundImage = `url(${src})`;
+    img.onload = () => body.style.backgroundImage = `url(${src})`;
   }
   
   //Get Images
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1000);
 
     } catch {err} {
-      
+
     }
   }
 
