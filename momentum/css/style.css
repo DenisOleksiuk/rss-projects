@@ -210,7 +210,7 @@ h2 {
 
 @media (max-width: 768px) {
   .weather {
-    top: 25px;
+    top: 5px;
   }
   .time {
     font-size: 38px;
@@ -231,14 +231,14 @@ h2 {
   .btn-quote {
     top: 135px;
   }
-  .weather {
-    padding: 10px;
-  }
-  .weather-city {
+  #city {
     font-size: 22px;
   }
   .weather-icon {
     font-size: 22px;
+  }
+  .humidity {
+    font-size: 14px;
   }
   .weather-wind {
     padding-bottom: 10px;
@@ -254,7 +254,7 @@ h2 {
   }
   .btn-quote {
     position: fixed;
-    top: 425px;
+    top: 390px;
     width: 35px;
     height: 35px;
   }
