@@ -14,7 +14,7 @@ body {
   text-align: center;
   height: 100vh;
   background-size: cover;
-  color: #000000;
+  color: aliceblue;
   background-image: url('../assets/images/morning/01.jpg');
   transition: background-image 1s ease-in-out;
 }
@@ -48,6 +48,11 @@ body {
 .weather-icon {
   font-size: 40px;
   margin: 15px 0 0 15px;
+  color: bisque;
+}
+
+.weather-info {
+  color: aliceblue;
 }
 
 .weather-city {
@@ -101,12 +106,14 @@ body {
 
 .quote blockquote {
   font-size: 20px;
+  color: burlywood;
 }
 
 .quote figcaption {
   margin-top: 15px;
   font-size: 15px;
   text-align: right;
+  color: aliceblue;
 }
 
 .btn-quote {

@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => btn.disabled = false, 1000)
   }
 
+  //function use only for btn
   function changeImages() {
     if (counterImages % quantityImage === 0) counterImages++
     const index = counterImages % quantityImage;
@@ -207,9 +208,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function getWeather() {
     try {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=08f2a575dda978b9c539199e54df03b0&units=metric`;
-      const res = await fetch(url);
-      const data = await res.json();
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=8bfd204ac510093e17953ae4918b917f&units=metric`;
+      const response = await fetch(url);
+      if (response.status === 429) {
+        url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=adbeadb10fbaf3cbb586b63cfc14b392&units=metric`;
+        getWeather();
+      }
+      const data = await response.json();
       weatherIcon.className = 'weather-icon owf';
       weatherIcon.classList.add(`owf-${data.weather[0].id}`);
       temperature.textContent = `${Math.round(data.main.temp)}°C`;
@@ -222,12 +227,13 @@ document.addEventListener('DOMContentLoaded', () => {
       weatherDescription.style.opacity = 1;
       weatherError.style.opacity = 0;
     } catch (err) {
+      console.log(err);
       temperature.style.opacity = 0;
       humidity.style.opacity = 0;
       wind.style.opacity = 0;
       weatherDescription.style.opacity = 0;
       weatherError.style.opacity = 1;
-    }
+    } 
   }
   
 
