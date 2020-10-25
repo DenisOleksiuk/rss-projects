@@ -290,3 +290,5 @@ document.addEventListener('DOMContentLoaded', () => {
   getWeather();
   getQuote();
 });
+
+//comit for change
