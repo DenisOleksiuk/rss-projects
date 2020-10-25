@@ -186,7 +186,7 @@ h2 {
   opacity: 0.8;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   body {
     padding: 30px 0px;
     justify-content: flex-end;
@@ -208,7 +208,7 @@ h2 {
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 768px) {
   .weather {
     top: 25px;
   }
