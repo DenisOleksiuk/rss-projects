@@ -1,0 +1,266 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+body {
+  font-family: 'Inconsolata', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  background-size: cover;
+  color: #000000;
+  background-image: url('../assets/images/morning/01.jpg');
+  transition: background-image 1s ease-in-out;
+}
+
+.time {
+  font-size: 8rem;
+}
+
+.date {
+  font-size: 2rem;
+}
+
+.greeting {
+  font-size: 3rem;
+  display: inline-block;
+  margin-top: 30px;
+}
+
+.weather {
+  justify-content: center;
+  min-width: 230px;
+  display: flex;
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  background: rgba(50, 50, 50, .5);
+  border-radius: 20px;
+  transition: .5s;
+}
+
+.weather-icon {
+  font-size: 40px;
+  margin: 15px 0 0 15px;
+}
+
+.weather-city {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.temperature {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.weather-description {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+}
+
+.weather-error {
+  top: 45px;
+  right: 40px;
+  position: absolute;
+  width: 160px;
+  height: 40px;
+  color: white;
+  border-radius: 15px;
+  padding: 10px;
+  opacity: 0;
+  background-color: rgba(255, 99, 71, 0.5);
+  transition: opacity 1s;
+}
+
+.weather-error-show {
+  display: flex;
+  opacity: 1;
+}
+
+.quote {
+  position: relative;
+  font-size: 15px;
+  margin-top: 25px;
+  padding: 17px 17px 5px 17px;
+  padding: 17px 17px 10px 17px;;
+  border-radius: 35px;
+  background: rgba(30, 30, 30, .6);
+  max-width: 590px;
+  text-align: center;
+  align-items: center;
+  transition: 1s all;
+}
+
+.quote blockquote {
+  font-size: 20px;
+}
+
+.quote figcaption {
+  margin-top: 15px;
+  font-size: 15px;
+  text-align: right;
+}
+
+.btn-quote {
+  top: 410px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  background-image: url('../assets/images/btn.jpg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: btn 3s ease-in-out 2s infinite alternate;
+}
+
+@keyframes btn {
+  0% {box-shadow: 0 0 0 5px rgba(255, 99, 71, 0.3);}
+  25% {box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3);}
+  50% {box-shadow: 0 0 0 5px rgba(255, 99, 71, 0.3);}
+  75% {box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3);}
+  100% {box-shadow: 0 0 0 5px rgba(255, 99, 71, 0.3);}
+}
+
+.btn {
+  background-image: url('../assets/images/btn.jpg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 80px;
+  height: 80px;
+  margin-top: 50px;
+  border-radius: 100px;
+  cursor: pointer;
+  filter: grayscale(1);
+  transition: .3s all;
+}
+
+.btn:hover {
+  filter: grayscale(.3);
+}
+
+.name-noname,
+.focus-noname,
+.weather-city-noname {
+  min-width: 200px;
+  max-width: 400px;
+  display: inline-block;
+  border-bottom: 2px solid #333333;
+  border-color: rgb(255, 255, 255);
+}
+
+.name {
+  font-size: 3rem;
+}
+
+#focus {
+  margin-top: 15px;
+}
+
+#city {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-top: 55px;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 30px 0px;
+    justify-content: flex-end;
+  }
+  .btn-quote {
+    top: 325px;
+  }
+  .weather {
+    top: 470px;
+  }
+  .time {
+    font-size: 25px;
+  }
+  .data {
+    font-size: 25px;
+  }
+  .greeting, .name {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 320px) {
+  .weather {
+    top: 25px;
+  }
+  .time {
+    font-size: 38px;
+    margin-top: 10px;
+  }
+
+  .date {
+    font-size: 15px;
+  }
+
+  .greeting {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .name {
+    font-size: 20px;
+  }
+  .btn-quote {
+    top: 135px;
+  }
+  .weather {
+    padding: 10px;
+  }
+  .weather-city {
+    font-size: 22px;
+  }
+  .weather-icon {
+    font-size: 22px;
+  }
+  .weather-wind {
+    padding-bottom: 10px;
+  }
+  .weather-description {
+    display: none;
+  }
+  .quote {
+    max-width: 300px;
+  }
+  .quote blockquote {
+    font-size: 15px;
+  }
+  .btn-quote {
+    position: fixed;
+    top: 425px;
+    width: 35px;
+    height: 35px;
+  }
+  .btn {
+    width: 50px;
+    height: 50px;
+    margin-top: 30px;
+  }
+  .title {
+    margin-top: 45px;
+  }
+  h2,
+  .focus {
+    font-size: 1rem;
+  }
+}
