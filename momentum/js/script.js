@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body');
     const img = document.createElement('img');
     img.src = src;
-    body.style.backgroundImage = `url(${src})`;
     img.onload = () => body.style.backgroundImage = `url(${src})`;
   }
   
