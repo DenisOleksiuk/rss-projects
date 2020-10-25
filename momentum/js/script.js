@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function pathOfPictures(folder, i) {
     if (i.length >= 3) i = i.slice(1)
 
-    return `../assets/images/${folder}/${i}.jpg`
+    return `assets/images/${folder}/${i}.jpg`
   }
 
   //Change bg images
