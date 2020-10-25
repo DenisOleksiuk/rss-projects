@@ -125,7 +125,7 @@ body {
   height: 50px;
   border-radius: 50px;
   cursor: pointer;
-  background-image: url('../assets/images/btn.jpg');
+  background-image: url('../assets/images/click.jpg');
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -192,7 +192,7 @@ h2 {
     justify-content: flex-end;
   }
   .btn-quote {
-    top: 325px;
+    top: 410px;
   }
   .weather {
     top: 470px;
@@ -254,7 +254,8 @@ h2 {
   }
   .btn-quote {
     position: fixed;
-    top: 400px;
+    top: 520px;
+    left: 15%;
     width: 35px;
     height: 35px;
   }
