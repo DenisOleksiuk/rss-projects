@@ -128,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Morning
       greeting.textContent = `${greet[partOfDays]}, `;
       document.body.style.color = 'aliceblue';
-      document.body.style.color = 'black'
     } else if (hour < 18 && hour >= 12) {
       // Afternoon
       greeting.textContent = `${greet[partOfDays]}, `;
