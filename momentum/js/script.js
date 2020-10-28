@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const folders = ['night', 'morning', 'day', 'evening'];
   let isHour = new Date().getHours();
   let folder = '';
-  const partOfDays = (isHour - isHour % 6) / 6;
+  let partOfDays = (isHour - isHour % 6) / 6;
   let counterImages = isHour + 1;
 
   // images function block {
@@ -40,13 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body');
     const img = document.createElement('img');
     img.src = src;
+    body.style.backgroundImage = `url(${src})`;
     img.onload = () => body.style.backgroundImage = `url(${src})`;
   }
   
   //Get Images
   function getImage() {
-    if (isHour % quantityImage === 0) isHour++
-    const index = isHour % quantityImage;
+    const index = isHour % quantityImage || 1;
     viewBgImage(pathOfPictures(folder, `0${index}`));
     btn.disabled = true;
     setTimeout(() => btn.disabled = false, 1000)
@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //function use only for btn
   function changeImages() {
+    counterImages++;
     if (counterImages % quantityImage === 0) counterImages++
     const index = counterImages % quantityImage;
     viewBgImage(pathOfPictures(folder, `0${index}`));
-    counterImages++;
     btn.disabled = true;
     setTimeout(() => btn.disabled = false, 1000);
   }
@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     folder = folders[(hour - hour % 6) / 6];
     if (isHour !== hour) {
       isHour = hour;
+      partOfDays = (hour - hour % 6) / 6;
       greeting.textContent = `${greet[partOfDays]}, `;
       getImage()
     }
@@ -127,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Morning
       greeting.textContent = `${greet[partOfDays]}, `;
       document.body.style.color = 'aliceblue';
-      document.body.style.color = 'black'
     } else if (hour < 18 && hour >= 12) {
       // Afternoon
       greeting.textContent = `${greet[partOfDays]}, `;
