@@ -45,6 +45,32 @@ const Keyboard = {
     this.moveArrow();
 
     this.textArea.output.addEventListener('focus', () => this.show());
+
+    document.addEventListener('keydown', (event) => {
+      const keyName = event.key;
+
+      const keysHTML = document.querySelectorAll('.key');
+
+      keysHTML.forEach((e) => {
+        if (e.textContent === keyName) {
+          e.classList.add('key-active');
+        }
+      });
+      this.textArea.output.focus();
+    });
+
+    document.addEventListener('keyup', (event) => {
+      const keyName = event.key;
+
+      const keysHTML = document.querySelectorAll('.key');
+
+      keysHTML.forEach((e) => {
+        if (e.textContent === keyName) {
+          e.classList.remove('key-active');
+        }
+      });
+      this.textArea.output.focus();
+    });
   },
 
   createKeys(keyLayout) {
@@ -110,15 +136,14 @@ const Keyboard = {
             keyContainer.classList.add('shiftl-active');
           }
           keyContainer.addEventListener('click', () => {
+            if (this.properties.shiftR) this.properties.shiftR = this.properties.shiftLR;
             this.properties.shiftL = !this.properties.shiftL;
             this.toggleShift(this.properties.shiftL);
             this.textArea.output.focus();
-            // console.log(this.properties.shiftL);
-            // console.log(this.properties.capsLock);
             if (this.properties.capsLock && this.properties.shiftL) {
               this.properties.capsLock = !this.properties.capsLock;
               this.properties.shiftL = !this.properties.shiftL;
-              this.toggleCapsLock();
+              this.toggleShift();
             }
           });
           break;
@@ -131,12 +156,13 @@ const Keyboard = {
             keyContainer.classList.add('shiftr-active');
           }
           keyContainer.addEventListener('click', () => {
+            if (this.properties.shiftL) this.properties.shiftL = !this.properties.shiftL;
             this.properties.shiftR = !this.properties.shiftR;
             this.toggleShift(this.properties.shiftR);
             this.textArea.output.focus();
-            if (this.properties.capsLock && this.properties.shiftL) {
+            if (this.properties.capsLock && this.properties.shiftR) {
               this.properties.capsLock = !this.properties.capsLock;
-              this.properties.shiftL = !this.properties.shiftL;
+              this.properties.shiftR = !this.properties.shiftR;
               this.toggleCapsLock();
             }
           });
@@ -306,6 +332,7 @@ const Keyboard = {
     } else {
       this.createNewKeys();
     }
+    this.moveArrow();
   },
 
   toggleShift(direction) {
@@ -335,6 +362,7 @@ const Keyboard = {
     } else {
       this.createNewKeys();
     }
+    this.moveArrow();
   },
 
   toggleAudio() {

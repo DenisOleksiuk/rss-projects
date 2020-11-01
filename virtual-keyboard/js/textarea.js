@@ -8,6 +8,7 @@ export default class TextArea {
   init() {
     this.output = document.createElement('textarea');
     this.output.classList.add(this.className);
+    this.output.setAttribute('spellcheck', 'false');
     document.body.append(this.output);
     this.output.focus();
 

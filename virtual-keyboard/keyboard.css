@@ -2,6 +2,7 @@
 
 body {
     background: #f2f2f2;
+    outline: none;
 }
 
 .keyboard {
@@ -22,7 +23,7 @@ body {
     border-bottom-right-radius: 8px;
     color: white;
     -webkit-user-select: none;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     line-height: 34px;
     background: rgba(40, 40, 40, 1);
@@ -31,23 +32,6 @@ body {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 1);
     margin-top: -2px;
     font-family: Arial;
-}
-
-.sub {
-    position: absolute;
-    top: -8px;
-    left: 6px;
-}
-.char {
-    position: absolute;
-}
-.sub.dog {
-    font-size: 8px;
-    top: -9px;
-}
-.sub.underscore {
-    left: 12px;
-    top: -14px;
 }
 
 .key:hover {
@@ -95,6 +79,15 @@ body {
     background-color: #00b2ed;
     top: 1px;
     transition: 0s ease-in-out 0s;
+
+}
+.key-active {
+    line-height: 35px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: #00b2ed;
+    top: 1px;
+    transition: 0s ease-in-out 0s;
 }
 
 .key::after {
@@ -128,7 +121,7 @@ body {
 }
 
 .smallfont {
-    font-size: 10px;
+    font-size: 14px;
 }
 
 .caps-active {
