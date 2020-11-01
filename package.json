@@ -1,0 +1,27 @@
+{
+  "name": "denisoleksiuk-js2020q3",
+  "version": "1.0.0",
+  "description": "Private repository for @denisoleksiuk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolling-scopes-school/denisoleksiuk-JS2020Q3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolling-scopes-school/denisoleksiuk-JS2020Q3/issues"
+  },
+  "homepage": "https://github.com/rolling-scopes-school/denisoleksiuk-JS2020Q3#readme",
+  "devDependencies": {
+    "eslint": "^7.12.1"
+  },
+  "dependencies": {
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
