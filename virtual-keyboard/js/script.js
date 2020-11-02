@@ -406,19 +406,17 @@ const Keyboard = {
       en: 'en-US',
       ru: 'ru-RU',
     };
+    // eslint-disable-next-line no-unused-expressions
+    this.properties.lang === en ? rec.lang = lang.en : rec.lang = lang.ru;
+    rec.addEventListener('result', (e) => {
+      const transcript = Array.from(e.results)
+        .map((results) => results[0])
+        .map((results) => results.transcript)
+        .join('');
+      this.textArea.output.value += transcript;
+    });
+
     if (this.properties.voice) {
-      // eslint-disable-next-line no-unused-expressions
-      this.properties.lang === en ? rec.lang = lang.en : rec.lang = lang.ru;
-
-      rec.addEventListener('result', (e) => {
-        const transcript = Array.from(e.results)
-          .map((results) => results[0])
-          .map((results) => results.transcript)
-          .join('');
-        this.textArea.output.value += transcript;
-      });
-
-      rec.addEventListener('end', rec.start);
       rec.start();
     } else if (!this.properties.voice) {
       rec.stop();
