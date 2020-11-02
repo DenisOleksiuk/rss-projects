@@ -417,6 +417,7 @@ const Keyboard = {
     });
 
     if (this.properties.voice) {
+      rec.addEventListener('end', rec.start);
       rec.start();
     } else if (!this.properties.voice) {
       rec.stop();
