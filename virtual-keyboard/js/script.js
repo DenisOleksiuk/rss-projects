@@ -19,6 +19,12 @@ const Keyboard = {
     oninput: null,
   },
 
+  audio: {
+    type: new Audio('assets/audio/button6.wav'),
+    caps: new Audio('assets/audio/button16.wav'),
+    rus: new Audio('assets/audio/rus.wav'),
+  },
+
   properties: {
     capsLock: false,
     shiftL: false,
@@ -31,6 +37,7 @@ const Keyboard = {
   textArea: new TextArea('output'),
 
   init() {
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     // Create container elements
     this.elements.keysContainer = document.createElement('div');
 
@@ -45,7 +52,7 @@ const Keyboard = {
     this.moveArrow();
 
     this.textArea.output.addEventListener('focus', () => this.show());
-
+    // keyboard handler
     document.addEventListener('keydown', (event) => {
       const keyName = event.key;
 
@@ -56,6 +63,11 @@ const Keyboard = {
           e.classList.add('key-active');
         }
       });
+      if (this.properties.lang === en) {
+        if (this.properties.audio) this.audio.type.play();
+      } else if (this.properties.lang === ru) {
+        if (this.properties.audio) this.audio.rus.play();
+      }
       this.textArea.output.focus();
     });
 
@@ -89,6 +101,7 @@ const Keyboard = {
           keyContainer.textContent = 'Backspace';
 
           keyContainer.addEventListener('click', () => {
+            if (this.properties.audio) this.audio.caps.play();
             this.textArea.deleteChar(this.textArea.currentPosition);
             this.textArea.output.focus();
           });
@@ -112,6 +125,7 @@ const Keyboard = {
             keyContainer.classList.add('caps-active');
           }
           keyContainer.addEventListener('click', () => {
+            if (this.properties.audio) this.audio.caps.play();
             this.properties.capsLock = !this.properties.capsLock;
             this.toggleCapsLock();
             this.textArea.output.focus();
@@ -124,6 +138,7 @@ const Keyboard = {
           keyContainer.textContent = 'Enter';
 
           keyContainer.addEventListener('click', () => {
+            if (this.properties.audio) this.audio.caps.play();
             this.textArea.addCharacter('\n');
           });
           break;
@@ -136,6 +151,7 @@ const Keyboard = {
             keyContainer.classList.add('shiftl-active');
           }
           keyContainer.addEventListener('click', () => {
+            if (this.properties.audio) this.audio.caps.play();
             if (this.properties.shiftR) this.properties.shiftR = this.properties.shiftLR;
             this.properties.shiftL = !this.properties.shiftL;
             this.toggleShift(this.properties.shiftL);
@@ -156,6 +172,7 @@ const Keyboard = {
             keyContainer.classList.add('shiftr-active');
           }
           keyContainer.addEventListener('click', () => {
+            if (this.properties.audio) this.audio.caps.play();
             if (this.properties.shiftL) this.properties.shiftL = !this.properties.shiftL;
             this.properties.shiftR = !this.properties.shiftR;
             this.toggleShift(this.properties.shiftR);
@@ -200,6 +217,9 @@ const Keyboard = {
           keyContainer.className = 'key smallfont';
           keyContainer.id = 'audio';
           keyContainer.innerHTML = '&#128266';
+          if (this.properties.audio) {
+            keyContainer.classList.add('audio-active');
+          }
           keyContainer.addEventListener('click', () => {
             this.toggleAudio();
             keyContainer.classList.toggle('audio-active', this.properties.audio);
@@ -220,6 +240,8 @@ const Keyboard = {
           keyContainer.className = 'key smallfont';
           keyContainer.id = 'alt';
           keyContainer.textContent = 'Alt';
+          keyContainer.addEventListener('click', () => {
+          });
           break;
 
         case 'Space':
@@ -252,6 +274,12 @@ const Keyboard = {
               char = key.toLowerCase();
             } else {
               char = key.toLowerCase();
+            }
+
+            if (this.properties.lang === en) {
+              if (this.properties.audio) this.audio.type.play();
+            } else if (this.properties.lang === ru) {
+              if (this.properties.audio) this.audio.rus.play();
             }
             this.textArea.addCharacter(char);
           });
@@ -371,6 +399,30 @@ const Keyboard = {
 
   toggleVoice() {
     this.properties.voice = !this.properties.voice;
+    // recognition
+    const rec = new window.SpeechRecognition();
+    rec.interimResults = false;
+    const lang = {
+      en: 'en-US',
+      ru: 'ru-RU',
+    };
+    if (this.properties.voice) {
+      // eslint-disable-next-line no-unused-expressions
+      this.properties.lang === en ? rec.lang = lang.en : rec.lang = lang.ru;
+
+      rec.addEventListener('result', (e) => {
+        const transcript = Array.from(e.results)
+          .map((results) => results[0])
+          .map((results) => results.transcript)
+          .join('');
+        this.textArea.output.value += transcript;
+      });
+
+      rec.addEventListener('end', rec.start);
+      rec.start();
+    } else if (!this.properties.voice) {
+      rec.stop();
+    }
   },
 
   hidden() {
