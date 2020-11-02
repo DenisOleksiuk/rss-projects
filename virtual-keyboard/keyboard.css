@@ -243,3 +243,33 @@ body {
     transition: 1s all;
     top: 400px;
 }
+
+@media (max-width: 501px) {
+    .output, .keyboard {
+        width: 480px;
+    }
+    .key {
+        width: 28px;
+    }
+    #delete, #tab {
+        width: 80px;
+    }
+    #caps, #enter {
+        width: 70px;
+    }
+    #shiftl, #shiftr {
+        width: 85px;
+    }
+    #language, #audio, #voice, #alt, #Hidden {
+        width: 40px;
+    }
+    #space {
+        width: 125px;
+    }
+    #arrow {
+        width: 100px;
+    }
+    #arrow #updown {
+        width: 30px;
+    }
+}
