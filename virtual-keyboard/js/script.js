@@ -41,13 +41,7 @@ const Keyboard = {
     // recognition
     this.rec = new window.SpeechRecognition();
     this.rec.interimResults = false;
-    const lang = {
-      en: 'en-US',
-      ru: 'ru-RU',
-    };
 
-    // eslint-disable-next-line no-unused-expressions
-    this.properties.lang === en ? this.rec.lang = lang.en : this.rec.lang = lang.ru;
     this.rec.addEventListener('result', (e) => {
       const transcript = Array.from(e.results)
         .map((results) => results[0])
@@ -423,6 +417,12 @@ const Keyboard = {
 
   toggleVoice() {
     this.properties.voice = !this.properties.voice;
+    const lang = {
+      en: 'en-US',
+      ru: 'ru-RU',
+    };
+    // eslint-disable-next-line no-unused-expressions
+    this.properties.lang === en ? this.rec.lang = lang.en : this.rec.lang = lang.ru;
     if (this.properties.voice) {
       this.rec.start();
     } else {
