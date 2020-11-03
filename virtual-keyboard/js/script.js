@@ -38,6 +38,30 @@ const Keyboard = {
 
   init() {
     window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    // recognition
+    this.rec = new window.SpeechRecognition();
+    this.rec.interimResults = false;
+    const lang = {
+      en: 'en-US',
+      ru: 'ru-RU',
+    };
+
+    // eslint-disable-next-line no-unused-expressions
+    this.properties.lang === en ? this.rec.lang = lang.en : this.rec.lang = lang.ru;
+    this.rec.addEventListener('result', (e) => {
+      const transcript = Array.from(e.results)
+        .map((results) => results[0])
+        .map((results) => results.transcript)
+        .join('');
+      this.textArea.output.value += transcript;
+    });
+    this.rec.addEventListener('end', () => {
+      if (this.properties.voice) {
+        this.rec.start();
+      } else {
+        this.rec.stop();
+      }
+    });
     // Create container elements
     this.elements.keysContainer = document.createElement('div');
 
@@ -399,28 +423,10 @@ const Keyboard = {
 
   toggleVoice() {
     this.properties.voice = !this.properties.voice;
-    // recognition
-    const rec = new window.SpeechRecognition();
-    rec.interimResults = false;
-    const lang = {
-      en: 'en-US',
-      ru: 'ru-RU',
-    };
-    // eslint-disable-next-line no-unused-expressions
-    this.properties.lang === en ? rec.lang = lang.en : rec.lang = lang.ru;
-    rec.addEventListener('result', (e) => {
-      const transcript = Array.from(e.results)
-        .map((results) => results[0])
-        .map((results) => results.transcript)
-        .join('');
-      this.textArea.output.value += transcript;
-    });
-
     if (this.properties.voice) {
-      rec.addEventListener('end', rec.start);
-      rec.start();
-    } else if (!this.properties.voice) {
-      rec.stop();
+      this.rec.start();
+    } else {
+      this.rec.stop();
     }
   },
 
