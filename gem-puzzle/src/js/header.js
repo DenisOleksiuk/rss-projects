@@ -12,7 +12,7 @@ export default function createHeader() {
       time: null,
       moves: null,
       move: null,
-      countter: null,
+      counter: null,
       pause: null,
       resume: null
     },
@@ -24,11 +24,11 @@ export default function createHeader() {
       this.element.time = document.createElement('span');
       this.element.moves = document.createElement('div');
       this.element.move = document.createElement('span');
-      this.element.countter = document.createElement('span');
+      this.element.counter = document.createElement('span');
       this.element.pause = document.createElement('button');
       this.element.resume = document.createElement('button');
       this.element.info.append(this.element.descr, this.element.time);
-      this.element.moves.append(this.element.move, this.element.countter);
+      this.element.moves.append(this.element.move, this.element.counter);
       this.element.header.append(
         this.element.info, this.element.moves, this.element.pause, this.element.resume
       );
@@ -39,7 +39,7 @@ export default function createHeader() {
       this.element.time.className = 'time';
       this.element.moves.className = 'muves';
       this.element.move.className = 'description';
-      this.element.countter.className = 'counter';
+      this.element.counter.className = 'counter';
       this.element.pause.className = 'pause';
       this.element.resume.className = 'pause';
       this.element.pause.classList.add('visible');
@@ -48,25 +48,11 @@ export default function createHeader() {
       this.element.move.textContent = 'Moves ';
       this.element.pause.textContent = 'Pause Game';
       this.element.resume.textContent = 'Resume Game';
-      this.element.countter.textContent = 0;
+      this.element.counter.textContent = 0;
 
-      const info = document.querySelector('.info');
-      info.addEventListener('click', this.start.bind(this));
-    },
-
-    addZero(n) {
-      return n < 10 ? `0${n}` : n;
-    },
-
-    start() {
-      this.element.time.textContent = `${this.addZero(this.timer.min)} : ${this.addZero(this.timer.sec)}`;
-      this.timer.sec += 1;
-
-      if (this.timer.sec > 59) {
-        this.timer.min += 1;
-        this.timer.sec = 0;
-      }
-      setTimeout(this.start.bind(this), 1000);
+      // const info = document.querySelector('.info');
+      // info.addEventListener('click', this.start.bind(this));
+      // this.start();
     }
   };
   Header.init();
