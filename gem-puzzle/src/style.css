@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+  font-size: 100%;
+  font-family: 'Ubuntu', Arial, sans-serif;
+}
+
+body {
+  background-image: url('./assets/bg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: gold;
+  font-weight: bold;
+}
+
+header {
+  max-width: 430px;
+  min-height: 75px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  align-items: flex-end;
+}
+
+header button.pause {
+  background: none;
+  border: none;
+  font-size: 100%;
+  cursor: pointer;
+  outline: none;
+  color: gold;
+  font-weight: bold;
+}
+
+header button.visible {
+  display: block;
+  color: gold;
+  font-weight: bold;
+}
+
+header button {
+  display: none;
+}
+
+.area {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: stretch;
+  grid-gap: 6px;
+  max-width: 420px;
+  height: 400px;
+  background-color: aquamarine;
+  margin: auto;
+  padding: 6px;
+  border-radius: 3%;
+}
+
+.chep {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: burlywood;
+  color: black;
+  border-radius: 5px;
+  font-size: 2rem;
+  border: 2px outset;
+  border-color: dimgrey;
+  cursor: pointer;
+}
+.chep:hover {
+  background-color: lightcoral;
+}
+
+.empty {
+  background-color: inherit;
+}
