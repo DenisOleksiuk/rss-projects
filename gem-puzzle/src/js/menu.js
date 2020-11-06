@@ -1,5 +1,12 @@
 export default function mainMenu() {
   const Menu = {
-    main: null
-  },
+    elements: {
+      main: null
+    },
+
+    init() {
+      this.main = document.querySelector('main-menu');
+    }
+  };
+  Menu.init();
 }
