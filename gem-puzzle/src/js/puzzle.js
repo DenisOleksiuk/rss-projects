@@ -3,7 +3,18 @@ export default function createPuzzle() {
     elements: {
       area: null,
       gems: [],
+      time: 0,
       counter: 0
+    },
+
+    audio: {
+      click: new Audio('./assets/button18.wav'),
+      victory: new Audio('./assets/win.wav')
+    },
+
+    timer: {
+      min: 0,
+      sec: 0
     },
 
     init() {
@@ -13,6 +24,7 @@ export default function createPuzzle() {
       this.elements.area.append(this.createGems(this.elements.gems));
       document.body.append(this.elements.area);
       this.movePuzzle();
+      this.startTimer();
     },
 
     createGems(arr) {
@@ -49,9 +61,14 @@ export default function createPuzzle() {
             this.elements.area.append(this.createGems(this.elements.gems));
             document.body.append(this.elements.area);
             const win = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0];
+            this.audio.click.play();
             if (JSON.stringify(this.elements.gems) === JSON.stringify(win)) {
-              alert('Вы выйграли');
+              this.audio.victory.play();
+              alert(`Ура! Вы решили головоломку за ${this.addZero(this.timer.min)} минут, ${this.addZero(this.timer.sec)} секунд и ${this.elements.counter} ходов`);
               this.movePuzzle();
+              this.timer.min = 0;
+              this.timer.sec = 0;
+              this.elements.counter = 0;
               this.elements.area.innerHTML = '';
               this.elements.gems = this.puzzleSolve();
               this.elements.area.append(this.createGems(this.elements.gems));
@@ -71,8 +88,7 @@ export default function createPuzzle() {
           gemPieces.push(piece);
         }
       } while (gemPieces.length < 16);
-
-      for (let i = 0; i < gemPieces.length; i += 1) {
+      for (let i = 0; i < gemPieces.length - 1; i += 1) {
         for (let j = 0; j < i; j += 1) {
           if (gemPieces[j] > gemPieces[i]) {
             k += 1;
@@ -83,6 +99,21 @@ export default function createPuzzle() {
         return this.puzzleSolve();
       }
       return gemPieces;
+    },
+
+    addZero(n) {
+      return n < 10 ? `0${n}` : n;
+    },
+
+    startTimer() {
+      const time = document.querySelector('.time');
+      time.innerHTML = `${this.addZero(this.timer.min)} : ${this.addZero(this.timer.sec)}`;
+      this.timer.sec += 1;
+      if (this.timer.sec > 59) {
+        this.timer.min += 1;
+        this.timer.sec = 0;
+      }
+      setTimeout(this.startTimer.bind(this), 1000);
     }
   };
   Puzzle.init();
