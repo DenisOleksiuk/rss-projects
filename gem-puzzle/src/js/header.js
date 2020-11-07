@@ -40,19 +40,15 @@ export default function createHeader() {
       this.element.moves.className = 'muves';
       this.element.move.className = 'description';
       this.element.counter.className = 'counter';
-      this.element.pause.className = 'pause';
-      this.element.resume.className = 'pause';
-      this.element.pause.classList.add('visible');
-      this.element.descr.textContent = 'Time ';
+      this.element.pause.className = 'pause visible';
+      this.element.resume.className = 'resume';
+      // this.element.pause.classList.add('visible');
+      this.element.descr.textContent = 'Вреям ';
       this.element.time.textContent = '00 : 00';
-      this.element.move.textContent = 'Moves ';
-      this.element.pause.textContent = 'Pause Game';
-      this.element.resume.textContent = 'Resume Game';
+      this.element.move.textContent = 'Ходы ';
+      this.element.pause.textContent = 'Пауза';
+      this.element.resume.textContent = 'Возобновить';
       this.element.counter.textContent = 0;
-
-      // const info = document.querySelector('.info');
-      // info.addEventListener('click', this.start.bind(this));
-      // this.start();
     }
   };
   Header.init();
