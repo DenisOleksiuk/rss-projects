@@ -1,9 +1,9 @@
 import createHeader from './header.js';
 import createPuzzle from './puzzle.js';
-import mainMenu from './menu.js';
+import modalWindow from './modal.js';
 
 createHeader();
-mainMenu();
+modalWindow();
 createPuzzle();
 
 const modal = document.querySelector('.modal-window');
@@ -12,6 +12,7 @@ const resume = document.querySelector('.resume');
 const start = document.querySelector('.start');
 const end = document.querySelector('.end');
 const time = document.querySelector('.time');
+const score = document.querySelector('.score');
 let minutes = 0;
 let seconds = 0;
 
@@ -67,7 +68,12 @@ function proceed() {
   resume.style.display = 'none';
 }
 
-end.addEventListener('click', proceed);
+function scoreResult() {
+  modal.innerHTML = '';
+}
+
 pause.addEventListener('click', paused);
 resume.addEventListener('click', resumeGame);
 start.addEventListener('click', newGame);
+score.addEventListener('click', scoreResult);
+end.addEventListener('click', proceed);
