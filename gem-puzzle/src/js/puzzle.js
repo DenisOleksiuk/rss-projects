@@ -24,28 +24,28 @@ export default function createPuzzle() {
       this.elements.area.append(this.createGems(this.elements.gems));
       document.body.append(this.elements.area);
       this.movePuzzle();
-      this.startTimer();
+      // this.startTimer();
     },
 
     createGems(arr) {
       const fragment = document.createDocumentFragment();
       arr.forEach((i) => {
-        const chep = document.createElement('div');
+        const chip = document.createElement('div');
         if (i) {
-          chep.classList.add('chep');
-          chep.id = i;
-          chep.textContent = i;
+          chip.classList.add('chip');
+          chip.id = i;
+          chip.textContent = i;
         } else {
-          chep.classList.add('empty');
-          chep.id = 0;
+          chip.classList.add('empty');
+          chip.id = 0;
         }
-        fragment.appendChild(chep);
+        fragment.appendChild(chip);
       });
       return fragment;
     },
 
     movePuzzle() {
-      const chep = document.querySelectorAll('.chep');
+      const chep = document.querySelectorAll('.chip');
       const count = document.querySelector('.counter');
       count.textContent = this.elements.counter;
       this.elements.counter += 1;
@@ -99,21 +99,6 @@ export default function createPuzzle() {
         return this.puzzleSolve();
       }
       return gemPieces;
-    },
-
-    addZero(n) {
-      return n < 10 ? `0${n}` : n;
-    },
-
-    startTimer() {
-      const time = document.querySelector('.time');
-      time.innerHTML = `${this.addZero(this.timer.min)} : ${this.addZero(this.timer.sec)}`;
-      this.timer.sec += 1;
-      if (this.timer.sec > 59) {
-        this.timer.min += 1;
-        this.timer.sec = 0;
-      }
-      setTimeout(this.startTimer.bind(this), 1000);
     }
   };
   Puzzle.init();
