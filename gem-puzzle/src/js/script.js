@@ -20,7 +20,7 @@ function startGame() {
   modal.hide();
   const board = document.querySelector('.area');
   board.remove();
-  new Puzzle(15).render();
+  new Puzzle(4, 15).render();
   const newBoard = document.querySelector('.area');
   newBoard.hidden = false;
 }
@@ -39,4 +39,4 @@ start.addEventListener('click', startGame);
 // proceed.addEventListener('click', resumeGame);
 pause.addEventListener('click', pauseGame);
 // settingBtn.addEventListener('click', setting);
-settingBtn.addEventListener('click', setting);
+// settingBtn.addEventListener('click', setting);

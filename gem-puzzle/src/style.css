@@ -65,7 +65,7 @@ header[hidden] {
 }
 
 .chip {
-  background-image: url('./assets/imgPuzzle.jpg');
+  background-image: url('./assets/bgImg/cat.jpg');
   display: flex;
   position: relative;
   justify-content: center;
@@ -75,7 +75,7 @@ header[hidden] {
   color: black;
   color: white;
   border-radius: 5px;
-  font-size: 2rem;
+  /* font-size: 2rem; */
   border: 2px outset;
   border-color: dimgrey;
   cursor: pointer;
