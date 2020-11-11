@@ -1,79 +1,42 @@
-import createHeader from './header.js';
-import createPuzzle from './puzzle.js';
-import modalWindow from './modal.js';
+import header from './header.js';
+import modal from './modal.js';
+import Puzzle from './puzzle.js';
 
-createHeader();
-modalWindow();
-createPuzzle();
-
-const modal = document.querySelector('.modal-window');
-const pause = document.querySelector('.pause');
-const resume = document.querySelector('.resume');
+const mainMenu = document.querySelector('.modal-window');
 const start = document.querySelector('.start');
-const end = document.querySelector('.end');
-const time = document.querySelector('.time');
-const score = document.querySelector('.score');
-let minutes = 0;
-let seconds = 0;
+const proceed = document.querySelector('.proceed');
+const pause = document.querySelector('.pause');
+const settingBtn = document.querySelector('.setting');
 
-function addZero(n) {
-  return n < 10 ? `0${n}` : n;
+// function resumeGame() {
+//   const board = document.querySelector('.area');
+//   mainMenu.style.display = 'none';
+//   board.hidden = false;
+// }
+
+function startGame() {
+  header.show();
+  header.startTimer();
+  modal.hide();
+  const board = document.querySelector('.area');
+  board.remove();
+  new Puzzle(15).render();
+  const newBoard = document.querySelector('.area');
+  newBoard.hidden = false;
 }
 
-function startTimer() {
-  time.innerHTML = `${addZero(minutes)} : ${addZero(seconds)}`;
-  seconds += 1;
-  if (seconds > 59) {
-    minutes += 1;
-    seconds = 0;
-  }
-  setTimeout(startTimer, 1000);
+function pauseGame() {
+  const board = document.querySelector('.area');
+  board.style.display = 'none';
+  modal.show();
 }
 
-function paused() {
-  const field = document.querySelector('.area');
-  modal.style.display = 'block';
-  field.style.display = 'none';
-  pause.style.display = 'none';
-  resume.style.display = 'block';
+function setting() {
+  modal.setting();
 }
 
-function resumeGame() {
-  const field = document.querySelector('.area');
-  modal.style.display = 'none';
-  field.style.display = 'grid';
-  pause.style.display = 'block';
-  resume.style.display = 'none';
-}
-
-function newGame() {
-  const field = document.querySelector('.area');
-  minutes = 0;
-  seconds = 0;
-  modal.style.display = 'none';
-  field.remove();
-  createPuzzle();
-  startTimer();
-  const newField = document.querySelector('.area');
-  newField.style.display = 'grid';
-  pause.style.display = 'block';
-  resume.style.display = 'none';
-}
-
-function proceed() {
-  const field = document.querySelector('.area');
-  modal.style.display = 'none';
-  field.style.display = 'grid';
-  pause.style.display = 'block';
-  resume.style.display = 'none';
-}
-
-function scoreResult() {
-  modal.innerHTML = '';
-}
-
-pause.addEventListener('click', paused);
-resume.addEventListener('click', resumeGame);
-start.addEventListener('click', newGame);
-score.addEventListener('click', scoreResult);
-end.addEventListener('click', proceed);
+start.addEventListener('click', startGame);
+// proceed.addEventListener('click', resumeGame);
+pause.addEventListener('click', pauseGame);
+// settingBtn.addEventListener('click', setting);
+settingBtn.addEventListener('click', setting);

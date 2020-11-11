@@ -24,8 +24,16 @@ header {
   align-items: flex-end;
 }
 
-.pause, .resume {
-  display: none;
+header[hidden] {
+  visibility: hidden;
+}
+
+:not(header)[hidden] {
+  display: none !important;
+}
+
+.pause {
+  width: 105px;
   background: none;
   border: none;
   font-size: 100%;
@@ -35,19 +43,16 @@ header {
   font-weight: bold;
 }
 
-.visible {
-  display: block;
-  color: gold;
-  font-weight: bold;
+.paused > :first-child {
+  display: none;
 }
 
-.resume {
+.pause:not(.paused) > :last-child {
   display: none;
 }
 
 .area {
-  /* display: grid; */
-  display: none;
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: stretch;
   grid-gap: 6px;
@@ -60,6 +65,7 @@ header {
 }
 
 .chip {
+  background-image: url('./assets/imgPuzzle.jpg');
   display: flex;
   position: relative;
   justify-content: center;
@@ -67,6 +73,7 @@ header {
   text-align: center;
   background-color: burlywood;
   color: black;
+  color: white;
   border-radius: 5px;
   font-size: 2rem;
   border: 2px outset;
@@ -83,7 +90,7 @@ header {
 
 .modal-window {
   background:rgba(0000, 0000, 0000, .5);
-  width: 500px;
+  width: 480px;
   height: 500px;
   margin: auto;
   padding: 15px;
@@ -96,12 +103,18 @@ header {
   letter-spacing: 5px;
 }
 
-.end, .start, .save, .score, .setting {
-  margin-top: 55px;
+.proceed, .start, .save, .score, .setting, .back {
+  margin-top: 35px;
   align-items: center;
   color: burlywood;
   text-align: center;
   font-size: 20px;
   letter-spacing: 3px;
   cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .modal-window, header {
+    width: 300px;
+  }
 }

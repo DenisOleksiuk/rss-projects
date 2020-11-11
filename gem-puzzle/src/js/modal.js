@@ -1,45 +1,53 @@
-export default function modalWindow() {
-  class Menu {
-    constructor() {
-      this.modal = null;
-      this.title = null;
-      this.end = null;
-      this.start = null;
-      this.save = null;
-      this.score = null;
-      this.setting = null;
-    }
-
-    init() {
-      // reflow
-      this.modal = document.createElement('div');
-      this.title = document.createElement('h1');
-      this.start = document.createElement('p');
-      this.end = document.createElement('p');
-      this.save = document.createElement('p');
-      this.score = document.createElement('p');
-      this.setting = document.createElement('p');
-      this.modal.append(this.title, this.end,
-        this.start, this.save,
-        this.score, this.setting);
-      document.body.append(this.modal);
-
-      // repain
-      this.modal.className = 'modal-window';
-      this.title.className = 'title';
-      this.end.className = 'end';
-      this.start.className = 'start';
-      this.save.className = 'save';
-      this.score.className = 'score';
-      this.setting.className = 'setting';
-      this.title.textContent = 'Главное меню';
-      this.end.textContent = 'Продолжить игру';
-      this.start.textContent = 'Новая игру';
-      this.save.textContent = 'Сохранить игру';
-      this.score.textContent = 'Лучший результат';
-      this.setting.textContent = 'Настройки';
-    }
+class Menu {
+  constructor(parent) {
+    this.parent = parent;
+    // this.element = null;
+    this.render();
   }
-  const mainMenu = new Menu();
-  mainMenu.init();
+
+  render() {
+    this.element = document.createElement('div');
+    this.element.className = 'modal-window';
+    this.element.innerHTML = /* html */`
+      <h1 class="title">Главное меню</h1>
+      <p class="proceed">Продолжить игру</p>
+      <p class="start">Новая игра</p>
+      <p class="save">Сохранить игру</p>
+      <p class="score">Лучший результат</p>
+      <p class="setting">Настройки</p>
+      <p class="back"></p><p class="back"></p>
+    `;
+    this.parent.append(this.element);
+
+    const modal = this.parent.querySelector('.modal-window');
+    const title = modal.querySelector('.title');
+    const proceed = modal.querySelector('.proceed');
+    const start = modal.querySelector('.start');
+    const save = modal.querySelector('.save');
+    const score = modal.querySelector('.score');
+    const settingBtn = modal.querySelector('.setting');
+    const back = modal.querySelector('.back');
+    this.elements = {
+      modal, title, proceed, start, save, score, settingBtn, back
+    };
+  }
+
+  show() {
+    this.elements.modal.hidden = false;
+  }
+
+  hide() {
+    this.elements.modal.hidden = true;
+  }
+
+  setting() {
+    this.elements.title.textContent = 'Поле 3х3';
+    this.elements.proceed.textContent = 'Поле 4х4';
+    this.elements.start.textContent = 'Поле 5х5';
+    this.elements.save.textContent = 'Поле 6х6';
+    this.elements.score.textContent = 'Поле 7х7';
+    this.elements.settingBtn.textContent = 'Поле 8х8';
+    this.elements.back.textContent = 'Назад';
+  }
 }
+export default new Menu(document.body);
