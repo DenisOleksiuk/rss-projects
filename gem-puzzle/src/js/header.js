@@ -1,55 +1,97 @@
-export default function createHeader() {
-  const Header = {
-    timer: {
-      min: 0,
-      sec: 0
-    },
-
-    element: {
-      header: null,
-      info: null,
-      descr: null,
-      time: null,
-      moves: null,
-      move: null,
-      counter: null,
-      pause: null,
-      resume: null
-    },
-
-    init() {
-      this.element.header = document.createElement('header');
-      this.element.info = document.createElement('div');
-      this.element.descr = document.createElement('span');
-      this.element.time = document.createElement('span');
-      this.element.moves = document.createElement('div');
-      this.element.move = document.createElement('span');
-      this.element.counter = document.createElement('span');
-      this.element.pause = document.createElement('button');
-      this.element.resume = document.createElement('button');
-      this.element.info.append(this.element.descr, this.element.time);
-      this.element.moves.append(this.element.move, this.element.counter);
-      this.element.header.append(
-        this.element.info, this.element.moves, this.element.pause, this.element.resume
-      );
-      document.body.prepend(this.element.header);
-
-      this.element.info.className = 'info';
-      this.element.descr.className = 'description';
-      this.element.time.className = 'time';
-      this.element.moves.className = 'muves';
-      this.element.move.className = 'description';
-      this.element.counter.className = 'counter';
-      this.element.pause.className = 'pause visible';
-      this.element.resume.className = 'resume';
-      // this.element.pause.classList.add('visible');
-      this.element.descr.textContent = 'Вреям ';
-      this.element.time.textContent = '00 : 00';
-      this.element.move.textContent = 'Ходы ';
-      this.element.pause.textContent = 'Пауза';
-      this.element.resume.textContent = 'Возобновить';
-      this.element.counter.textContent = 0;
-    }
-  };
-  Header.init();
+function formatTime(seconds) {
+  return `${String(Math.floor(seconds / 60)).padStart(2, 0)} : ${String(seconds % 60).padStart(2, 0)}`;
 }
+
+class Header {
+  constructor(parent) {
+    this.parent = parent;
+    this.time = 0;
+    this.step = 0;
+    this.paused = false;
+    this.render();
+    const { pauseBtn } = this.elements;
+    pauseBtn.onclick = () => {
+      if (this.paused) {
+        this.paused = false;
+        this.resumeTimer();
+        pauseBtn.classList.remove('paused');
+      } else {
+        this.paused = true;
+        this.pauseTimer();
+        pauseBtn.classList.add('paused');
+      }
+    };
+  }
+
+  render() {
+    this.parent.innerHTML = /* html */`
+      <header hidden>
+        <div class="info">
+          <span class="description">Время</span>
+          <span class="time">00 : 00</span>
+        </div>
+        <div class="muves">
+          <span class="description">Ходы </span>
+          <span class="counter">0</span>
+        </div>
+        <button class="pause">
+          <span>Пауза</span>
+          <span>Возобновить</span>
+        </button>
+      </header>
+    `;
+    const header = this.parent.querySelector('header');
+    const timer = header.querySelector('.time');
+    const moveCounter = header.querySelector('.counter');
+    const pauseBtn = header.querySelector('.pause');
+    this.elements = {
+      header, timer, moveCounter, pauseBtn
+    };
+  }
+
+  show() {
+    this.elements.header.hidden = false;
+  }
+
+  hide() {
+    this.elements.header.hidden = true;
+  }
+
+  showTime() {
+    return this.elements.timer.innerText;
+  }
+
+  stepCounter() {
+    this.step += 1;
+    this.elements.moveCounter.textContent = this.step;
+  }
+
+  resetHeader() {
+    this.time = 0;
+    this.step = 0;
+    this.paused = false;
+    this.elements.timer.innerText = '00 : 00';
+    this.elements.pauseBtn.classList.remove('paused');
+  }
+
+  updateTimer() {
+    this.elements.timer.innerText = formatTime(this.time);
+  }
+
+  startTimer() {
+    this.resetHeader();
+    this.resumeTimer();
+  }
+
+  pauseTimer() {
+    clearInterval(this.timer);
+  }
+
+  resumeTimer() {
+    this.timer = setInterval(() => {
+      this.time += 1;
+      this.updateTimer();
+    }, 1000);
+  }
+}
+export default new Header(document.body);
