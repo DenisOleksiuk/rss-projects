@@ -14,13 +14,14 @@ const settingBtn = document.querySelector('.setting');
 //   board.hidden = false;
 // }
 
-function startGame() {
+function newGame() {
   header.show();
   header.startTimer();
   modal.hide();
   const board = document.querySelector('.area');
-  board.remove();
-  new Puzzle(4, 15).render();
+  if (board) board.remove();
+  const puzz = new Puzzle(4, 15);
+  puzz.render();
   const newBoard = document.querySelector('.area');
   newBoard.hidden = false;
 }
@@ -35,7 +36,7 @@ function setting() {
   modal.setting();
 }
 
-start.addEventListener('click', startGame);
+start.addEventListener('click', newGame);
 // proceed.addEventListener('click', resumeGame);
 pause.addEventListener('click', pauseGame);
 // settingBtn.addEventListener('click', setting);

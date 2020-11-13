@@ -52,39 +52,42 @@ header[hidden] {
 }
 
 .area {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: stretch;
-  grid-gap: 6px;
-  max-width: 420px;
+  max-width: 400px;
   height: 400px;
-  background-color: aquamarine;
+  background-color: #270505;
   margin: auto;
   padding: 6px;
-  border-radius: 3%;
+  border-radius: 4px;
+  transition: .5s;
 }
 
 .chip {
+  width: var(--chipSize);
+  height: var(--chipSize);
+  position: absolute;
+  z-index: 1;
   background-image: url('./assets/bgImg/cat.jpg');
   display: flex;
-  position: relative;
   justify-content: center;
   align-items: center;
-  text-align: center;
   background-color: burlywood;
-  color: black;
   color: white;
   border-radius: 5px;
-  /* font-size: 2rem; */
   border: 2px outset;
   border-color: dimgrey;
   cursor: pointer;
+  transition: .3s all;
 }
 .chip:hover {
   background-color: lightcoral;
 }
 
 .empty {
+  position: absolute;
   background-color: inherit;
 }
 
