@@ -4,6 +4,7 @@ class Puzzle {
   constructor(size, arr) {
     this.boardSize = size;
     this.arr = arr;
+    this.colRow = 400 / this.boardSize;
     this.elements = {
       gems: [],
       board: null
@@ -15,27 +16,30 @@ class Puzzle {
     this.elements.board = document.createElement('div');
     this.elements.board.className = 'area';
     this.elements.board.style.gridTemplateColumns = `repeat(${this.boardSize}, 1fr)`;
+    this.elements.board.style.setProperty('--chipSize', `${this.colRow - 4}px`);
     this.elements.board.hidden = true;
-    this.elements.board.append(this.createGems(this.elements.gems));
     document.body.append(this.elements.board);
+    this.elements.board.append(this.createGems(this.elements.gems));
     this.movePuzzle();
   }
 
   createGems(arr) {
     this.fragment = document.createDocumentFragment();
-    const boardX = 420 / this.boardSize;
-    const boardY = 400 / this.boardSize;
-    arr.forEach((i) => {
+    arr.forEach((el, i) => {
+      // 3 it is padding
       const chip = document.createElement('div');
+      const top = this.colRow * Math.trunc((i / this.boardSize)) + 2;
+      const left = this.colRow * (i % this.boardSize) + 2;
+      chip.style.top = `${top}px`;
+      chip.style.left = `${left}px`;
       // find the row and colm gems for the position img
-      let xImg = Math.floor((i % this.boardSize) || this.boardSize) * boardY - 1 * boardY;
-      let yImg = Math.ceil(i / this.boardSize) * boardX - 1 * boardX;
-      if (i) {
+      let xImg = Math.floor((el % this.boardSize) - 1) * this.colRow;
+      let yImg = Math.ceil(el / this.boardSize - 1) * this.colRow;
+      if (el) {
         chip.classList.add('chip');
-        chip.style.width = `calc(${384 + 'px' / this.boardSize})`;
         chip.style.backgroundPosition = `${-xImg}px ${-yImg}px`;
-        chip.id = i;
-        chip.textContent = i;
+        chip.id = el;
+        chip.textContent = el;
       } else {
         chip.classList.add('empty');
         chip.id = 0;
@@ -46,20 +50,24 @@ class Puzzle {
   }
 
   movePuzzle() {
-    const chep = document.querySelectorAll('.chip');
-    const audio = new Audio('./assets/button18.wav');
-    chep.forEach((each) => {
-      each.addEventListener('click', (e) => {
-        header.stepCounter();
+    const chip = document.querySelectorAll('.chip');
+    const zero = document.querySelector('.empty');
+
+    chip.forEach((el) => {
+      const elem = el;
+      el.addEventListener('mouseup', (e) => {
+        const audio = new Audio('./assets/button18.wav');
         const empty = this.elements.gems.indexOf(0);
         const moving = this.elements.gems.indexOf(+e.target.id);
-        if (moving - this.boardSize === empty || moving + this.boardSize === empty
-          || moving - 1 === empty || moving + 1 === empty) {
+        const leftDiff = Math.abs(parseInt(zero.style.left, 10) - parseInt(elem.style.left, 10));
+        const topDiff = Math.abs(parseInt(zero.style.top, 10) - parseInt(elem.style.top, 10));
+        if (leftDiff + topDiff === 100) {
+          [zero.style.left, zero.style.top, elem.style.left, elem.style.top] = [
+            elem.style.left, elem.style.top, zero.style.left, zero.style.top
+          ];
           this.elements.gems[empty] = this.elements.gems[moving];
           this.elements.gems[moving] = 0;
-          this.elements.board.innerHTML = '';
-          this.elements.board.append(this.createGems(this.elements.gems));
-          document.body.append(this.elements.board);
+          header.stepCounter();
           audio.play();
           const winPos = [...this.elements.gems].sort((a, b) => a - b);
           winPos.shift(0);
@@ -68,13 +76,11 @@ class Puzzle {
             const victory = new Audio('./assets/win.wav');
             victory.play();
             alert(`Ура! Вы решили головоломку за ${header.elements.timer.textContent} секунд, и ${header.elements.moveCounter.textContent} ходов`);
-            this.movePuzzle();
             this.elements.board.innerHTML = '';
-            this.elements.gems = this.puzzleSolve();
             this.elements.board.append(this.createGems(this.elements.gems));
+            this.elements.gems = this.puzzleSolve();
             header.resetHeader();
           }
-          this.movePuzzle();
         }
       });
     });
@@ -107,5 +113,5 @@ class Puzzle {
     return array;
   }
 }
-new Puzzle(8, 63).render();
+new Puzzle(4, 15).render();
 export default Puzzle;

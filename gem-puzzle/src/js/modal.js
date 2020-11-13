@@ -1,7 +1,6 @@
 class Menu {
   constructor(parent) {
     this.parent = parent;
-    // this.element = null;
     this.render();
   }
 
