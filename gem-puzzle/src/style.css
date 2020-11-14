@@ -51,7 +51,7 @@ header[hidden] {
   display: none;
 }
 
-.area {
+.board {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -62,7 +62,6 @@ header[hidden] {
   margin: auto;
   padding: 6px;
   border-radius: 4px;
-  transition: .5s;
 }
 
 .chip {
@@ -80,7 +79,8 @@ header[hidden] {
   border: 2px outset;
   border-color: dimgrey;
   cursor: pointer;
-  transition: .3s all;
+  transition: all .3s ease;
+  user-select: none
 }
 .chip:hover {
   background-color: lightcoral;
@@ -89,6 +89,8 @@ header[hidden] {
 .empty {
   position: absolute;
   background-color: inherit;
+  width: var(--chipSize);
+  height: var(--chipSize);
 }
 
 .modal-window {
@@ -116,8 +118,20 @@ header[hidden] {
   cursor: pointer;
 }
 
+.move {
+  transition: none;
+}
+
+.hide {
+  display: none;
+}
+
 @media (max-width: 500px) {
   .modal-window, header {
     width: 300px;
+  }
+  .board {
+    width: 300px;
+    height: 300px;
   }
 }
