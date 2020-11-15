@@ -5,13 +5,14 @@
 }
 
 body {
-  background-image: url('./assets/bg.jpg');
+  background-image: url('../assets/bg.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: gold;
   font-weight: bold;
+  overflow: hidden;
 }
 
 header {
@@ -22,6 +23,12 @@ header {
   justify-content: space-between;
   padding-bottom: 15px;
   align-items: flex-end;
+}
+
+.audio {
+  color: black;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 header[hidden] {
@@ -69,7 +76,7 @@ header[hidden] {
   height: var(--chipSize);
   position: absolute;
   z-index: 1;
-  background-image: url('./assets/bgImg/cat.jpg');
+  background-image: url('../assets/bgImg/cat.jpg');
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,12 +100,15 @@ header[hidden] {
   height: var(--chipSize);
 }
 
-.modal-window {
-  background:rgba(0000, 0000, 0000, .5);
-  width: 480px;
-  height: 500px;
+.main-menu {
+  background:rgba(0000, 0000, 0000, .8);
+  position: relative;
+  z-index: 55;
+  width: 400px;
+  height: 400px;
+  top: -5px;
+  left: -5px;
   margin: auto;
-  padding: 15px;
 }
 
 .title {
@@ -127,11 +137,22 @@ header[hidden] {
 }
 
 @media (max-width: 500px) {
-  .modal-window, header {
+  header {
     width: 300px;
   }
   .board {
     width: 300px;
     height: 300px;
+  }
+  .main-menu {
+    width: inherit;
+    height: inherit;
+  }
+  .main-menu .title {
+    font-size: 20px;
+  }
+  .proceed, .start, .save, .score, .setting, .back {
+    margin-top: 25px;
+    font-size: 16px;
   }
 }
