@@ -8,6 +8,7 @@ class Header {
     this.time = 0;
     this.step = 0;
     this.paused = false;
+    this.audio = false;
     this.render();
     const { pauseBtn } = this.elements;
     pauseBtn.onclick = () => {
@@ -30,6 +31,9 @@ class Header {
           <span class="description">Время</span>
           <span class="time">00 : 00</span>
         </div>
+        <div class="audio">
+        <i class="fas fa-volume-mute"></i>
+      </div>
         <div class="muves">
           <span class="description">Ходы </span>
           <span class="counter">0</span>
@@ -44,8 +48,9 @@ class Header {
     const timer = header.querySelector('.time');
     const moveCounter = header.querySelector('.counter');
     const pauseBtn = header.querySelector('.pause');
+    const wrraper = header.querySelector('.audio');
     this.elements = {
-      header, timer, moveCounter, pauseBtn
+      header, timer, moveCounter, pauseBtn, wrraper
     };
   }
 
@@ -55,6 +60,15 @@ class Header {
 
   hide() {
     this.elements.header.hidden = true;
+  }
+
+  toggleAudio() {
+    this.audio = !this.audio;
+    if (this.audio) {
+      this.elements.wrraper.innerHTML = '<i class="fa fa-volume-up audio"></i>';
+    } else {
+      this.elements.wrraper.innerHTML = '<i class="fa fa-volume-mute audio"></i>';
+    }
   }
 
   showTime() {

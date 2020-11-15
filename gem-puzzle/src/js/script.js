@@ -1,47 +1,50 @@
 import header from './header.js';
-import modal from './modal.js';
 import Puzzle from './puzzle.js';
+import menu from './menu.js';
 
-// const mainMenu = document.querySelector('.modal-window');
+// const mainMenu = document.querySelector('.main-menu');
 const start = document.querySelector('.start');
-// const proceed = document.querySelector('.proceed');
+const audioBtn = document.querySelector('.audio');
+const proceed = document.querySelector('.proceed');
 const pause = document.querySelector('.pause');
 const settingBtn = document.querySelector('.setting');
 const back = document.querySelector('.back');
 
 // function resumeGame() {
-//   const board = document.querySelector('.area');
-//   mainMenu.style.display = 'none';
-//   board.hidden = false;
+//   console.log(menu.elements.proceed.style);
+//   menu.addClass();
 // }
 
 function newGame() {
   header.show();
   header.startTimer();
-  modal.hide();
   const board = document.querySelector('.board');
   if (board) board.remove();
   const puzz = new Puzzle(4, 15);
   puzz.render();
-  const newBoard = document.querySelector('.board');
-  newBoard.hidden = false;
 }
 
 function pauseGame() {
-  const board = document.querySelector('.board');
-  board.style.display = 'none';
-  modal.show();
+  if (pause.classList.contains('paused')) {
+    menu.render();
+  } else {
+    menu.remove();
+  }
 }
 
 function setting() {
   // const settingBtn = document.querySelector('.setting');
-  modal.setting();
+  menu.setting();
 }
 
 function backup() {
   const modalWindow = document.querySelector('.modal-window');
   modalWindow.hidden = true;
-  modal.render();
+  menu.render();
+}
+
+function audio() {
+  header.toggleAudio();
 }
 
 start.addEventListener('click', newGame);
@@ -49,3 +52,4 @@ start.addEventListener('click', newGame);
 pause.addEventListener('click', pauseGame);
 settingBtn.addEventListener('click', setting);
 back.addEventListener('click', backup);
+audioBtn.addEventListener('click', audio);

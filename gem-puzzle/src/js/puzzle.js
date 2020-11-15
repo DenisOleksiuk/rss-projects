@@ -4,7 +4,6 @@ class Puzzle {
   constructor(size, arr) {
     this.boardSize = size;
     this.arr = arr;
-    this.audio = true;
     this.widthBoard = 400;
   }
 
@@ -16,7 +15,6 @@ class Puzzle {
     this.board.style.gridTemplateColumns = `repeat(${this.boardSize}, 1fr)`;
     this.widthAndHeightChips = this.widthBoard / this.boardSize;
     this.board.style.setProperty('--chipSize', `${this.widthAndHeightChips - 4}px`);
-    this.board.hidden = true;
     document.body.append(this.board);
     this.board.append(this.createGems(this.gems));
     this.movePuzzle();
@@ -53,32 +51,35 @@ class Puzzle {
     const zero = document.querySelector('.empty');
     chips.forEach((el) => {
       const elem = el;
-      elem.addEventListener('mousedown', (e) => {
+
+      const mouseDown = (eventDown) => {
         elem.classList.add('move');
         const whereLeft = elem.style.left;
         const whereTop = elem.style.top;
+        elem.style.zIndex = 44;
         const parentTop = this.board.getBoundingClientRect().y;
         const parentLeft = this.board.getBoundingClientRect().x;
-        let shiftX = e.clientX - elem.getBoundingClientRect().left;
-        let shiftY = e.clientY - elem.getBoundingClientRect().top;
+        let shiftX = eventDown.clientX - elem.getBoundingClientRect().left;
+        let shiftY = eventDown.clientY - elem.getBoundingClientRect().top;
         const leftDiff = Math.abs(
           Math.trunc(parseFloat(zero.style.left) - parseFloat(elem.style.left))
         );
         const topDiff = Math.abs(
           Math.trunc(parseFloat(zero.style.top) - parseFloat(elem.style.top))
         );
-        elem.style.zIndex = 44;
 
         function moveAt(pageX, pageY) {
           elem.style.left = pageX - shiftX - parentLeft + 'px';
           elem.style.top = pageY - shiftY - parentTop + 'px';
         }
-        moveAt(e.pageX, e.pageY);
+        moveAt(eventDown.pageX, eventDown.pageY);
 
-        function mouseMove(event) {
-          // console.log(event.pageX, event.pageY);
+        const mouseMove = (event) => {
           moveAt(event.pageX, event.pageY);
-        }
+          elem.ondragstart = () => {
+            return false;
+          };
+        };
         document.addEventListener('mousemove', mouseMove);
 
         const mouseUp = (eventUp) => {
@@ -94,7 +95,8 @@ class Puzzle {
             this.gems[empty] = this.gems[moving];
             this.gems[moving] = 0;
             header.stepCounter();
-            this.toggleAudio();
+            const audio = new Audio('./assets/gem.wav');
+            if (header.audio) audio.play();
             const winPos = [...this.gems].sort((a, b) => a - b);
             winPos.shift(0);
             winPos.push(0);
@@ -114,17 +116,13 @@ class Puzzle {
           elem.removeEventListener('mouseup', mouseUp);
         };
         elem.addEventListener('mouseup', mouseUp);
-      });
+      };
+      elem.addEventListener('mousedown', mouseDown);
     });
   }
 
   checkDifference() {
     return Math.trunc(this.widthBoard / this.boardSize);
-  }
-
-  toggleAudio() {
-    const audio = new Audio('./assets/gem.wav');
-    if (this.audio) audio.play();
   }
 
   puzzleShuffle(arr) {
