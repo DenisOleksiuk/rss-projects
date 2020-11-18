@@ -1,21 +1,31 @@
 import header from './header.js';
 
+function generateShuffledRange(maxNum) {
+  const gemPieces = [];
+  for (let i = 1; i <= maxNum; i += 1) gemPieces.push(i);
+  for (let i = gemPieces.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [gemPieces[i], gemPieces[j]] = [gemPieces[j], gemPieces[i]];
+  }
+  return gemPieces;
+}
+
 class Puzzle {
-  constructor(size, arr) {
+  constructor(size = 4) {
     this.boardSize = size;
-    this.arr = arr;
+    this.gemCount = this.boardSize ** 2 - 1;
     this.widthBoard = 400;
   }
 
-  render() {
+  render(parent) {
     if (document.documentElement.clientWidth < 500) this.widthBoard = 300;
-    this.gems = this.puzzleSolve();
+    this.gems = this.solve();
     this.board = document.createElement('div');
     this.board.className = 'board';
     this.board.style.gridTemplateColumns = `repeat(${this.boardSize}, 1fr)`;
     this.widthAndHeightChips = this.widthBoard / this.boardSize;
     this.board.style.setProperty('--chipSize', `${this.widthAndHeightChips - 4}px`);
-    document.body.append(this.board);
+    parent.append(this.board);
     this.board.append(this.createGems(this.gems));
     this.movePuzzle();
   }
@@ -106,7 +116,7 @@ class Puzzle {
               alert(`Ура! Вы решили головоломку за ${header.elements.timer.textContent} секунд, и ${header.elements.moveCounter.textContent} ходов`);
               this.board.innerHTML = '';
               this.board.append(this.createGems(this.gems));
-              this.gems = this.puzzleSolve();
+              this.gems = this.solve();
               header.resetHeader();
             }
           } else {
@@ -125,18 +135,8 @@ class Puzzle {
     return Math.trunc(this.widthBoard / this.boardSize);
   }
 
-  puzzleShuffle(arr) {
-    this.gemPieces = [];
-    for (let i = 1; i <= arr; i += 1) this.gemPieces.push(i);
-    for (let i = this.gemPieces.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.gemPieces[i], this.gemPieces[j]] = [this.gemPieces[j], this.gemPieces[i]];
-    }
-    return this.gemPieces;
-  }
-
-  puzzleSolve() {
-    const array = this.puzzleShuffle(this.arr);
+  solve() {
+    const array = generateShuffledRange(this.gemCount);
     let k = 0;
     for (let i = 0; i < array.length; i += 1) {
       for (let j = 0; j < i; j += 1) {
@@ -146,11 +146,10 @@ class Puzzle {
       }
     }
     if (k % 2 !== 0) {
-      return this.puzzleSolve();
+      return this.solve();
     }
     array.push(0);
     return array;
   }
 }
-new Puzzle(4, 15).render();
 export default Puzzle;

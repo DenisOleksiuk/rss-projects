@@ -2,16 +2,12 @@ import header from './header.js';
 import Puzzle from './puzzle.js';
 
 class Menu {
-  constructor(parent) {
-    this.parent = parent;
-    this.render();
-  }
-
-  render() {
-    const parentFor = document.querySelector('.board');
-    this.wrraper = document.createElement('div');
-    this.wrraper.className = 'main-menu';
-    this.wrraper.innerHTML = /* html */ `
+  render(parent) {
+    let becauseOfLinter = parent;
+    becauseOfLinter = document.querySelector('.board');
+    this.mainMenu = document.createElement('div');
+    this.mainMenu.className = 'main-menu';
+    this.mainMenu.innerHTML = /* html */ `
       <h1 class="title">Главное меню</h1>
       <p class="proceed">Продолжить игру</p>
       <p class="start">Новая игра</p>
@@ -20,7 +16,7 @@ class Menu {
       <p class="setting">Настройки</p>
       <p class="back"></p>
     `;
-    parentFor.append(this.wrraper);
+    becauseOfLinter.append(this.mainMenu);
 
     const menu = document.querySelector('.main-menu');
     const title = menu.querySelector('.title');
@@ -29,7 +25,6 @@ class Menu {
     const save = menu.querySelector('.save');
     const score = menu.querySelector('.score');
     const settingBtn = menu.querySelector('.setting');
-    const back = menu.querySelector('.back');
     this.elements = {
       menu,
       title,
@@ -37,27 +32,65 @@ class Menu {
       start,
       save,
       score,
-      settingBtn,
-      back
+      settingBtn
     };
-    this.elements.start.addEventListener('click', this.newGame);
-    this.elements.proceed.addEventListener('click', this.addClass);
-    // this.elements.save.addEventListener('click', this.newGame);
-    // this.elements.score.addEventListener('click', this.newGame);
+    this.elements.proceed.addEventListener('click', this.continue.bind(this));
+    this.elements.start.addEventListener('click', this.newGame.bind(this));
+    this.elements.settingBtn.addEventListener('click', this.createSetting.bind(this));
+  }
+
+  settingBack() {
+    const select = document.querySelector('.select-box');
+    this.value = +select.value;
+    this.pieces = this.value ** 2;
+    this.remove();
+    this.render();
+  }
+
+  createSetting() {
+    this.menu = document.querySelector('.main-menu');
+    this.menu.innerHTML = /* html */ `
+    <div class="setting-menu">
+      <label class="change-field">Выбрать поле: </label>
+      <select class="select-box">
+        <option class="select-option" value="3">3x3</option>
+        <option class="select-option" value="4" selected="">4x4</option>
+        <option class="select-option" value="5">5x5</option>
+        <option class="select-option" value="6">6x6</option>
+        <option class="select-option" value="7">7x7</option>
+        <option class="select-option" value="8">8x8</option>
+      </select>
+      <button class="setting-btn" data-screen="main">Назад</button>
+    </div>
+    `;
+    const btn = document.querySelector('.setting-btn');
+    btn.addEventListener('click', this.settingBack.bind(this));
   }
 
   show() {
-    this.elements.modal.hidden = false;
+    this.elements.menu.hidden = false;
   }
 
   hide() {
-    this.elements.modal.hidden = true;
+    if (!header.elements.header.hidden) {
+      header.elements.pauseBtn.classList.remove('paused');
+      header.paused = false;
+      this.elements.menu.remove();
+    }
   }
 
-  resumeGame() {
-    const board = document.querySelector('.area');
-    console.log(this.elements);
-    this.elements.menu.style.display = 'none';
+  pauseGame() {
+    const pause = document.querySelector('.pause');
+    if (pause.classList.contains('paused')) {
+      this.render();
+    } else {
+      this.remove();
+    }
+  }
+
+  continue() {
+    header.resumeTimer();
+    this.hide();
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -66,28 +99,13 @@ class Menu {
     header.startTimer();
     const board = document.querySelector('.board');
     if (board) board.remove();
-    const puzz = new Puzzle(4, 15);
-    puzz.render();
-  }
-
-  addClass() {
-    console.log('qwe');
-    // this.elements.menu.classList.add('hidden');
+    const puzzle = new Puzzle(this.value);
+    puzzle.render(document.body);
+    this.elements.start.addEventListener('click', this.newGame.bind(this));
   }
 
   remove() {
-    this.wrraper.remove();
-  }
-
-  setting() {
-    this.elements.title.textContent = 'Поле 3х3';
-    this.elements.proceed.textContent = 'Поле 4х4';
-    this.elements.start.textContent = 'Поле 5х5';
-    this.elements.save.textContent = 'Поле 6х6';
-    this.elements.score.textContent = 'Поле 7х7';
-    this.elements.settingBtn.textContent = 'Поле 8х8';
-    this.elements.back.textContent = 'Назад';
+    this.mainMenu.remove();
   }
 }
-
-export default new Menu(document.body);
+export default Menu;
