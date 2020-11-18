@@ -2,6 +2,7 @@
   box-sizing: border-box;
   font-size: 100%;
   font-family: 'Ubuntu', Arial, sans-serif;
+  outline: none;
 }
 
 body {
@@ -126,6 +127,38 @@ header[hidden] {
   font-size: 20px;
   letter-spacing: 3px;
   cursor: pointer;
+}
+
+/*==setting-menu==*/
+.change-field {
+  text-align: center;
+}
+
+.select-box {
+  width: 50%;
+  text-align: center;
+  margin: 30px auto;
+}
+
+.setting-btn {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  width: 100px;
+  transform: translate(-50%);
+  background-color: crimson;
+  cursor: pointer;
+  border: none;
+}
+
+.setting-btn:hover {
+  background-color: rgb(243, 24, 68);
+}
+
+.setting-menu {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
 }
 
 .move {
