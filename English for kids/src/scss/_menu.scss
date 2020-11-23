@@ -1,0 +1,77 @@
+.menu {
+  position: absolute;
+  width: 50%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(45deg, black, #ea692bb3, #2b31eab3, transparent);
+  transform: translate(-100%);
+  transition: .5s;
+  z-index: 2;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin-top: 100px;
+  }
+
+  &__item {
+    height: 50px;
+    margin-top: 10px;
+    text-align: center;
+    transition: 0.3s ease;
+    
+    &:hover {
+      font-size: 33px;
+      background-color: #23d5ab;
+      padding: 7px 20px;
+      border-radius: 20px;
+      box-shadow: -1px 7px 4px #209b7e
+    }
+  }
+  
+  &__link {
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+
+    &.verbs::before {
+      background-image: url('../assets/cards/verbs/verb-icon.jpg');
+    }
+    
+    &.adverbs::before {
+      background-image: url('../assets/cards/adverbs/adverbs-icon.jpg');
+    }
+
+    &.skull::before {
+      background-image: url('../assets/cards/bones/skull-icon.png');
+    }
+    
+    &.adjectives::before {
+      background-image: url('../assets/cards/adjectives/adjectives-icon.jpg');
+    }
+
+    &:before {
+      content: '';
+      display: inline-block;
+      position: relative;
+      width: 31px;
+      height: 30px;
+      margin-right: 10px;
+      top: 7px;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;;
+      transition: 0.3s ease;
+    }
+  }
+
+
+  &__active {
+    transform: translate(0);
+  }  
+}
+
