@@ -1,0 +1,145 @@
+.switcher {
+  position: relative;
+  display: inline-block;
+  width: 117px;
+  height: 44px;
+
+  &__input {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+
+    &:checked + .switcher__slider {
+      background-color: #2196F3;
+      box-shadow: 1px 1px 6px 2px inset;
+    }
+
+    &:checked + .switcher__slider::before {
+      transform: translateX(77px);
+    }
+
+    &:checked ~ .switcher__train {
+      color: white;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 20px;
+      visibility: visible;
+      cursor: pointer;
+    }
+
+    &:not(:checked) ~ .switcher__play {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 20px;
+      visibility: visible;
+      cursor: pointer;
+
+      .switcher__train {
+        display: none;
+      }
+    }
+  }
+
+  &__slider {
+    border-radius: 35px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #17dcc1;
+    box-shadow: 1px 1px 6px 2px inset;
+    transition: .4s;
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 40px;
+      width: 40px;
+      left: 0px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 50%;
+      box-shadow: 0px 0px 2px 2px #000 inset;
+    }
+  }
+
+  &__train, &__play {
+    visibility: hidden;
+  }
+}
+
+//=======bottom
+
+.play {
+  position: relative;
+  display: inline-block;
+  width: 117px;
+  height: 44px;
+
+  &__input {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+
+    &:checked + .play__slider {
+      background-color: #82e1dc;
+      box-shadow: 1px 1px 6px 2px inset;
+    }
+
+    &:checked + .play__slider::before {
+      transform: translateX(77px);
+    }
+
+    &:checked ~ .play__btn {
+      color: #e93b3b;
+      position: absolute;
+      top: 5px;
+      left: 20px;
+      font-size: 28px;
+      visibility: visible;
+      cursor: pointer;
+    }
+
+    &:not(:checked) ~ .play__play {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 20px;
+      visibility: visible;
+      cursor: pointer;
+    }
+  }
+
+  &__slider {
+    border-radius: 35px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #17dcc1;
+    box-shadow: 1px 1px 6px 2px inset;
+    transition: .4s;
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 40px;
+      width: 40px;
+      left: 0px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 50%;
+      box-shadow: 0px 0px 2px 2px #000 inset;
+    }
+  }
+}
