@@ -38,36 +38,40 @@
     color: white;
     text-decoration: none;
 
+    &.main::before {
+      background-image: url('../assets/images/main-menu.png');
+    }
+
     &.verbs::before {
-      background-image: url('../assets/cards/verbs/verb-icon.jpg');
+      background-image: url('../assets/images/cards/verbs/verb-icon.jpg');
     }
     
     &.adverbs::before {
-      background-image: url('../assets/cards/adverbs/adverbs-icon.jpg');
-    }
-
-    &.skull::before {
-      background-image: url('../assets/cards/bones/skull-icon.png');
+      background-image: url('../assets/images/cards/adverbs/adverbs-icon.jpg');
     }
     
     &.adjectives::before {
-      background-image: url('../assets/cards/adjectives/adjectives-icon.jpg');
+      background-image: url('../assets/images/cards/adjectives/adjectives-icon.jpg');
     }
     
     &.conjunctions::before {
-      background-image: url('../assets/cards/conjunctions/conjunctions-icon.jpg');
+      background-image: url('../assets/images/cards/preposition/conjunctions-icon.jpg');
     }
 
     &.it-terms::before {
-      background-image: url('../assets/cards/it-terms/it-term-icon.png');
+      background-image: url('../assets/images/cards/it-terms/it-term-icon.png');
     }
 
     &.vegetables::before {
-      background-image: url('../assets/cards/vegetables/vegetables-iconjfif.jpg');
+      background-image: url('../assets/images/cards/vegetables/vegetables-iconjfif.jpg');
     }
 
     &.collision::before {
-      background-image: url('../assets/cards/collision/collision.jpg');
+      background-image: url('../assets/images/cards/collision/collision.jpg');
+    }
+
+    &.skull::before {
+      background-image: url('../assets/images/cards/bones/skull-icon.png');
     }
 
     &:before {

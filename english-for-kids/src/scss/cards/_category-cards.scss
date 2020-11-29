@@ -23,7 +23,7 @@
     border-radius: 15px;
 
     &:hover {
-      bottom: 3px;
+      transform: translateY(-3px);
       box-shadow: 0px 2px 11px 3px #ffffff;
     }
   }
