@@ -27,20 +27,12 @@ class WordCard {
         </div>
       </div>
       <div class="card__back">
-        <img class="img" src=${image} alt=${alt}">
+        <img class="card__img" src=${image} alt=${alt}">
         <h2 class="card__title">${translation}</h2>
       </div>
     </div>
     `;
-    const btn = document.querySelector('.card__rotate--btn');
-    console.log(btn);
     this.parent.append(htmlCard);
-  }
-
-  rotateCard(e) {
-    this.rotateBtn = document.querySelectorAll('.card__rotate--btn');
-
-    console.log(e);
   }
 }
 

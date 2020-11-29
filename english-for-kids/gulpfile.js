@@ -29,7 +29,7 @@ gulp.task('styles', function style() {
       cascade: false
     }))
     .pipe(cleanCSS({ compatibility: 'ie8' }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('./dist'))
     .pipe(browserSync.stream())
     .pipe(gulp.dest('./dist'));
 });
