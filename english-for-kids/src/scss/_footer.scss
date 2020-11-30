@@ -1,4 +1,7 @@
 .footer {
   margin: 30px 150px;
-  visibility: hidden;
+  &[hidden] {
+    visibility: hidden;
+    display: block;
+  }
 }
