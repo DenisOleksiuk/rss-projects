@@ -5,14 +5,14 @@ const cardData = {
       alt: 'force',
       word: 'force',
       translation: 'сила',
-      audioSrc: '"assets/mp3/verbs/force.mp3'
+      audioSrc: 'assets/mp3/verbs/force.mp3'
     },
     {
       image: 'assets/images/cards/verbs/get.png',
       alt: 'get',
       word: 'get',
       translation: 'получать',
-      audioSrc: 'asssets/mp3/verbs/get.mp3'
+      audioSrc: 'assets/mp3/verbs/get.mp3'
     },
     {
       alt: 'guess',

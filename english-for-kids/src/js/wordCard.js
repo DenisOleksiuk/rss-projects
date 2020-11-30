@@ -2,7 +2,6 @@ class WordCard {
   constructor(parent, data) {
     this.parent = parent;
     this.data = data;
-    this.rotateBtn = null;
   }
 
   render() {
@@ -10,15 +9,16 @@ class WordCard {
       image,
       alt,
       word,
-      translation
+      translation,
+      audioSrc
     } = this.data;
 
     const htmlCard = document.createElement('div');
     htmlCard.classList.add('card');
-    htmlCard.innerHTML = `
+    htmlCard.innerHTML = /* html */ `
     <div class="card__inner">
       <div class="card__front">
-        <img class="card__img" src=${image} alt=${alt}>
+        <img class="card__img" src="${image}" alt="${alt}">
         <div class="card__info">
           <h2 class="card__title">${word}</h2>
         </div>
@@ -27,9 +27,10 @@ class WordCard {
         </div>
       </div>
       <div class="card__back">
-        <img class="card__img" src=${image} alt=${alt}">
+        <img class="card__img" src="${image}" alt="${alt}">
         <h2 class="card__title">${translation}</h2>
       </div>
+      <audio src="${audioSrc}"></audio>
     </div>
     `;
     this.parent.append(htmlCard);

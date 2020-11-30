@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="shortcut icon" href="assets/images/book.svg" type="image/x-icon">
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet"> -->
   <link rel="stylesheet" href="style.min.css">
   <title>English for kids</title>
 </head>
@@ -13,7 +12,6 @@
 
   <header>
     <div class="container">
-
       <div class="header">
         <div class="humb">
           <span class="humb__line"></span>
@@ -55,12 +53,12 @@
           </nav>
         </div>
     
-          <label class="switcher">
+          <div class="switcher">
             <input class="switcher__input" type="checkbox" checked>
             <span class="switcher__slider"></span>
             <span class="switcher__train">Train</span>
             <span class="switcher__play">Play</span>
-          </label>
+          </div>
 
       </div>
     </div>
@@ -86,12 +84,8 @@
         
         <div class="category" id="adjectives">
           <div class="category__inner">
-            <div class="card__front">
               <img class="category__img" src="assets/images/cards/adjectives/adjectives-icon.jpg" alt="Popular adjectives">
-              <div class="card__info">
-                <h2 class="category__title">Popular adjectives</h2>
-              </div>
-            </div>
+              <h2 class="category__title">Popular adjectives</h2>
           </div>
         </div>
         
@@ -134,12 +128,12 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <label class="play">
+  <footer class="footer" hidden>
+    <div class="play">
       <input class="play__input" type="checkbox" checked>
       <span class="play__slider"></span>
-      <span class="play__btn" hidden>GO</span>
-    </label>
+      <span class="play__btn" hidden>Start</span>
+    </div>
   </footer>
   
   <script src="bundle.js" type="module"></script>

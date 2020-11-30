@@ -1,17 +1,44 @@
 import { cardData } from './cardData.js';
 import { WordCard } from './wordCard.js';
 
-const humb = document.querySelector('.humb');
-const menu = document.querySelector('.menu');
 const cardsParent = document.querySelector('.cards');
 const categoryCards = document.querySelectorAll('.category');
 const nav = document.querySelector('.navigation');
+const switcher = document.querySelector('.switcher');
+const footer = document.querySelector('.footer');
 
-// const adjective = new Audio('assets/mp3/adjectives/awful.mp3');
+function toggleGameMode() {
+  const switcherInput = switcher.querySelector('.switcher__input');
+  const play = footer.querySelector('.play');
+  const playInput = play.querySelector('.play__input');
+  const playBtn = footer.querySelector('.play__btn');
 
-function active() {
-  humb.classList.toggle('humb__active');
-  menu.classList.toggle('menu__active');
+  switcherInput.checked = !switcherInput.checked;
+  footer.hidden = !footer.hidden;
+  playBtn.hidden = !playBtn.hidden;
+
+  if (!switcherInput.checked) {
+    cardsParent.classList.add('cards__play');
+  } else {
+    cardsParent.classList.remove('cards__play');
+  }
+
+  play.addEventListener('click', () => {
+    playInput.checked = !playInput.checked;
+  });
+}
+
+function navMenu(event) {
+  const humb = document.querySelector('.humb');
+  const menu = document.querySelector('.menu');
+  const ul = document.querySelector('.menu__list');
+  if (event.target.closest('.humb')) {
+    humb.classList.toggle('humb__active');
+    menu.classList.toggle('menu__active');
+  } else if (event.target !== ul && event.target !== menu) {
+    humb.classList.remove('humb__active');
+    menu.classList.remove('menu__active');
+  }
 }
 
 function showCategories() {
@@ -47,14 +74,20 @@ function rotate(element) {
   };
 }
 
+function audioVoice(element) {
+  const audio = element.querySelector('audio');
+  audio.play();
+}
+
 function handleCardEvents(event) {
   if (event.target === cardsParent) return;
-
+  const card = event.target.closest('.card__inner');
   if (event.target.closest('.category')) {
     showCategoryCards(event.target.closest('.category').id);
   } else if (event.target.alt === 'rotate') {
-    const card = event.target.closest('.card__inner');
     rotate(card);
+  } else if (card) {
+    audioVoice(card);
   }
 }
 
@@ -69,6 +102,7 @@ function handleMenuClick(event) {
   }
 }
 
-humb.addEventListener('click', active);
+switcher.addEventListener('click', toggleGameMode);
+document.body.addEventListener('click', navMenu);
 cardsParent.addEventListener('click', handleCardEvents);
 nav.addEventListener('click', handleMenuClick);

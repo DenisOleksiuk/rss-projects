@@ -83,7 +83,6 @@
   height: 44px;
 
   &__input {
-    visibility: hidden;
     width: 0;
     height: 0;
 
@@ -97,11 +96,11 @@
     }
 
     &:checked ~ .play__btn {
-      color: #e93b3b;
+      color: rgb(225, 76, 5 / 88%);
       position: absolute;
-      top: 5px;
+      top: 8px;
       left: 20px;
-      font-size: 28px;
+      font-size: 23px;
       visibility: visible;
       cursor: pointer;
     }
@@ -131,6 +130,9 @@
     &:before {
       position: absolute;
       content: "";
+      background-image: url('assets/images/arrow-but.svg');
+      background-position: center;
+      background-repeat: no-repeat;
       height: 40px;
       width: 40px;
       left: 0px;
