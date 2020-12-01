@@ -136,7 +136,7 @@
       height: 40px;
       width: 40px;
       left: 0px;
-      bottom: 2px;
+      bottom: 1px;
       background-color: white;
       -webkit-transition: .4s;
       transition: .4s;
@@ -144,4 +144,15 @@
       box-shadow: 0px 0px 2px 2px #000 inset;
     }
   }
+
+  &__active {
+    &:before {
+      background-image: url('assets/images/arrow-repeat.svg');
+    }
+  }
+}
+
+.active {
+  width: 0;
+  height: 40px;
 }

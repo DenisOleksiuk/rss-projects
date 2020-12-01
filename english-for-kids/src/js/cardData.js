@@ -212,7 +212,7 @@ const cardData = {
     {
       alt: 'against',
       word: 'against',
-      translation: 'ответственный',
+      translation: 'против',
       image: 'assets/images/cards/preposition/against.png',
       audioSrc: 'assets/mp3/preposition/against.mp3'
     },
@@ -300,7 +300,7 @@ const cardData = {
     {
       alt: 'artichoke',
       word: 'artichoke',
-      translation: 'архив',
+      translation: 'артишок',
       image: 'assets/images/cards/vegetables/artichoke.png',
       audioSrc: 'assets/mp3/vegetables/artichoke.mp3'
     },
@@ -342,7 +342,7 @@ const cardData = {
     {
       alt: 'bean-sprouts',
       word: 'bean-sprouts',
-      translation: 'емкость',
+      translation: 'бобовые ростки',
       image: 'assets/images/cards/vegetables/bean-sprouts.png',
       audioSrc: 'assets/mp3/vegetables/bean-sprouts.mp3'
     }

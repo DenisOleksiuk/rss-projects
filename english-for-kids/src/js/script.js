@@ -1,31 +1,43 @@
-import { cardData } from './cardData.js';
-import { WordCard } from './wordCard.js';
+import {
+  cardData
+} from './cardData.js';
+import {
+  WordCard
+} from './wordCard.js';
 
 const cardsParent = document.querySelector('.cards');
 const categoryCards = document.querySelectorAll('.category');
 const nav = document.querySelector('.navigation');
 const switcher = document.querySelector('.switcher');
-const footer = document.querySelector('.footer');
+const switcherInput = switcher.querySelector('.switcher__input');
+const play = document.querySelector('.play');
+const playBtn = play.querySelector('.play__btn');
+const playSlider = play.querySelector('.play__slider');
+const playInput = play.querySelector('.play__input');
+
+function StartGameBtn() {
+  playBtn.hidden = true;
+  playInput.checked = false;
+  playSlider.classList.add('play__active');
+  play.classList.add('active');
+}
 
 function toggleGameMode() {
-  const switcherInput = switcher.querySelector('.switcher__input');
-  const play = footer.querySelector('.play');
-  const playInput = play.querySelector('.play__input');
-  const playBtn = footer.querySelector('.play__btn');
+  const footer = document.querySelector('.footer');
 
   switcherInput.checked = !switcherInput.checked;
   footer.hidden = !footer.hidden;
-  playBtn.hidden = !playBtn.hidden;
+  playBtn.hidden = false;
+  playInput.checked = true;
 
   if (!switcherInput.checked) {
     cardsParent.classList.add('cards__play');
   } else {
     cardsParent.classList.remove('cards__play');
+    playSlider.classList.remove('play__active');
+    play.classList.remove('active');
+    playBtn.hidden = true;
   }
-
-  play.addEventListener('click', () => {
-    playInput.checked = !playInput.checked;
-  });
 }
 
 function navMenu(event) {
@@ -87,13 +99,18 @@ function handleCardEvents(event) {
   } else if (event.target.alt === 'rotate') {
     rotate(card);
   } else if (card) {
+    if (!switcherInput.checked) {
+      return;
+    }
     audioVoice(card);
   }
 }
 
 function handleMenuClick(event) {
   if (event.target.tagName === 'A') {
-    const { id } = event.target.dataset;
+    const {
+      id
+    } = event.target.dataset;
     if (id === 'main') {
       showCategories();
     } else {
@@ -106,3 +123,4 @@ switcher.addEventListener('click', toggleGameMode);
 document.body.addEventListener('click', navMenu);
 cardsParent.addEventListener('click', handleCardEvents);
 nav.addEventListener('click', handleMenuClick);
+play.addEventListener('click', StartGameBtn);
