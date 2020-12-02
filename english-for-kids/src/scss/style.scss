@@ -14,7 +14,7 @@
 }
 
 body {
-  background-image: url('assets/images/cover.jpg');
+  background-image: url('../assets/images/cover.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -22,6 +22,14 @@ body {
 .container {
   max-width: 1200px;
   margin: auto;
+}
+
+.loseGame {
+  background-image: url(../assets/images/grumpy-cat.jpg);
+  background-position-y: top;
+  background-position-x: center;
+  background-color: cornflowerblue;;
+  background-size: unset;
 }
 
 .main {

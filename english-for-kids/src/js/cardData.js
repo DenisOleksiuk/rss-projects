@@ -4,7 +4,7 @@ const cardData = {
       image: 'assets/images/cards/verbs/force.png',
       alt: 'force',
       word: 'force',
-      translation: 'сила',
+      translation: 'Принуждать',
       audioSrc: 'assets/mp3/verbs/force.mp3'
     },
     {
@@ -17,7 +17,7 @@ const cardData = {
     {
       alt: 'guess',
       word: 'guess',
-      translation: 'угадать',
+      translation: 'догадываться',
       image: 'assets/images/cards/verbs/guess.png',
       audioSrc: 'assets/mp3/verbs/guess.mp3'
     },
@@ -50,8 +50,9 @@ const cardData = {
       audioSrc: 'assets/mp3/verbs/lead.mp3'
     },
     {
+      alt: 'reckon',
       word: 'reckon',
-      translation: 'рассчитывать',
+      translation: 'полагать',
       image: 'assets/images/cards/verbs/reckon.png',
       audioSrc: 'assets/mp3/verbs/reckon.mp3'
     }
@@ -94,16 +95,16 @@ const cardData = {
       audioSrc: 'assets/mp3/adverbs/briefly.mp3'
     },
     {
-      alt: 'sinbroadlyg',
-      word: 'sinbroadlyg',
-      translation: 'петь',
+      alt: 'broadly',
+      word: 'broadly',
+      translation: 'широко',
       image: 'assets/images/cards/adverbs/broadly.png',
       audioSrc: 'assets/mp3/adverbs/broadly.mp3'
     },
     {
       alt: 'carefully',
       word: 'carefully',
-      translation: 'внимательно',
+      translation: 'тщательно',
       image: 'assets/images/cards/adverbs/carefully.png',
       audioSrc: 'assets/mp3/adverbs/carefully.mp3'
     },
@@ -168,7 +169,7 @@ const cardData = {
     {
       alt: 'same',
       word: 'same',
-      translation: 'тот же',
+      translation: 'одинаковый',
       image: 'assets/images/cards/adjectives/same.png',
       audioSrc: 'assets/mp3/adjectives/same.mp3'
     }

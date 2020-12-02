@@ -1,9 +1,9 @@
-import {
-  cardData
-} from './cardData.js';
-import {
-  WordCard
-} from './wordCard.js';
+import { cardData } from './cardData.js';
+import { WordCard } from './wordCard.js';
+
+function shuffle(arr) {
+  return arr.sort(() => Math.random() - 0.5);
+}
 
 const cardsParent = document.querySelector('.cards');
 const categoryCards = document.querySelectorAll('.category');
@@ -15,28 +15,75 @@ const playBtn = play.querySelector('.play__btn');
 const playSlider = play.querySelector('.play__slider');
 const playInput = play.querySelector('.play__input');
 
-function StartGameBtn() {
+const correct = new Audio('assets/mp3/correct.mp3');
+const error = new Audio('assets/mp3/error.mp3');
+
+const gameState = {
+  index: null,
+  count: 0,
+  gameMode: false,
+  cards: [],
+  correctAnswer: 0,
+  wrongAnswer: 0
+};
+
+function audioVoice(element) {
+  const audio = element.querySelector('audio');
+  audio.play();
+}
+
+function showWrongImg() {
+  const img = document.createElement('img');
+  img.src = 'assets/images/grumpy-cat.jpg';
+  cardsParent.querySelectorAll('.card').forEach((card) => card.remove());
+  document.body.classList.add('loseGame').append(img);
+}
+
+function chooseNextWord() {
+  if (gameState.cards.length) {
+    gameState.next = gameState.cards.pop();
+    audioVoice(gameState.next);
+  } else if (gameState.wrongAnswer) {
+    showWrongImg();
+  }
+}
+
+function startGameBtn() {
+  if (!playInput.checked) {
+    audioVoice(gameState.next);
+  } else {
+    playBtn.hidden = true;
+    playInput.checked = false;
+    playSlider.classList.add('play__active');
+    play.classList.add('active');
+
+    gameState.cards = shuffle([...document.querySelectorAll('.card__inner')]);
+    chooseNextWord();
+  }
+}
+
+function removeGameBtn() {
+  cardsParent.classList.remove('cards__play');
+  playSlider.classList.remove('play__active');
+  play.classList.remove('active');
   playBtn.hidden = true;
-  playInput.checked = false;
-  playSlider.classList.add('play__active');
-  play.classList.add('active');
 }
 
 function toggleGameMode() {
+  if (!cardsParent.querySelector('.card')) return;
+
   const footer = document.querySelector('.footer');
 
   switcherInput.checked = !switcherInput.checked;
+  gameState.gameMode = !gameState.gameMode;
   footer.hidden = !footer.hidden;
   playBtn.hidden = false;
   playInput.checked = true;
 
-  if (!switcherInput.checked) {
+  if (gameState.gameMode) {
     cardsParent.classList.add('cards__play');
   } else {
-    cardsParent.classList.remove('cards__play');
-    playSlider.classList.remove('play__active');
-    play.classList.remove('active');
-    playBtn.hidden = true;
+    removeGameBtn();
   }
 }
 
@@ -86,31 +133,36 @@ function rotate(element) {
   };
 }
 
-function audioVoice(element) {
-  const audio = element.querySelector('audio');
-  audio.play();
+function makeGuess(card) {
+  if (card === gameState.next) {
+    gameState.count += 1;
+    gameState.correctAnswer += 1;
+    correct.play();
+    chooseNextWord();
+  } else {
+    gameState.wrongAnswer += 1;
+    error.play();
+  }
 }
 
 function handleCardEvents(event) {
   if (event.target === cardsParent) return;
+
   const card = event.target.closest('.card__inner');
   if (event.target.closest('.category')) {
     showCategoryCards(event.target.closest('.category').id);
   } else if (event.target.alt === 'rotate') {
     rotate(card);
-  } else if (card) {
-    if (!switcherInput.checked) {
-      return;
-    }
+  } else if (card && !gameState.gameMode) {
     audioVoice(card);
+  } else if (card && gameState.gameMode && !playInput.checked) {
+    makeGuess(card);
   }
 }
 
 function handleMenuClick(event) {
   if (event.target.tagName === 'A') {
-    const {
-      id
-    } = event.target.dataset;
+    const { id } = event.target.dataset;
     if (id === 'main') {
       showCategories();
     } else {
@@ -123,4 +175,4 @@ switcher.addEventListener('click', toggleGameMode);
 document.body.addEventListener('click', navMenu);
 cardsParent.addEventListener('click', handleCardEvents);
 nav.addEventListener('click', handleMenuClick);
-play.addEventListener('click', StartGameBtn);
+play.addEventListener('click', startGameBtn);
