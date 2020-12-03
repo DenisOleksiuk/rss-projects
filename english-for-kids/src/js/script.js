@@ -17,6 +17,8 @@ const playInput = play.querySelector('.play__input');
 
 const correct = new Audio('assets/mp3/correct.mp3');
 const error = new Audio('assets/mp3/error.mp3');
+const win = new Audio('assets/mp3/success.mp3');
+const fail = new Audio('assets/mp3/failure.mp3');
 
 const gameState = {
   index: null,
@@ -32,11 +34,22 @@ function audioVoice(element) {
   audio.play();
 }
 
-function showWrongImg() {
-  const img = document.createElement('img');
-  img.src = 'assets/images/grumpy-cat.jpg';
-  cardsParent.querySelectorAll('.card').forEach((card) => card.remove());
-  document.body.classList.add('loseGame').append(img);
+function wonGame() {
+  document.body.classList.add('overflowHidden');
+  const figure = document.querySelector('.figlos');
+  const dialog = document.querySelector('.dialog');
+  const dilAnsr = document.querySelector('.dialog__answer');
+  figure.hidden = false;
+  fail.play();
+  dilAnsr.textContent = `Wrong answer: ${gameState.wrongAnswer}`;
+  dialog.showModal();
+}
+
+function failedGame() {
+  document.body.classList.add('overflowHidden');
+  const figure = document.querySelector('.figwin');
+  figure.hidden = false;
+  win.play();
 }
 
 function chooseNextWord() {
@@ -44,7 +57,9 @@ function chooseNextWord() {
     gameState.next = gameState.cards.pop();
     audioVoice(gameState.next);
   } else if (gameState.wrongAnswer) {
-    showWrongImg();
+    wonGame();
+  } else if (!gameState.wrongAnswer) {
+    failedGame();
   }
 }
 
@@ -63,27 +78,39 @@ function startGameBtn() {
 }
 
 function removeGameBtn() {
+  const footer = document.querySelector('.footer');
   cardsParent.classList.remove('cards__play');
   playSlider.classList.remove('play__active');
   play.classList.remove('active');
+  footer.hidden = true;
   playBtn.hidden = true;
 }
 
-function toggleGameMode() {
-  if (!cardsParent.querySelector('.card')) return;
-
+function showPlayBtn() {
   const footer = document.querySelector('.footer');
 
+  if (gameState.gameMode && cardsParent.querySelector('.card')) {
+    playBtn.hidden = false;
+    playInput.checked = true;
+    footer.hidden = false;
+  } else if (!gameState.gameMode) {
+    footer.hidden = true;
+    playBtn.hidden = true;
+  }
+}
+
+function toggleGameMode() {
+  const catInner = document.querySelectorAll('.category__inner');
   switcherInput.checked = !switcherInput.checked;
   gameState.gameMode = !gameState.gameMode;
-  footer.hidden = !footer.hidden;
-  playBtn.hidden = false;
-  playInput.checked = true;
+  cardsParent.classList.add('cards__play');
 
-  if (gameState.gameMode) {
-    cardsParent.classList.add('cards__play');
-  } else {
+  showPlayBtn();
+  if (!gameState.gameMode) {
+    catInner.forEach((card) => card.classList.remove('category__inner-playmode'));
     removeGameBtn();
+  } else {
+    catInner.forEach((card) => card.classList.add('category__inner-playmode'));
   }
 }
 
@@ -138,7 +165,7 @@ function makeGuess(card) {
     gameState.count += 1;
     gameState.correctAnswer += 1;
     correct.play();
-    chooseNextWord();
+    setTimeout(() => chooseNextWord(), 500);
   } else {
     gameState.wrongAnswer += 1;
     error.play();
@@ -151,6 +178,7 @@ function handleCardEvents(event) {
   const card = event.target.closest('.card__inner');
   if (event.target.closest('.category')) {
     showCategoryCards(event.target.closest('.category').id);
+    showPlayBtn();
   } else if (event.target.alt === 'rotate') {
     rotate(card);
   } else if (card && !gameState.gameMode) {
@@ -165,8 +193,14 @@ function handleMenuClick(event) {
     const { id } = event.target.dataset;
     if (id === 'main') {
       showCategories();
+      removeGameBtn();
+      if (gameState.gameMode) {
+        cardsParent.classList.add('cards__play');
+      }
     } else {
       showCategoryCards(id);
+      removeGameBtn();
+      showPlayBtn();
     }
   }
 }
