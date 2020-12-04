@@ -52,6 +52,14 @@
             </ul>
           </nav>
         </div>
+
+        <div class="game__start" hidden>
+          <div class="play">
+            <input class="play__input" type="checkbox" checked>
+            <span class="play__slider"></span>
+            <span class="play__btn" hidden>Start</span>
+          </div>
+        </div>
     
           <div class="switcher">
             <input class="switcher__input" type="checkbox" checked>
@@ -65,6 +73,8 @@
   </header>
   
   <main class="main">
+    <div class="answers">
+    </div>
     <div class="container">
       <div class="cards">
 
@@ -144,16 +154,24 @@
   <figure hidden class="figwin" onclick="location.reload()">
     <img class="winGame" src="assets/images/good-cat.jpg" alt="good-cat">
     <figcaption class="figwin__title">click to continue</figcaption>
+    <dialog class="dialog-win">
+      <div class="dialog-win__wrraper-info">
+        <h3 class="dialog-win__title">Well done!</h3>
+      </div>
+    </dialog>
   </figure>
 
   
 
-  <footer class="footer" hidden>
-    <div class="play">
-      <input class="play__input" type="checkbox" checked>
-      <span class="play__slider"></span>
-      <span class="play__btn" hidden>Start</span>
+  <footer class="footer">
+    <div class="footer__link-myself">
+      <span class="footer__made-by">made by:</span>
+      <a class="footer__link" href="https://github.com/DenisOleksiuk">Denis Oleksiuk</a>
     </div>
+    <div class="footer__made">made in 2020</div>
+    <a href="https://rs.school/js/">
+      <img class="footer__logo" src="assets/images/rs_school_js.svg" alt="logo">
+    </a>
   </footer>
   
   <script src="bundle.js" type="module"></script>

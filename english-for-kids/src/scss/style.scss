@@ -4,6 +4,7 @@
 @import './menu';
 @import './category-cards';
 @import './word-cards';
+@import './figures';
 @import './footer';
 
 * {
@@ -23,53 +24,6 @@ body {
   overflow: hidden;
 }
 
-.dialog {
-  bottom: 0px;
-  display: flex;
-  justify-content: space-around;
-  width: 300px;
-  height: 150px;
-  padding: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: red;
-  border-radius: 5px;
-
-    &__img {
-      width: 70px;
-      height: 60px;
-      border-radius: 15px;
-      left: 25px;
-      margin-right: 45px;
-    }
-
-    &__answer {
-      margin-top: 20px;
-    }
-}
-
-.figlos, .figwin{
-  &__title{
-    @keyframes text {
-      0%   {color:red;}
-      25%  {color:yellow;}
-      50%  {color:blue;}
-      75%  {color:green;}
-      100% {color:red;}
-    }
-    
-    animation: text 4s linear infinite alternate;
-    font-size: 25px;
-    position: fixed;
-    z-index: 66;
-    text-align: center;
-    left: 50%;
-    top: 90%;
-  }
-}
-
 .container {
   max-width: 1200px;
   margin: auto;
@@ -84,10 +38,22 @@ body {
   z-index: 25;
 }
 
+.answers {
+  display: flex;
+  flex-direction: row-reverse;
+  overflow: hidden;
+  height: 65px;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
 .main {
-  margin-top: 100px;
+  margin-top: 10px;
 }
 
 .hide {
   visibility: hidden;
 }
+
+@import './media';

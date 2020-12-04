@@ -1,5 +1,9 @@
-import { cardData } from './cardData.js';
-import { WordCard } from './wordCard.js';
+import {
+  cardData
+} from './cardData.js';
+import {
+  WordCard
+} from './wordCard.js';
 
 function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
@@ -36,6 +40,15 @@ function audioVoice(element) {
 
 function wonGame() {
   document.body.classList.add('overflowHidden');
+  const figure = document.querySelector('.figwin');
+  const dialog = document.querySelector('.dialog-win');
+  figure.hidden = false;
+  win.play();
+  dialog.showModal();
+}
+
+function failedGame() {
+  document.body.classList.add('overflowHidden');
   const figure = document.querySelector('.figlos');
   const dialog = document.querySelector('.dialog');
   const dilAnsr = document.querySelector('.dialog__answer');
@@ -45,21 +58,14 @@ function wonGame() {
   dialog.showModal();
 }
 
-function failedGame() {
-  document.body.classList.add('overflowHidden');
-  const figure = document.querySelector('.figwin');
-  figure.hidden = false;
-  win.play();
-}
-
 function chooseNextWord() {
   if (gameState.cards.length) {
     gameState.next = gameState.cards.pop();
     audioVoice(gameState.next);
   } else if (gameState.wrongAnswer) {
-    wonGame();
-  } else if (!gameState.wrongAnswer) {
     failedGame();
+  } else if (!gameState.wrongAnswer) {
+    wonGame();
   }
 }
 
@@ -78,29 +84,30 @@ function startGameBtn() {
 }
 
 function removeGameBtn() {
-  const footer = document.querySelector('.footer');
+  const gameStart = document.querySelector('.game__start');
   cardsParent.classList.remove('cards__play');
   playSlider.classList.remove('play__active');
   play.classList.remove('active');
-  footer.hidden = true;
+  gameStart.hidden = true;
   playBtn.hidden = true;
 }
 
 function showPlayBtn() {
-  const footer = document.querySelector('.footer');
+  const gameStart = document.querySelector('.game__start');
 
   if (gameState.gameMode && cardsParent.querySelector('.card')) {
     playBtn.hidden = false;
     playInput.checked = true;
-    footer.hidden = false;
+    gameStart.hidden = false;
   } else if (!gameState.gameMode) {
-    footer.hidden = true;
+    gameStart.hidden = true;
     playBtn.hidden = true;
   }
 }
 
 function toggleGameMode() {
   const catInner = document.querySelectorAll('.category__inner');
+  const cardInner = document.querySelectorAll('.card__inner');
   switcherInput.checked = !switcherInput.checked;
   gameState.gameMode = !gameState.gameMode;
   cardsParent.classList.add('cards__play');
@@ -108,6 +115,8 @@ function toggleGameMode() {
   showPlayBtn();
   if (!gameState.gameMode) {
     catInner.forEach((card) => card.classList.remove('category__inner-playmode'));
+    cardInner.forEach((card) => card.classList.remove('card__inner-checked'));
+    gameState.wrongAnswer = 0;
     removeGameBtn();
   } else {
     catInner.forEach((card) => card.classList.add('category__inner-playmode'));
@@ -161,12 +170,24 @@ function rotate(element) {
 }
 
 function makeGuess(card) {
+  const stars = document.querySelector('.answers');
+  const correctlyStar = document.createElement('img');
   if (card === gameState.next) {
+    correctlyStar.src = './assets/images/star-win.svg';
+    correctlyStar.alt = 'star';
+    stars.prepend(correctlyStar);
     gameState.count += 1;
     gameState.correctAnswer += 1;
+    card.classList.add('card__inner-checked');
     correct.play();
     setTimeout(() => chooseNextWord(), 500);
   } else {
+    if (card.classList.contains('card__inner-checked')) {
+      return;
+    }
+    correctlyStar.src = './assets/images/star.svg';
+    correctlyStar.alt = 'star';
+    stars.prepend(correctlyStar);
     gameState.wrongAnswer += 1;
     error.play();
   }
@@ -190,17 +211,19 @@ function handleCardEvents(event) {
 
 function handleMenuClick(event) {
   if (event.target.tagName === 'A') {
-    const { id } = event.target.dataset;
+    const {
+      id
+    } = event.target.dataset;
     if (id === 'main') {
       showCategories();
       removeGameBtn();
-      if (gameState.gameMode) {
-        cardsParent.classList.add('cards__play');
-      }
     } else {
       showCategoryCards(id);
       removeGameBtn();
       showPlayBtn();
+      if (gameState.gameMode) {
+        cardsParent.classList.add('cards__play');
+      }
     }
   }
 }

@@ -1,0 +1,191 @@
+@media (max-width: 1240px) {
+ .container {
+   max-width: 900px;
+ }
+
+ .category__title {
+   font-size: 22px;
+ }
+ 
+ .card__title {
+   font-size: 18px;
+ }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 700px;
+  }
+
+  .humb__active {
+    left: 200px;
+  }
+
+  .menu__active {
+    width: 40%;
+  }
+
+  .menu__link {
+    font-size: 20px;
+  }
+
+  .category {
+    height: 200px;
+    &__img {
+      height: 150px;
+    }
+
+    &__title {
+      font-size: 17px;
+    }
+  }
+
+  .card {
+    height: 200px;
+    &__img {
+      height: 150px;
+    }
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__rotate--btn {
+      width: 25px;
+      height: 25px;
+    }
+
+    &__rotate--icon {
+      position: absolute;
+      left: 6px;
+      width: 70%;
+    }
+  }
+
+  .footer {
+    &__link-myself {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__link {
+      font-size: 20px;
+    }
+
+    &__made {
+      font-size: 20px;
+    }
+  
+    &__logo {
+      width: 250px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 450px;
+  }
+
+  .humb__active {
+    left: 100px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .footer__link-myself {
+    margin-top: 15px;
+  }
+
+  .footer__logo {
+    width: 150px;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    max-width: 300px;
+  }
+
+  .play {
+    width: 100px;
+    height: 40px;
+
+    &__input:checked+&__slider::before {
+      transform: translateX(60px);
+      height: 35px;
+      bottom: 2px;
+    }
+
+    &__input:checked~&__btn {
+      left: 10px;
+      font-size: 20px;
+    }
+  }
+
+  .active {
+    width: 0;
+  }
+
+  .switcher {
+    width: 100px;
+    height: 40px;
+
+    &__input:checked+&__slider::before {
+      transform: translateX(60px);
+      height: 37px;
+      bottom: 2px;
+    }
+
+    .switcher__slider:before {
+      height: 37px;
+    }
+
+    &__input:checked~&__train {
+      left: 10px;
+      font-size: 20px;
+    }
+
+    &__input:not(:checked)~&__play {
+      right: 10px;
+    }
+  }
+
+  .humb__active {
+    left: 0;
+  }
+
+  .menu__active {
+    width: 100%;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+
+    &__link-myself {
+      flex-direction: row;
+    }
+
+    &__made-by {
+      margin-right: 10px;
+      font-size: 20px;
+    }
+
+    &__link {
+      color: crimson;
+    }
+
+    &__made {
+      margin-top: 20px;
+    }
+
+    &__logo {
+      width: 100%;
+    }
+  }
+
+}
