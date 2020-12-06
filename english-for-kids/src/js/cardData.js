@@ -176,8 +176,8 @@ const cardData = {
   ],
   preposition: [
     {
-      alt: 'About',
-      word: 'About',
+      alt: 'about',
+      word: 'about',
       translation: 'около',
       image: 'assets/images/cards/preposition/About.png',
       audioSrc: 'assets/mp3/preposition/About.mp3'
