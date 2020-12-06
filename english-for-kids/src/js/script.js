@@ -1,9 +1,6 @@
-import {
-  cardData
-} from './cardData.js';
-import {
-  WordCard
-} from './wordCard.js';
+import { cardData } from './cardData.js';
+import { WordCard } from './wordCard.js';
+import { Statistic } from './statisticalData.js';
 
 function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
@@ -18,11 +15,14 @@ const play = document.querySelector('.play');
 const playBtn = play.querySelector('.play__btn');
 const playSlider = play.querySelector('.play__slider');
 const playInput = play.querySelector('.play__input');
+const statisticLink = document.querySelector('.statistic__link');
 
 const correct = new Audio('assets/mp3/correct.mp3');
 const error = new Audio('assets/mp3/error.mp3');
 const win = new Audio('assets/mp3/success.mp3');
 const fail = new Audio('assets/mp3/failure.mp3');
+const statistic = new Statistic(document.querySelector('.container-stat'), cardData);
+statistic.render();
 
 const gameState = {
   index: null,
@@ -58,9 +58,18 @@ function failedGame() {
   dialog.showModal();
 }
 
+function getCategory() {
+  const selected = nav.querySelector('.menu__item-selected');
+  if (selected) {
+    return selected.firstElementChild.dataset.id;
+  }
+  return false;
+}
+
 function chooseNextWord() {
   if (gameState.cards.length) {
     gameState.next = gameState.cards.pop();
+    statistic.increase(getCategory(), gameState.next.dataset.word, 'asked');
     audioVoice(gameState.next);
   } else if (gameState.wrongAnswer) {
     failedGame();
@@ -108,8 +117,10 @@ function showPlayBtn() {
 function toggleGameMode() {
   const catInner = document.querySelectorAll('.category__inner');
   const cardInner = document.querySelectorAll('.card__inner');
+  const stars = document.querySelector('.answers');
   switcherInput.checked = !switcherInput.checked;
   gameState.gameMode = !gameState.gameMode;
+  stars.innerHTML = '';
   cardsParent.classList.add('cards__play');
 
   showPlayBtn();
@@ -144,7 +155,8 @@ function showCategories() {
 function showCategoryCards(category) {
   categoryCards.forEach((card) => card.setAttribute('hidden', ''));
   cardsParent.querySelectorAll('.card').forEach((card) => card.remove());
-
+  nav.querySelector('.menu__item-selected')?.classList.remove('menu__item-selected');
+  nav.querySelector(`[data-id="${category}"]`).parentElement.classList.add('menu__item-selected');
   const words = cardData[category];
   for (let i = 0; i < words.length; i += 1) {
     const card = new WordCard(document.querySelector('.cards'), words[i]);
@@ -169,15 +181,20 @@ function rotate(element) {
   };
 }
 
-function makeGuess(card) {
+function addStar(full) {
   const stars = document.querySelector('.answers');
   const correctlyStar = document.createElement('img');
+  correctlyStar.src = `./assets/images/star${full ? '-win' : ''}.svg`;
+  correctlyStar.alt = 'star';
+  stars.prepend(correctlyStar);
+}
+
+function makeGuess(card) {
   if (card === gameState.next) {
-    correctlyStar.src = './assets/images/star-win.svg';
-    correctlyStar.alt = 'star';
-    stars.prepend(correctlyStar);
     gameState.count += 1;
     gameState.correctAnswer += 1;
+    addStar(1);
+    statistic.increase(getCategory(), card.dataset.word, 'hit');
     card.classList.add('card__inner-checked');
     correct.play();
     setTimeout(() => chooseNextWord(), 500);
@@ -185,9 +202,8 @@ function makeGuess(card) {
     if (card.classList.contains('card__inner-checked')) {
       return;
     }
-    correctlyStar.src = './assets/images/star.svg';
-    correctlyStar.alt = 'star';
-    stars.prepend(correctlyStar);
+    addStar();
+    statistic.increase(getCategory(), gameState.next.dataset.word, 'miss');
     gameState.wrongAnswer += 1;
     error.play();
   }
@@ -204,6 +220,7 @@ function handleCardEvents(event) {
     rotate(card);
   } else if (card && !gameState.gameMode) {
     audioVoice(card);
+    statistic.increase(getCategory(), card.dataset.word, 'train');
   } else if (card && gameState.gameMode && !playInput.checked) {
     makeGuess(card);
   }
@@ -217,6 +234,7 @@ function handleMenuClick(event) {
     if (id === 'main') {
       showCategories();
       removeGameBtn();
+      nav.querySelector('.menu__item-selected')?.classList.remove('menu__item-selected');
     } else {
       showCategoryCards(id);
       removeGameBtn();
@@ -228,8 +246,16 @@ function handleMenuClick(event) {
   }
 }
 
+function toggleStatistic() {
+  const table = document.querySelector('.statistics');
+  const statBtns = document.querySelector('.statistics__btns');
+  table.classList.toggle('statistics__active');
+  statBtns.classList.toggle('statistics__btns-active');
+}
+
 switcher.addEventListener('click', toggleGameMode);
 document.body.addEventListener('click', navMenu);
 cardsParent.addEventListener('click', handleCardEvents);
 nav.addEventListener('click', handleMenuClick);
 play.addEventListener('click', startGameBtn);
+statisticLink.addEventListener('click', toggleStatistic);

@@ -2,6 +2,14 @@ class WordCard {
   constructor(parent, data) {
     this.parent = parent;
     this.data = data;
+
+    this.cardData = {
+      asked: 0,
+      hit: 0,
+      miss: 0,
+      wrong: 0,
+      train: 0
+    };
   }
 
   render() {
@@ -16,7 +24,7 @@ class WordCard {
     const htmlCard = document.createElement('div');
     htmlCard.classList.add('card');
     htmlCard.innerHTML = /* html */ `
-    <div class="card__inner">
+    <div class="card__inner" data-word="${word}">
       <div class="card__front">
         <img class="card__img" src="${image}" alt="${alt}">
         <div class="card__info">

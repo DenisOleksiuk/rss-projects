@@ -110,6 +110,20 @@
     max-width: 300px;
   }
 
+  .statistics {
+    &__category {
+      font-size: 17px;
+    }
+
+    &__wrraper {
+      width: 300px;
+    }
+
+    &__btn, &__btn-del {
+      width: 145px;
+    }
+  }
+
   .play {
     width: 100px;
     height: 40px;

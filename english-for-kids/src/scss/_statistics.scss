@@ -1,0 +1,137 @@
+.statistics {
+  top: -550%;
+  transition: 0.3s;
+  background-color: wheat;
+  position: absolute;
+  left: 0;
+  width: 100%;
+
+  z-index: 31;
+  overflow-y: scroll;
+
+  &__active {
+    top: 36px;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 25% 15% 15% 15% 15% 15%;
+    justify-self: center;
+    padding: 15px 5px;
+    text-align: center;
+  }
+
+  [data-rev] {
+    cursor: pointer;
+  }
+
+  &__category {
+    display: grid;
+    grid-template-columns: 25% 15% 15% 15% 15% 15%;
+    justify-items: start;
+    padding-left: 50px;
+    font-size: 20px;
+    background-color: #da6a6a;
+    color: white;
+  }
+
+  &__wrraper {
+    position: relative;;
+    max-width: 400px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__btns {
+    position: fixed;
+    bottom: -100%;
+    width: 100%;
+    height: 30px;
+    background-color: #dc143c;
+    align-items: center;
+    box-shadow: 1px 2px 15px 3px;
+    z-index: 40;
+    transition: 0.5s;
+  }
+
+  &__btns-active {
+    bottom: 0;
+  }
+
+  &__btn, &__btn-del {
+    background-color: #6495ed;
+    width: 170px;
+    font-size: 16px;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    height: 40px;
+    transition: .3s;
+    cursor: pointer;
+  
+    &:hover {
+      box-shadow: 0px 0px 7px 2px #6495ed;
+      background-color: #81aaf7;
+    }
+  }
+
+  &__btn-del {
+    background-color: #f84242;
+    transform: translateX(-100%);
+    left: 100%;
+    
+    &:hover {
+      box-shadow: 0px 0px 7px 2px #f74d41;
+      background-color: #f82020;
+    }
+  }
+}
+
+.statistic {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 30px;
+  top: 0;
+  background-color: white;
+  background-color: rgba(222, 222, 222, 0.5);
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 2px 15px 3px;
+  z-index: 40;
+
+  &__link {
+    position: relative;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20px;
+      width: 0%;
+      height: 2px;
+      text-decoration: underline;
+      background-color: black;
+      transition: all 200ms ease;
+    }
+
+    &:hover {
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 20px;
+        width: 100%;
+        height: 2px;
+        text-decoration: underline;
+        background-color: black;
+      }
+    }
+  }
+}

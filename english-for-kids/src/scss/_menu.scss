@@ -24,7 +24,7 @@
     text-align: center;
     transition: 0.3s ease;
     
-    &:hover {
+    &:hover, &-selected {
       font-size: 33px;
       background-color: #23d5ab;
       padding: 7px 20px;
