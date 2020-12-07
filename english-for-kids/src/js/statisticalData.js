@@ -21,13 +21,9 @@ class Statistic {
   }
 
   render() {
-    const stat = document.createElement('section');
-    stat.classList.add('statistics');
-
-    const btns = document.createElement('div');
-    btns.classList.add('statistics__btns');
-
-    stat.innerHTML = /* html */ `
+    this.stat = document.createElement('section');
+    this.stat.classList.add('statistics');
+    this.stat.innerHTML = /* html */ `
     <div class="statistics__row" data-rev="col">
       <div class="statistics__title" data-rev="col">Category / Word</div>
       <div class="statistics__ask" data-rev="col">Asked</div>
@@ -42,27 +38,33 @@ class Statistic {
       ${items.map(({
     word, asked, hit, miss, train
   }) => /* html */ `
-        <div class="statistics__row">
-          <div class="name">${word}</div>
-          <div class="asked">${asked}</div>
-          <div class="hits">${hit}</div>
-          <div class="miss">${miss}</div>
-          <div class="percents">${Math.round((miss / (hit + miss)) * 100) || 0}</div>
-          <div class="train">${train}</div>
-        </div>
-      `).join('')}
-    `).join('')}
+      <div class="statistics__row">
+        <div class="name">${word}</div>
+        <div class="asked">${asked}</div>
+        <div class="hits">${hit}</div>
+        <div class="miss">${miss}</div>
+        <div class="percents">${Math.round((miss / (hit + miss)) * 100) || 0}</div>
+        <div class="train">${train}</div>
+      </div>
+    `).join('')
+}
+`).join('')}
     `;
+    this.parent.append(this.stat);
+  }
 
-    btns.innerHTML = /* html */`
+  renderBtns() {
+    this.btns = document.createElement('div');
+    this.btns.classList.add('statistics__btns');
+    this.btns.setAttribute('hidden', '');
+    this.btns.innerHTML = /* html */ `
     <div class="statistics__wrraper">
       <button class="statistics__btn">Repeat difficult words</button>
       <button class="statistics__btn-del">Reset</button>
     </div>
   `;
 
-    this.parent.append(stat);
-    this.parent.after(btns);
+    this.parent.after(this.btns);
 
     const reset = document.querySelector('.statistics__btn-del');
     reset.addEventListener('click', deleteStatistics);
@@ -73,6 +75,16 @@ class Statistic {
     wordItem[stat] += 1;
     localStorage.wordStats = JSON.stringify(this.words);
   }
+
+  hideBtns() {
+    this.btns.hidden = !this.btns.hidden;
+  }
+
+  removeStats() {
+    this.stat.remove();
+  }
 }
 
-export { Statistic };
+export {
+  Statistic
+};

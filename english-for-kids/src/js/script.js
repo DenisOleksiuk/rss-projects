@@ -5,7 +5,8 @@ import { Statistic } from './statisticalData.js';
 function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
 }
-
+const statistic = new Statistic(document.querySelector('.container-stat'), cardData);
+statistic.renderBtns();
 const cardsParent = document.querySelector('.cards');
 const categoryCards = document.querySelectorAll('.category');
 const nav = document.querySelector('.navigation');
@@ -16,13 +17,12 @@ const playBtn = play.querySelector('.play__btn');
 const playSlider = play.querySelector('.play__slider');
 const playInput = play.querySelector('.play__input');
 const statisticLink = document.querySelector('.statistic__link');
+const repeatDiffWords = document.querySelector('.statistics__btn');
 
 const correct = new Audio('assets/mp3/correct.mp3');
 const error = new Audio('assets/mp3/error.mp3');
 const win = new Audio('assets/mp3/success.mp3');
 const fail = new Audio('assets/mp3/failure.mp3');
-const statistic = new Statistic(document.querySelector('.container-stat'), cardData);
-statistic.render();
 
 const gameState = {
   index: null,
@@ -247,10 +247,41 @@ function handleMenuClick(event) {
 }
 
 function toggleStatistic() {
-  const table = document.querySelector('.statistics');
-  const statBtns = document.querySelector('.statistics__btns');
-  table.classList.toggle('statistics__active');
-  statBtns.classList.toggle('statistics__btns-active');
+  statistic.hideBtns();
+  if (document.querySelector('.statistics')) {
+    statistic.removeStats();
+  } else {
+    statistic.render();
+  }
+}
+
+function showDifficultCards() {
+  // get stats words
+  // biuld array
+  // where in each obj has category words hit and miss
+  // for each calc wrong
+  // sort by wrong
+  // get top eight
+  // select by map eight of cardData objs
+  // build cards
+
+  const words = Object.entries(statistic.words).flatMap(([cat, items]) => items
+    .map(({ word, hit, miss }) => ({
+      cat, word, wrong: Math.round((miss / (miss + hit)) * 100) || 0
+    })))
+    .sort((a, b) => b.wrong - a.wrong)
+    .slice(0, 8)
+    .map(({ cat, word }) => cardData[cat].find((item) => item.word === word));
+
+  categoryCards.forEach((card) => card.setAttribute('hidden', ''));
+  cardsParent.querySelectorAll('.card').forEach((card) => card.remove());
+  nav.querySelector('.menu__item-selected')?.classList.remove('menu__item-selected');
+  for (let i = 0; i < words.length; i += 1) {
+    const card = new WordCard(document.querySelector('.cards'), words[i]);
+    card.render();
+  }
+  statistic.removeStats();
+  statistic.hideBtns();
 }
 
 switcher.addEventListener('click', toggleGameMode);
@@ -259,3 +290,4 @@ cardsParent.addEventListener('click', handleCardEvents);
 nav.addEventListener('click', handleMenuClick);
 play.addEventListener('click', startGameBtn);
 statisticLink.addEventListener('click', toggleStatistic);
+repeatDiffWords.addEventListener('click', showDifficultCards);
