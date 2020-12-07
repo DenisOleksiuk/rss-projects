@@ -1,17 +1,14 @@
 .statistics {
-  top: -550%;
+  top: 36px;
+  height: calc(100% - 65px);
   transition: 0.3s;
   background-color: wheat;
-  position: absolute;
+  position: fixed;
   left: 0;
   width: 100%;
 
   z-index: 31;
   overflow-y: scroll;
-
-  &__active {
-    top: 36px;
-  }
 
   &__row {
     display: grid;
@@ -46,7 +43,7 @@
 
   &__btns {
     position: fixed;
-    bottom: -100%;
+    bottom: 0;
     width: 100%;
     height: 30px;
     background-color: #dc143c;
@@ -54,10 +51,6 @@
     box-shadow: 1px 2px 15px 3px;
     z-index: 40;
     transition: 0.5s;
-  }
-
-  &__btns-active {
-    bottom: 0;
   }
 
   &__btn, &__btn-del {

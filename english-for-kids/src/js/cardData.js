@@ -352,7 +352,7 @@ const cardData = {
     {
       alt: 'behavior',
       word: 'behavior',
-      translation: 'анис',
+      translation: 'поведение',
       image: 'assets/images/cards/collision/behavior.png',
       audioSrc: 'assets/mp3/collision/behavior.mp3'
     },
