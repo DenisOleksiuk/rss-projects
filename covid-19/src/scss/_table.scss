@@ -1,0 +1,72 @@
+.tableWrraper {
+  margin: 0 auto;
+  margin-right: 15px;
+}
+
+.inner__wrraper {
+  width: 300px;
+  margin: 0px 0 0 40px;
+  position: relative;
+}
+
+.inner__wrraper-FS {
+  margin: 10px 0 0 20px;
+}
+
+.table {
+  min-width: 300px;
+  min-height: 100px;
+
+  &__body {
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__img {
+    width: 32px;
+    float: left;
+  }
+
+  th, td {
+    position: relative;
+    background-color: #fffd;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  thead > tr > th {
+    font-size: 20px;
+  }
+
+  .confirmed { background-color: #4343ec; }
+
+  .deaths { background-color: #dd3a3a; }
+
+  .recovered { background-color: #44db44; }
+
+  .titles {
+    cursor: pointer;
+  }
+}
+
+select {
+  width: 100%;
+  background-color: transparent;
+  font-family: trebuchet ms, sans-serif;
+  text-align-last:center
+}
+
+.hide {
+  display: none;
+}
+
+::-webkit-scrollbar {width: 8px; height: 8px;}
+::-webkit-scrollbar-corner {background: transparent}
+::-webkit-scrollbar-track {background: #a52a2a89; border-radius: 15px;}
+::-webkit-scrollbar-thumb {
+  background: white;
+  border: 1px solid;
+  border-left-width: 0; 
+  border-right-width: 0;
+  border-radius: 15px;
+}

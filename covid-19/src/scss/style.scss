@@ -1,3 +1,7 @@
+@import './table';
+@import './buttons';
+@import './countriesList';
+
 * {
   margin: 0;
   padding: 0;
@@ -5,11 +9,51 @@
 }
 
 body {
-  background-image: url('../assets/images/coronavirus.jpg');
-  background-attachment: fixed;
-  background-position: center;
+  height: 100vh;
+  background: url('./assets/images/coronavirus.jpg') center / cover no-repeat;
+  font-family: trebuchet ms, sans-serif;
+  overflow: hidden;
 }
 
-.continer {
-  max-width: 1200px;
+/* GLOBAL MAP */
+
+#global-map {
+  width: 100%;
+  height: 500px;
+  background: #1a1c29;
+  border: 5px solid #0e101d;
+}
+
+#root {
+  display: flex;
+  padding: 20px;
+}
+
+.full__screen-countries-btn, .full__screen-table-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  z-index: 98;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.full__screen {
+  height: 98%;
+  width: 98%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+
+.ul__full-screen {
+  height: 100%;
 }
