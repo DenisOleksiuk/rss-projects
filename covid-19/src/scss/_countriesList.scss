@@ -1,0 +1,51 @@
+.countries {
+  position: relative;
+  width: 350px;
+  justify-content: center;
+  margin: 15px 0 15px 20px;
+}
+
+.search__input {
+  width: 100%;
+  height: 40px;
+  border-radius: 15px;
+  padding-left: 15px;
+  font-family: cursive;
+  letter-spacing: 6px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.countries__list {
+  background-image: linear-gradient(45deg, black, transparent);
+  color: white;
+  height: 400px;
+  overflow-y: scroll;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.country {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(21, 243, 243, 0.5)
+  }
+  
+  &:active {
+    background-color: rgba(21, 243, 243, 0.5)
+  }
+  
+  &__flag {
+    width: 30px;
+  }
+}
+
+.active {
+  background-color: rgba(21, 243, 243, 0.5)
+}
