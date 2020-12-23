@@ -1,8 +1,7 @@
 .countries {
   position: relative;
-  width: 350px;
   justify-content: center;
-  margin: 15px 0 15px 20px;
+  border: 5px solid;
 }
 
 .search__input {
@@ -20,7 +19,7 @@
 .countries__list {
   background-image: linear-gradient(45deg, black, transparent);
   color: white;
-  height: 400px;
+  height: 185px;
   overflow-y: scroll;
   text-align: center;
   margin-top: 10px;

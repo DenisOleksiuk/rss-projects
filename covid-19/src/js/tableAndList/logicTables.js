@@ -1,4 +1,4 @@
-import { featchCovidStats, fetchCountries } from './fetchCovidStatsAndPopulation';
+import { featchCovidStats, fetchCountries } from '../fetchCovidStatsAndPopulation';
 import { BuildTable } from './renderTable';
 import { ContriesList } from './renderCountryList';
 
