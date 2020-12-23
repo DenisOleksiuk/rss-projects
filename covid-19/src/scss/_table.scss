@@ -1,11 +1,9 @@
 .tableWrraper {
   margin: 0 auto;
-  margin-right: 15px;
 }
 
 .inner__wrraper {
-  width: 300px;
-  margin: 0px 0 0 40px;
+  border: 5px solid;
   position: relative;
 }
 
@@ -14,9 +12,7 @@
 }
 
 .table {
-  min-width: 300px;
-  min-height: 100px;
-
+  width: 100%;
   &__body {
     text-align: center;
     cursor: pointer;
