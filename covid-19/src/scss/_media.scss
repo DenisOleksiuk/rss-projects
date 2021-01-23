@@ -1,6 +1,6 @@
 @media (max-width: 1200px) {
   .chart__container {
-    max-height: 330px;
+    max-height: 270px;
   }
 }
 
@@ -12,7 +12,7 @@
 
   .tableWrraper {
     grid-column-start: 1;
-    grid-column-end: 1;
+    grid-column-end: 3;
     display: flex;
   }
 
@@ -20,13 +20,14 @@
     height: 129px;
   }
 
-  #global-map {
+  .global-map {
+    height: 250px;
     grid-column-start: 1;
-    grid-column-end: 1;
+    grid-column-end: 3;
   }
 
-  #global-map {
-    height: 250px;
+  .global-map_full-screen.global-map_full-screen {
+    top: 199px;
   }
 }
 

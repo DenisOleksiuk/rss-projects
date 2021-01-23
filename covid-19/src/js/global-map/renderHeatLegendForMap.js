@@ -1,15 +1,18 @@
-const renderHeatLegendForMap = (polygonSeries, chart) => {
-  const heatLegend = chart.createChild(am4maps.HeatLegend);
-  heatLegend.background.fill = am4core.color('#ffffff');
+import { color, percent } from '@amcharts/amcharts4/core';
+import { HeatLegend } from '@amcharts/amcharts4/maps';
+
+export const renderHeatLegendForMap = (polygonSeries, chart) => {
+  const heatLegend = chart.createChild(HeatLegend);
+  heatLegend.background.fill = color('#ffffff');
   heatLegend.background.fillOpacity = 0.30;
   heatLegend.padding(10, 5, 10, 70);
   heatLegend.series = polygonSeries;
   heatLegend.align = 'right';
   heatLegend.valign = 'bottom';
-  heatLegend.height = am4core.percent(80);
+  heatLegend.height = percent(80);
   heatLegend.orientation = 'vertical';
   heatLegend.valign = 'middle';
-  heatLegend.marginRight = am4core.percent(1);
+  heatLegend.marginRight = percent(1);
   heatLegend.valueAxis.renderer.opposite = true;
   heatLegend.valueAxis.renderer.dx = -25;
   heatLegend.valueAxis.fontSize = 11;
@@ -40,5 +43,3 @@ const renderHeatLegendForMap = (polygonSeries, chart) => {
     heatLegend.valueAxis.hideTooltip();
   });
 };
-
-export default renderHeatLegendForMap;

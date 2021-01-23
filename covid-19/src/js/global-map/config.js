@@ -1,5 +1,8 @@
-export const chart = am4core.create('global-map', am4maps.MapChart);
-export const polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+import { create } from '@amcharts/amcharts4/core';
+import { MapChart, MapPolygonSeries } from '@amcharts/amcharts4/maps';
+
+export const chart = create('global-map__wrapper', MapChart);
+export const polygonSeries = chart.series.push(new MapPolygonSeries());
 export const cases = [];
 export let buttonTotalConfirmedStatus = true;
 export let buttonTotalRecoveredStatus = false;

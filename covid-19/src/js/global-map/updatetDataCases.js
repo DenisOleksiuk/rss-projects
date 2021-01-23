@@ -3,7 +3,7 @@ import {
   isbuttonTotalRecoveredStatus, polygonSeries,
 } from './config';
 
-const updateDataCases = (worldData) => {
+export const updateDataCases = (worldData) => {
   cases.splice(0, cases.length);
   if (isButtonTotalConfirmedStatus()) {
     worldData.forEach((country) => {
@@ -23,5 +23,3 @@ const updateDataCases = (worldData) => {
     polygonSeries.data = cases;
   }
 };
-
-export default updateDataCases;

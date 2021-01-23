@@ -120,7 +120,7 @@ class BuildTable {
       newRecovered100k,
       totalConfirmed100k,
       totalDeaths100k,
-      totalRecovered100k
+      totalRecovered100k,
     } = country;
 
     this.img.src = flag;

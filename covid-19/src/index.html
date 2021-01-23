@@ -4,19 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./assets/images/favicon.svg" type="image/x-icon">
-  <link rel="stylesheet" href="style.min.css">
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-  <script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
-  <script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
-  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-  <title>Covid-19</title>
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.8.95/css/materialdesignicons.min.css">
+  <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
   <div id="root">
-    <div id="global-map"></div>
+    <div class="global-map">
+      <div id="global-map__wrapper"></div>
+    </div>
   </div>
- <!-- <img src="./assets/images/cdcover7.svg" alt=""> -->
-  <script src="bundle.js"></script>
+  <footer class="footer">
+    <div class="footer__wrapper">
+        <div class="about-us">
+            <ul class="about-us__list block-1">
+                <li class="about-us__list__item__title">Authors:</li>
+                <li class="about-us__list__item"><a href="https://github.com/dzmitry-aksiantsiuk">Github @dzmitry-aksiantsiuk</a></li>
+                <li class="about-us__list__item"><a href="https://github.com/DenisOleksiuk">Github @DenisOleksiuk</a></li>
+                <li class="about-us__list__item"><a href="https://github.com/sakhan-s">Github @sakhan-s</a></li>
+            </ul>
+            <ul class="about-us__list block-1">
+              <li class="about-us__list__item__title">Creation year:</li>
+              <li class="about-us__date-title">2020 year</li>
+            </ul>
+            <ul class="about-us__list block-2">
+                <li class="about-us__list__item__title">School course:</li>
+                <li class="about-us__list__item">
+                  <i class="mdi mdi-github-circle"></i>
+                  <a href="https://rs.school/js/">rs.school</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

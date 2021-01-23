@@ -24,7 +24,7 @@ function joinApiData(stats, countries) {
     'Syrian Arab Republic (Syria)': 'Syrian Arab Republic',
     'Taiwan, Republic of China': 'Taiwan',
     'United Kingdom': 'United Kingdom of Great Britain and Northern Ireland',
-    'Venezuela (Bolivarian Republic)': 'Venezuela (Bolivarian Republic of)'
+    'Venezuela (Bolivarian Republic)': 'Venezuela (Bolivarian Republic of)',
   };
 
   const worldPopulation = 7794798739;
@@ -45,13 +45,12 @@ function joinApiData(stats, countries) {
       newRecovered100k: calcFor100k(stats.Global.NewRecovered, worldPopulation),
       totalConfirmed100k: calcFor100k(stats.Global.TotalConfirmed, worldPopulation),
       totalDeaths100k: calcFor100k(stats.Global.TotalDeaths, worldPopulation),
-      totalRecovered100k: calcFor100k(stats.Global.TotalRecovered, worldPopulation)
+      totalRecovered100k: calcFor100k(stats.Global.TotalRecovered, worldPopulation),
     },
     countries: stats.Countries.map(({
-      Country, NewConfirmed, NewDeaths, NewRecovered, TotalConfirmed, TotalDeaths, TotalRecovered
+      Country, NewConfirmed, NewDeaths, NewRecovered, TotalConfirmed, TotalDeaths, TotalRecovered,
     }) => {
-      const { flag, population } = countries
-        .find((country) => country.name === (countryMap[Country] || Country));
+      const { flag, population } = countries.find((country) => country.name === (countryMap[Country] || Country));
       return {
         name: Country,
         newConfirmed: NewConfirmed,
@@ -67,9 +66,9 @@ function joinApiData(stats, countries) {
         newRecovered100k: calcFor100k(NewRecovered, population),
         totalConfirmed100k: calcFor100k(TotalConfirmed, population),
         totalDeaths100k: calcFor100k(TotalDeaths, population),
-        totalRecovered100k: calcFor100k(TotalRecovered, population)
+        totalRecovered100k: calcFor100k(TotalRecovered, population),
       };
-    })
+    }),
   };
 
   return data;
@@ -77,6 +76,9 @@ function joinApiData(stats, countries) {
 
 async function tables() {
   const [stats, countries] = [...await Promise.all([featchCovidStats(), fetchCountries()])];
+
+  if (!stats || !countries) return;
+
   const data = joinApiData(stats, countries);
   const dataTable = new BuildTable(data.global);
   const countriesTable = new ContriesList(data);

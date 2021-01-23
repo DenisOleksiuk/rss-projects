@@ -1,34 +1,45 @@
+import { useTheme, color } from '@amcharts/amcharts4/core';
+import { projections } from '@amcharts/amcharts4/maps';
+import am4geodataWorldLow from '@amcharts/amcharts4-geodata/worldLow';
+import am4themesAnimated from '@amcharts/amcharts4/themes/animated';
+
 import { chart, polygonSeries } from './config';
 import { featchCovidStats } from '../fetchCovidStatsAndPopulation';
-import updateDataCases from './updatetDataCases';
-import renderDateForMap from './renderDateForMap';
-import renderButtonsForMap from './renderButtonsFromMap';
-import renderHeatLegendForMap from './renderHeatLegendForMap';
-import updateColorOfMap from './updateColorOfMap';
-import addHitEvents from './hitEvents';
+import { updateDataCases } from './updatetDataCases';
+import { renderDateForMap } from './renderDateForMap';
+import { renderButtonsForMap } from './renderButtonsFromMap';
+import { renderHeatLegendForMap } from './renderHeatLegendForMap';
+import { renderFullScreenButton } from './renderFullScreenButton';
+import { updateColorOfMap } from './updateColorOfMap';
+import { addHitEvents } from './hitEvents';
 
-const renderMap = async () => {
+export const renderMap = async () => {
   const fetchedData = await featchCovidStats();
+
+  if (!fetchedData) return;
+
   const worldData = fetchedData.Countries;
   const date = fetchedData.Date;
 
-  am4core.useTheme(am4themes_animated);
-  chart.geodata = am4geodata_worldLow;
-  chart.projection = new am4maps.projections.Miller();
+  useTheme(am4themesAnimated);
+  chart.geodata = am4geodataWorldLow;
+  chart.projection = new projections.Miller();
   polygonSeries.useGeodata = true;
 
   // Configure series
   const polygonTemplate = polygonSeries.mapPolygons.template;
   polygonTemplate.tooltipText = '{name}: {value}';
   polygonTemplate.propertyFields.id = 'name';
-  polygonTemplate.fill = am4core.color('#3b3b3b');
+  polygonTemplate.fill = color('#3b3b3b');
   polygonTemplate.fillOpacity = 1;
-  polygonTemplate.stroke = am4core.color('#ffffff');
+  polygonTemplate.stroke = color('#ffffff');
   polygonTemplate.strokeOpacity = 0.25;
 
   const hs = polygonTemplate.states.create('hover');
-  hs.properties.fill = am4core.color('#dbdbdb');
+  hs.properties.fill = color('#dbdbdb');
   polygonSeries.exclude = ['AQ'];
+
+  renderFullScreenButton();
 
   updateDataCases(worldData);
   updateColorOfMap();
@@ -37,5 +48,3 @@ const renderMap = async () => {
   renderHeatLegendForMap(polygonSeries, chart);
   renderDateForMap(chart, date);
 };
-
-export default renderMap;
